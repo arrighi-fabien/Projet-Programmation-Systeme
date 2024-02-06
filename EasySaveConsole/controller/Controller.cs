@@ -16,7 +16,11 @@ namespace EasySaveConsole.controller {
             do {
                 do {
                     view.DisplayOutput("1. " + language.GetString("menu_language"));
-                    view.DisplayOutput("2. " + language.GetString("quit_application"));
+                    view.DisplayOutput("2. " + language.GetString("menu_execute_save"));
+                    view.DisplayOutput("3. " + language.GetString("menu_create_save"));
+                    view.DisplayOutput("4. " + language.GetString("menu_update_save"));
+                    view.DisplayOutput("5. " + language.GetString("menu_delete_save"));
+                    view.DisplayOutput("6. " + language.GetString("quit_application"));
                     choice = view.GetInput();
                 } while (choice.Length < 0);
 

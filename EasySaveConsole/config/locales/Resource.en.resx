@@ -123,8 +123,20 @@
   <data name="language_selection" xml:space="preserve">
     <value>Select a language</value>
   </data>
+  <data name="menu_create_save" xml:space="preserve">
+    <value>Create save job</value>
+  </data>
+  <data name="menu_delete_save" xml:space="preserve">
+    <value>Delete save job</value>
+  </data>
+  <data name="menu_execute_save" xml:space="preserve">
+    <value>Execute one or more save jobs</value>
+  </data>
   <data name="menu_language" xml:space="preserve">
     <value>Change language</value>
+  </data>
+  <data name="menu_update_save" xml:space="preserve">
+    <value>Update save job</value>
   </data>
   <data name="quit_application" xml:space="preserve">
     <value>Close application</value>
