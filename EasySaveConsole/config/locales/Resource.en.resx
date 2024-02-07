@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="create_savejob" xml:space="preserve">
+    <value>Creation of savejob</value>
+  </data>
+  <data name="enter_savejob_destination" xml:space="preserve">
+    <value>Enter destination folder</value>
+  </data>
+  <data name="enter_savejob_name" xml:space="preserve">
+    <value>Enter name</value>
+  </data>
+  <data name="enter_savejob_source" xml:space="preserve">
+    <value>Enter source folder</value>
+  </data>
+  <data name="enter_savejob_type" xml:space="preserve">
+    <value>Enter save type</value>
+  </data>
   <data name="invalid_choice" xml:space="preserve">
     <value>Invalid input</value>
-  </data>
-  <data name="language_selection" xml:space="preserve">
-    <value>Select a language</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
     <value>Create save job</value>
@@ -135,10 +147,28 @@
   <data name="menu_language" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="menu_quit_application" xml:space="preserve">
+    <value>Close application</value>
+  </data>
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
-  <data name="quit_application" xml:space="preserve">
-    <value>Close application</value>
+  <data name="no_savejob" xml:space="preserve">
+    <value>No savejob saved</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>Select a language</value>
+  </data>
+  <data name="select_savejob" xml:space="preserve">
+    <value>Select one or more savejobs</value>
+  </data>
+  <data name="select_savejob_delete" xml:space="preserve">
+    <value>Select savejob to delete</value>
+  </data>
+  <data name="select_savejob_differential" xml:space="preserve">
+    <value>Differential save</value>
+  </data>
+  <data name="select_savejob_full" xml:space="preserve">
+    <value>Full save</value>
   </data>
 </root>

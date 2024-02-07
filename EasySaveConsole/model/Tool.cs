@@ -3,11 +3,18 @@
 
         private static Tool instance;
 
-        public Tool getInstance() {
+        public static Tool getInstance() {
             if (instance == null) {
                 instance = new Tool();
             }
             return instance;
+        }
+
+        public long GetFileSize(string path) {
+            if (File.Exists(path)) {
+                return new FileInfo(path).Length;
+            }
+            return 0;
         }
 
     }
