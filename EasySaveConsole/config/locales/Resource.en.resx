@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="create_savejob" xml:space="preserve">
+    <value>Creation of savejob</value>
+  </data>
+  <data name="enter_savejob_destination" xml:space="preserve">
+    <value>Enter destination folder</value>
+  </data>
+  <data name="enter_savejob_name" xml:space="preserve">
+    <value>Enter name</value>
+  </data>
+  <data name="enter_savejob_source" xml:space="preserve">
+    <value>Enter source folder</value>
+  </data>
+  <data name="enter_savejob_type" xml:space="preserve">
+    <value>Enter save type</value>
+  </data>
   <data name="invalid_choice" xml:space="preserve">
     <value>Invalid input</value>
   </data>

@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using EasySaveConsole.model;
+﻿using EasySaveConsole.model;
 using EasySaveConsole.view;
 
 namespace EasySaveConsole.controller {
@@ -7,6 +6,7 @@ namespace EasySaveConsole.controller {
 
         private readonly View view = new();
         private Language language = new();
+        private List<SaveJob> saveJobs = new List<SaveJob>();
 
         public void MainMenu() {
 
@@ -29,15 +29,27 @@ namespace EasySaveConsole.controller {
                         ChangeLanguage();
                         break;
                     case "2":
+                        RunSaveJob();
+                        break;
+                    case "3":
+                        CreateSaveJob();
+                        break;
+                    case "4":
+                        UpdateSaveJob();
+                        break;
+                    case "5":
+                        DeleteSaveJob();
+                        break;
+                    case "6":
                         break;
                     default:
                         view.DisplayOutput(language.GetString("invalid_choice"));
                         break;
                 }
-            } while (choice != "2");
+            } while (choice != "6");
         }
 
-        public void ChangeLanguage() {
+        private void ChangeLanguage() {
             string languageCode = "";
             view.DisplayOutput(language.GetString("language_selection"));
             view.DisplayOutput("1. English");
@@ -62,6 +74,38 @@ namespace EasySaveConsole.controller {
             }
             language.SetLanguage(languageCode);
             view.ClearConsole();
+        }
+
+        private void RunSaveJob() {
+            Console.WriteLine(saveJobs.Count);
+            for (int i = 0; i < saveJobs.Count; i++) {
+                Console.WriteLine(saveJobs[i].Name);
+                Console.WriteLine(saveJobs[i].SourceFolder);
+                Console.WriteLine(saveJobs[i].DestinationFolder);
+                Console.WriteLine(saveJobs[i].GetType());
+            }
+        }
+
+        private void CreateSaveJob() {
+            view.DisplayOutput(language.GetString("create_savejob"));
+            view.DisplayOutput(language.GetString("enter_savejob_name"));
+            string saveName = view.GetInput();
+            view.DisplayOutput(language.GetString("enter_savejob_source"));
+            string saveSource = view.GetInput();
+            view.DisplayOutput(language.GetString("enter_savejob_destination"));
+            string saveDestination = view.GetInput();
+            view.DisplayOutput(language.GetString("enter_savejob_type"));
+            string saveType = view.GetInput();
+            FullSave savejob = new(saveName, saveSource, saveDestination);
+            saveJobs.Add(savejob);
+        }
+
+        private void UpdateSaveJob() {
+
+        }
+
+        private void DeleteSaveJob() {
+
         }
 
     }

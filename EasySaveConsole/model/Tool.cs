@@ -3,11 +3,15 @@
 
         private static Tool instance;
 
-        public Tool getInstance() {
+        public static Tool getInstance() {
             if (instance == null) {
                 instance = new Tool();
             }
             return instance;
+        }
+
+        public uint GetFileSize(string path) {
+            return 0;
         }
 
     }
