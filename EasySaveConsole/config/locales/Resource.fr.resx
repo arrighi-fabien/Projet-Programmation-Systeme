@@ -135,9 +135,6 @@
   <data name="invalid_choice" xml:space="preserve">
     <value>Entrée invalide</value>
   </data>
-  <data name="language_selection" xml:space="preserve">
-    <value>Selectionnez une langue</value>
-  </data>
   <data name="menu_create_save" xml:space="preserve">
     <value>Créer un travail de sauvegarde</value>
   </data>
@@ -150,10 +147,28 @@
   <data name="menu_language" xml:space="preserve">
     <value>Changer la langue</value>
   </data>
+  <data name="menu_quit_application" xml:space="preserve">
+    <value>Fermer l'application</value>
+  </data>
   <data name="menu_update_save" xml:space="preserve">
     <value>Modifier un travail de sauvegarde</value>
   </data>
-  <data name="quit_application" xml:space="preserve">
-    <value>Fermer l'application</value>
+  <data name="no_savejob" xml:space="preserve">
+    <value>Aucun travail de sauvegarde enregistré</value>
+  </data>
+  <data name="select_language" xml:space="preserve">
+    <value>Selectionnez une langue</value>
+  </data>
+  <data name="select_savejob" xml:space="preserve">
+    <value>Selectionnez un ou plusieurs travaux de sauvegarde</value>
+  </data>
+  <data name="select_savejob_delete" xml:space="preserve">
+    <value>Sélectionnez le travail de sauvegarde à supprimer</value>
+  </data>
+  <data name="select_savejob_differential" xml:space="preserve">
+    <value>Sauvegarde différentielle</value>
+  </data>
+  <data name="select_savejob_full" xml:space="preserve">
+    <value>Sauvegarde complète</value>
   </data>
 </root>

@@ -5,24 +5,18 @@ namespace EasySaveConsole.controller {
     public class Controller {
 
         private readonly View view = new();
-        private Language language = new();
-        private List<SaveJob> saveJobs = new List<SaveJob>();
+        private readonly Language language = Language.GetInstance();
+        private readonly List<SaveJob> saveJobs = new List<SaveJob>();
 
         public void MainMenu() {
 
             view.ClearConsole();
-
             string choice;
+
             do {
-                do {
-                    view.DisplayOutput("1. " + language.GetString("menu_language"));
-                    view.DisplayOutput("2. " + language.GetString("menu_execute_save"));
-                    view.DisplayOutput("3. " + language.GetString("menu_create_save"));
-                    view.DisplayOutput("4. " + language.GetString("menu_update_save"));
-                    view.DisplayOutput("5. " + language.GetString("menu_delete_save"));
-                    view.DisplayOutput("6. " + language.GetString("quit_application"));
-                    choice = view.GetInput();
-                } while (choice.Length < 0);
+                view.DisplayMainMenu();
+                choice = view.GetInput();
+                view.ClearConsole();
 
                 switch (choice) {
                     case "1":
@@ -44,45 +38,70 @@ namespace EasySaveConsole.controller {
                         break;
                     default:
                         view.DisplayOutput(language.GetString("invalid_choice"));
+                        view.DisplayOutput("");
                         break;
                 }
             } while (choice != "6");
         }
 
         private void ChangeLanguage() {
-            string languageCode = "";
-            view.DisplayOutput(language.GetString("language_selection"));
+            view.DisplayOutput(language.GetString("select_language"));
             view.DisplayOutput("1. English");
             view.DisplayOutput("2. Français");
             view.DisplayOutput("3. Corsu");
 
             // Get the user's choice
             string choice = view.GetInput();
+            view.ClearConsole();
             switch (choice) {
                 case "1":
-                    languageCode = "en";
+                    language.SetLanguage("en");
                     break;
                 case "2":
-                    languageCode = "fr";
+                    language.SetLanguage("fr");
                     break;
                 case "3":
-                    languageCode = "co";
+                    language.SetLanguage("co");
                     break;
                 default:
                     view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput("");
                     break;
             }
-            language.SetLanguage(languageCode);
-            view.ClearConsole();
         }
 
         private void RunSaveJob() {
-            Console.WriteLine(saveJobs.Count);
-            for (int i = 0; i < saveJobs.Count; i++) {
-                Console.WriteLine(saveJobs[i].Name);
-                Console.WriteLine(saveJobs[i].SourceFolder);
-                Console.WriteLine(saveJobs[i].DestinationFolder);
-                Console.WriteLine(saveJobs[i].GetType());
+            if (saveJobs.Count > 0) {
+                view.DisplaySaveJobList(saveJobs);
+                view.DisplayOutput(language.GetString("select_savejob"));
+                // Possibility to enter one number or multiple numbers separated by a comma for particular save jobs or a - for a range of save jobs
+                string choice = view.GetInput();
+                try {
+                    if (choice.Contains("-")) {
+                        string[] range = choice.Split("-");
+                        int start = int.Parse(range[0]);
+                        int end = int.Parse(range[1]);
+                        for (int i = start; i <= end; i++) {
+                            saveJobs[i - 1].SaveData();
+                        }
+                    }
+                    else if (choice.Contains(";")) {
+                        string[] choices = choice.Split(";");
+                        foreach (string c in choices) {
+                            saveJobs[int.Parse(c) - 1].SaveData();
+                        }
+                    }
+                    else {
+                        saveJobs[int.Parse(choice) - 1].SaveData();
+                    }
+                }
+                catch (Exception) {
+                    view.DisplayOutput(language.GetString("invalid_choice"));
+                }
+            }
+            else {
+                view.DisplayOutput(language.GetString("no_savejob"));
+                view.DisplayOutput("");
             }
         }
 
@@ -95,17 +114,81 @@ namespace EasySaveConsole.controller {
             view.DisplayOutput(language.GetString("enter_savejob_destination"));
             string saveDestination = view.GetInput();
             view.DisplayOutput(language.GetString("enter_savejob_type"));
+            view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
+            view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
             string saveType = view.GetInput();
-            FullSave savejob = new(saveName, saveSource, saveDestination);
-            saveJobs.Add(savejob);
+
+            switch (saveType) {
+                case "1":
+                    saveJobs.Add(new FullSave(saveName, saveSource, saveDestination));
+                    view.ClearConsole();
+                    break;
+                case "2":
+                    saveJobs.Add(new DifferentialSave(saveName, saveSource, saveDestination));
+                    view.ClearConsole();
+                    break;
+                default:
+                    view.ClearConsole();
+                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput("");
+                    break;
+            }
         }
 
         private void UpdateSaveJob() {
-
+            if (saveJobs.Count > 0) {
+                view.DisplayOutput(language.GetString("select_savejob_update"));
+                view.DisplaySaveJobList(saveJobs);
+                try {
+                    int choice = int.Parse(view.GetInput());
+                    view.DisplayOutput(language.GetString("enter_savejob_name"));
+                    saveJobs[choice - 1].Name = view.GetInput();
+                    view.DisplayOutput(language.GetString("enter_savejob_source"));
+                    saveJobs[choice - 1].SourceFolder = view.GetInput();
+                    view.DisplayOutput(language.GetString("enter_savejob_destination"));
+                    saveJobs[choice - 1].DestinationFolder = view.GetInput();
+                    view.DisplayOutput(language.GetString("enter_savejob_type"));
+                    view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
+                    view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
+                    string saveType = view.GetInput();
+                    switch (saveType) {
+                        case "1":
+                            saveJobs[choice - 1] = new FullSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                            break;
+                        case "2":
+                            saveJobs[choice - 1] = new DifferentialSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                            break;
+                        default:
+                            view.DisplayOutput(language.GetString("invalid_choice"));
+                            break;
+                    }
+                }
+                catch (Exception) {
+                    view.DisplayOutput(language.GetString("invalid_choice"));
+                }
+            }
+            else {
+                view.DisplayOutput(language.GetString("no_savejob"));
+                view.DisplayOutput("");
+            }
         }
 
         private void DeleteSaveJob() {
-
+            if (saveJobs.Count > 0) {
+                view.DisplayOutput(language.GetString("select_savejob_delete"));
+                view.DisplaySaveJobList(saveJobs);
+                try {
+                    int choice = int.Parse(view.GetInput());
+                    saveJobs.RemoveAt(choice - 1);
+                }
+                catch (Exception) {
+                    view.DisplayOutput(language.GetString("invalid_choice"));
+                }
+            }
+            else {
+                view.DisplayOutput(language.GetString("no_savejob"));
+                view.DisplayOutput("");
+            }
         }
 
     }

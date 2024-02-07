@@ -10,7 +10,10 @@
             return instance;
         }
 
-        public uint GetFileSize(string path) {
+        public long GetFileSize(string path) {
+            if (File.Exists(path)) {
+                return new FileInfo(path).Length;
+            }
             return 0;
         }
 
