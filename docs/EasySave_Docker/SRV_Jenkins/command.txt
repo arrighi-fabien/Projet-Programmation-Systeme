@@ -1,0 +1,24 @@
+Build Dockerfile :
+----------
+docker build -t easysavejenkins:latest .
+
+
+Push to DockerHub :
+----------
+docker commit easysavejenkins airg213/easysavejenkins:latest
+
+docker tag easysavejenkins:latest airg213/easysavejenkins
+
+docker push airg213/easysavejenkins:latest
+
+
+
+Import from DockerHub :
+----------
+docker pull airg213/easysavejenkins:latest
+
+docker run -d -p 8080:8080 -p 50000:50000 --name easysavejenkins easysavejenkins:latest
+
+
+
+

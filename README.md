@@ -93,7 +93,7 @@ To launch the container and access the application: <br>
 `docker run -it airg213/easysaveconsole:1.0` <br>
 
 Once in the container, navigate to the application directory: <br>
-`cd /etc/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
+`cd /opt/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
 
 Launch the application with: <br>
 `./EasySaveConsole` <br>
@@ -139,7 +139,7 @@ Jenkins server is available on the Docker Hub for easy recovery. You can pull th
 `docker pull airg213/easysavejenkins:latest` <br>
 
 To launch the Jenkins server in a Docker container: <br>
-`docker run -p 8080:8080 -p 50000:50000 airg213/easysavejenkins:latest` <br>
+`docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest` <br>
 
 # Authors 
 
