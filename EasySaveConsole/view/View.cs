@@ -23,6 +23,10 @@ namespace EasySaveConsole.view {
             int i = 1;
             foreach (SaveJob saveJob in saveJobs) {
                 DisplayOutput($"{i}. {saveJob.Name}");
+                DisplayOutput($"   {language.GetString("source_folder")}: {saveJob.SourceFolder}");
+                DisplayOutput($"   {language.GetString("destination_folder")}: {saveJob.DestinationFolder}");
+                DisplayOutput($"   {language.GetString("save_type")}: {saveJob.GetType().Name}");
+                DisplayOutput("");
                 i++;
             }
         }
