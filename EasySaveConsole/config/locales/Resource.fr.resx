@@ -120,6 +120,12 @@
   <data name="create_savejob" xml:space="preserve">
     <value>Création d'un travail de sauvegarde</value>
   </data>
+  <data name="destination_folder" xml:space="preserve">
+    <value>Dossier de destination</value>
+  </data>
+  <data name="destination_folder_not_found" xml:space="preserve">
+    <value>Dossier de destination invalide</value>
+  </data>
   <data name="enter_savejob_destination" xml:space="preserve">
     <value>Entrez le dossier de destination</value>
   </data>
@@ -132,7 +138,7 @@
   <data name="enter_savejob_type" xml:space="preserve">
     <value>Entrez le type de sauvegarde</value>
   </data>
-  <data name="invalid_choice" xml:space="preserve">
+  <data name="invalid_input" xml:space="preserve">
     <value>Entrée invalide</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
@@ -156,6 +162,12 @@
   <data name="no_savejob" xml:space="preserve">
     <value>Aucun travail de sauvegarde enregistré</value>
   </data>
+  <data name="savejob_already_exists" xml:space="preserve">
+    <value>Ce travail de sauvegarde existe déjà</value>
+  </data>
+  <data name="save_type" xml:space="preserve">
+    <value>Type de sauvegarde</value>
+  </data>
   <data name="select_language" xml:space="preserve">
     <value>Selectionnez une langue</value>
   </data>
@@ -170,5 +182,11 @@
   </data>
   <data name="select_savejob_full" xml:space="preserve">
     <value>Sauvegarde complète</value>
+  </data>
+  <data name="source_folder" xml:space="preserve">
+    <value>Dossier source</value>
+  </data>
+  <data name="source_folder_not_found" xml:space="preserve">
+    <value>Dossier source invalide</value>
   </data>
 </root>

@@ -120,6 +120,12 @@
   <data name="create_savejob" xml:space="preserve">
     <value>Creation of savejob</value>
   </data>
+  <data name="destination_folder" xml:space="preserve">
+    <value>Destination folder</value>
+  </data>
+  <data name="destination_folder_not_found" xml:space="preserve">
+    <value>Destination folder not valid</value>
+  </data>
   <data name="enter_savejob_destination" xml:space="preserve">
     <value>Enter destination folder</value>
   </data>
@@ -132,7 +138,7 @@
   <data name="enter_savejob_type" xml:space="preserve">
     <value>Enter save type</value>
   </data>
-  <data name="invalid_choice" xml:space="preserve">
+  <data name="invalid_input" xml:space="preserve">
     <value>Invalid input</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
@@ -156,6 +162,12 @@
   <data name="no_savejob" xml:space="preserve">
     <value>No savejob saved</value>
   </data>
+  <data name="savejob_already_exists" xml:space="preserve">
+    <value>Savejob already exist</value>
+  </data>
+  <data name="save_type" xml:space="preserve">
+    <value>Save type</value>
+  </data>
   <data name="select_language" xml:space="preserve">
     <value>Select a language</value>
   </data>
@@ -170,5 +182,11 @@
   </data>
   <data name="select_savejob_full" xml:space="preserve">
     <value>Full save</value>
+  </data>
+  <data name="source_folder" xml:space="preserve">
+    <value>Source folder</value>
+  </data>
+  <data name="source_folder_not_found" xml:space="preserve">
+    <value>Source folder not found</value>
   </data>
 </root>

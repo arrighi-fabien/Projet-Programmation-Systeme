@@ -37,7 +37,7 @@ namespace EasySaveConsole.controller {
                     case "6":
                         break;
                     default:
-                        view.DisplayOutput(language.GetString("invalid_choice"));
+                        view.DisplayOutput(language.GetString("invalid_input"));
                         view.DisplayOutput("");
                         break;
                 }
@@ -45,7 +45,7 @@ namespace EasySaveConsole.controller {
         }
 
         private void ChangeLanguage() {
-            view.DisplayOutput(language.GetString("select_language"));
+            view.DisplayOutput(language.GetString("select_language") + " :");
             view.DisplayOutput("1. English");
             view.DisplayOutput("2. Français");
             view.DisplayOutput("3. Corsu");
@@ -64,7 +64,7 @@ namespace EasySaveConsole.controller {
                     language.SetLanguage("co");
                     break;
                 default:
-                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput(language.GetString("invalid_input"));
                     view.DisplayOutput("");
                     break;
             }
@@ -72,8 +72,8 @@ namespace EasySaveConsole.controller {
 
         private void RunSaveJob() {
             if (saveJobs.Count > 0) {
+                view.DisplayOutput(language.GetString("select_savejob") + " :");
                 view.DisplaySaveJobList(saveJobs);
-                view.DisplayOutput(language.GetString("select_savejob"));
                 // Possibility to enter one number or multiple numbers separated by a comma for particular save jobs or a - for a range of save jobs
                 string choice = view.GetInput();
                 try {
@@ -96,7 +96,7 @@ namespace EasySaveConsole.controller {
                     }
                 }
                 catch (Exception) {
-                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput(language.GetString("invalid_input"));
                 }
             }
             else {
@@ -109,10 +109,35 @@ namespace EasySaveConsole.controller {
             view.DisplayOutput(language.GetString("create_savejob"));
             view.DisplayOutput(language.GetString("enter_savejob_name"));
             string saveName = view.GetInput();
+            if (saveJobs.Any(s => s.Name == saveName)) {
+                view.ClearConsole();
+                view.DisplayOutput(language.GetString("savejob_already_exists"));
+                view.DisplayOutput("");
+                return;
+            }
+            else if (saveName.Length < 1) {
+                view.ClearConsole();
+                view.DisplayOutput(language.GetString("invalid_input"));
+                view.DisplayOutput("");
+                return;
+            }
             view.DisplayOutput(language.GetString("enter_savejob_source"));
             string saveSource = view.GetInput();
+            if (!Directory.Exists(saveSource)) {
+                view.ClearConsole();
+                view.DisplayOutput(language.GetString("source_folder_not_found"));
+                view.DisplayOutput("");
+                return;
+            }
             view.DisplayOutput(language.GetString("enter_savejob_destination"));
             string saveDestination = view.GetInput();
+            Tool tool = Tool.getInstance();
+            if (!tool.PathDirectoryIsValid(saveDestination)) {
+                view.ClearConsole();
+                view.DisplayOutput(language.GetString("destination_folder_not_found"));
+                view.DisplayOutput("");
+                return;
+            }
             view.DisplayOutput(language.GetString("enter_savejob_type"));
             view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
             view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
@@ -129,7 +154,7 @@ namespace EasySaveConsole.controller {
                     break;
                 default:
                     view.ClearConsole();
-                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput(language.GetString("invalid_input"));
                     view.DisplayOutput("");
                     break;
             }
@@ -159,12 +184,12 @@ namespace EasySaveConsole.controller {
                             saveJobs[choice - 1] = new DifferentialSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
                             break;
                         default:
-                            view.DisplayOutput(language.GetString("invalid_choice"));
+                            view.DisplayOutput(language.GetString("invalid_input"));
                             break;
                     }
                 }
                 catch (Exception) {
-                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput(language.GetString("invalid_input"));
                 }
             }
             else {
@@ -182,7 +207,7 @@ namespace EasySaveConsole.controller {
                     saveJobs.RemoveAt(choice - 1);
                 }
                 catch (Exception) {
-                    view.DisplayOutput(language.GetString("invalid_choice"));
+                    view.DisplayOutput(language.GetString("invalid_input"));
                 }
             }
             else {

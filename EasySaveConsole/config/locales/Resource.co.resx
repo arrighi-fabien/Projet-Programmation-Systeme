@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="invalid_choice" xml:space="preserve">
+  <data name="invalid_input" xml:space="preserve">
     <value>Ingressu invalidu</value>
   </data>
   <data name="menu_language" xml:space="preserve">
