@@ -4,7 +4,6 @@
         private string name;
         private string sourceFile;
         private string destinationFile;
-        private string timestamp;
 
         public string Name {
             get {
@@ -34,20 +33,10 @@
             }
         }
 
-        public string Timestamp {
-            get {
-                return timestamp;
-            }
-            set {
-                timestamp = value;
-            }
-        }
-
-        public LogSystem(string name, string sourceFile, string destinationFile, string timestamp) {
+        public LogSystem(string name, string sourceFile, string destinationFile) {
             Name = name;
             SourceFile = sourceFile;
             DestinationFile = destinationFile;
-            Timestamp = timestamp;
         }
 
     }

@@ -18,9 +18,7 @@ namespace EasySaveConsole.model {
         }
 
         public static Language GetInstance() {
-            if (instance == null) {
-                instance = new Language();
-            }
+            instance ??= new Language();
             return instance;
         }
 

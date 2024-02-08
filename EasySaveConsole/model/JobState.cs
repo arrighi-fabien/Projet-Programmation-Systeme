@@ -1,4 +1,6 @@
-﻿namespace EasySaveConsole.model {
+﻿using System.Xml.Linq;
+
+namespace EasySaveConsole.model {
     public class JobState : LogSystem {
 
         private string state;
@@ -6,6 +8,7 @@
         private ulong totalFilesSize;
         private uint filesLeft;
         private ulong filesSizeLeft;
+        private int progression;
 
         public string State {
             get {
@@ -52,12 +55,32 @@
             }
         }
 
-        public JobState(string name, string sourceFile, string destinationFile, string timestamp, string state, uint totalFiles, ulong totalFilesSize, uint filesLeft, ulong filesSizeLeft) : base(name, sourceFile, destinationFile, timestamp) {
+        public int Progression {
+            get {
+                return progression;
+            }
+            set {
+                progression = value;
+            }
+        }
+
+        public JobState(string name, string sourceFile, string destinationFile, string state, uint totalFiles, ulong totalFilesSize, uint filesLeft, ulong filesSizeLeft) : base(name, sourceFile, destinationFile) {
             State = state;
             TotalFiles = totalFiles;
             TotalFilesSize = totalFilesSize;
             FilesLeft = filesLeft;
             FilesSizeLeft = filesSizeLeft;
+        }
+
+        public void FinishJobState() {
+            State = "END";
+            TotalFiles = 0;
+            TotalFilesSize = 0;
+            FilesLeft = 0;
+            FilesSizeLeft = 0;
+            Progression = 0;
+            SourceFile = "";
+            DestinationFile = "";
         }
 
     }

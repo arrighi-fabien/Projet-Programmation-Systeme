@@ -3,6 +3,7 @@
 
         private ulong fileSize;
         private double transferTime;
+        private string timestamp;
 
         public ulong FileSize {
             get {
@@ -22,9 +23,19 @@
             }
         }
 
-        public JobLog(string name, string sourceFile, string destinationFile, string timestamp, ulong fileSize, double transferTime) : base(name, sourceFile, destinationFile, timestamp) {
+        public string Timestamp {
+            get {
+                return timestamp;
+            }
+            set {
+                timestamp = value;
+            }
+        }
+
+        public JobLog(string name, string sourceFile, string destinationFile, string timestamp, ulong fileSize, double transferTime) : base(name, sourceFile, destinationFile) {
             FileSize = fileSize;
             TransferTime = transferTime;
+            Timestamp = timestamp;
         }
 
     }

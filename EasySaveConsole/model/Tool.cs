@@ -4,37 +4,35 @@ namespace EasySaveConsole.model {
     public class Tool {
 
         private static Tool instance;
+        private readonly JsonSerializerOptions serializerOptions = new() {
+            WriteIndented = true
+        };
 
         public static Tool GetInstance() {
-            if (instance == null) {
-                instance = new Tool();
-            }
+            instance ??= new Tool();
             return instance;
         }
 
         public List<SaveJob> GetSavedSaveJob() {
-            if (File.Exists("config/config.json")) {
-                try {
-                    string json = File.ReadAllText("config/config.json");
-                    List<Dictionary<string, string>> saveJobsJson = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
-                    List<SaveJob> saveJobs = new List<SaveJob>();
-                    foreach (Dictionary<string, string> saveJob in saveJobsJson) {
-                        if (saveJob["type"] == "full") {
-                            SaveJob savedSaveJob = new FullSave(saveJob["Name"], saveJob["SourceFolder"], saveJob["DestinationFolder"]);
-                            saveJobs.Add(savedSaveJob);
-                        }
-                        else if (saveJob["type"] == "differential") {
-                            SaveJob savedSaveJob = new DifferentialSave(saveJob["Name"], saveJob["SourceFolder"], saveJob["DestinationFolder"]);
-                            saveJobs.Add(savedSaveJob);
-                        }
+            try {
+                string json = File.ReadAllText("config/savejobs.json");
+                List<Dictionary<string, string>> saveJobsJson = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
+                List<SaveJob> saveJobs = new List<SaveJob>();
+                foreach (Dictionary<string, string> saveJob in saveJobsJson) {
+                    if (saveJob["type"] == "full") {
+                        SaveJob savedSaveJob = new FullSave(saveJob["Name"], saveJob["SourceFolder"], saveJob["DestinationFolder"]);
+                        saveJobs.Add(savedSaveJob);
                     }
-                    return saveJobs;
+                    else if (saveJob["type"] == "differential") {
+                        SaveJob savedSaveJob = new DifferentialSave(saveJob["Name"], saveJob["SourceFolder"], saveJob["DestinationFolder"]);
+                        saveJobs.Add(savedSaveJob);
+                    }
                 }
-                catch (Exception) {
-                    return [];
-                }
+                return saveJobs;
             }
-            return [];
+            catch (Exception) {
+                return [];
+            }
         }
 
         public void WriteSavedSaveJob(List<SaveJob> saveJobs) {
@@ -54,7 +52,7 @@ namespace EasySaveConsole.model {
                 saveJobsJson.Add(saveJobJson);
             }
             string json = JsonSerializer.Serialize(saveJobsJson);
-            File.WriteAllText("config/config.json", json);
+            File.WriteAllText("config/savejobs.json", json);
         }
 
         public ulong GetFileSize(string path) {
@@ -90,16 +88,18 @@ namespace EasySaveConsole.model {
                 json = File.ReadAllText(path);
                 List<JobLog> jobLogs = JsonSerializer.Deserialize<List<JobLog>>(json);
                 jobLogs.Add(obj);
-                json = JsonSerializer.Serialize(jobLogs, new JsonSerializerOptions {
-                    WriteIndented = true
-                });
+                json = JsonSerializer.Serialize(jobLogs, serializerOptions);
             }
             else {
                 List<JobLog> jobLogs = new List<JobLog> { obj };
-                json = JsonSerializer.Serialize(jobLogs, new JsonSerializerOptions {
-                    WriteIndented = true
-                });
+                json = JsonSerializer.Serialize(jobLogs, serializerOptions);
             }
+            File.WriteAllText(path, json);
+        }
+
+        public void WriteJobStateJsonFile(List<JobState> jobStates) {
+            string path = "logs/state.json";
+            string json = JsonSerializer.Serialize(jobStates, serializerOptions);
             File.WriteAllText(path, json);
         }
 

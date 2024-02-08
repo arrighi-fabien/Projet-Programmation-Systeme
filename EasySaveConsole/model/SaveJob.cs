@@ -40,12 +40,15 @@
 
         public abstract bool IsToSave(string path);
 
-        public void SaveData(List<JobLog> jobLogs) {
+        public void SaveData(List<JobState> jobStates) {
             if (!Directory.Exists(DestinationFolder)) {
                 Directory.CreateDirectory(DestinationFolder);
             }
-            List<string> files = new List<string>();
+            List<string> files = [];
             GetFileList(SourceFolder, files);
+            JobState jobState = new (Name, "", "", "ACTIVE", (uint)files.Count, 5465, 45646, 564);
+            jobStates.Add(jobState);
+            Tool tool = Tool.GetInstance();
             foreach (string file in files) {
                 string fileName = file.Substring(SourceFolder.Length + 1);
                 if (IsToSave(fileName)) {
@@ -55,9 +58,10 @@
                         DateTime endTime = DateTime.Now;
                         TimeSpan duration = endTime - startTime;
                         double durationInSeconds = duration.TotalSeconds;
-                        Tool tool = Tool.GetInstance();
-                        JobLog jobLog = new JobLog(Name, file, Path.Combine([DestinationFolder, fileName]), DateTime.Now.ToString(), tool.GetFileSize(file), durationInSeconds);
-                        jobLogs.Add(jobLog);
+                        jobState.SourceFile = file;
+                        jobState.DestinationFile = Path.Combine([DestinationFolder, fileName]);
+                        tool.WriteJobStateJsonFile(jobStates);
+                        JobLog jobLog = new(Name, file, Path.Combine([DestinationFolder, fileName]), DateTime.Now.ToString(), tool.GetFileSize(file), durationInSeconds);
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
                         tool.WriteJobLogJsonFile($"logs/{date}.json", jobLog);
                     }
@@ -66,6 +70,8 @@
                     }
                 }
             }
+            jobState.FinishJobState();
+            tool.WriteJobStateJsonFile(jobStates);
         }
 
         public void GetFileList(string path, List<string> files) {

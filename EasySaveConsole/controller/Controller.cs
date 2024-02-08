@@ -8,7 +8,7 @@ namespace EasySaveConsole.controller {
         private readonly Language language = Language.GetInstance();
         private Tool tool = Tool.GetInstance();
         private List<SaveJob> saveJobs;
-        private List<JobLog> jobLogs = [];
+        private List<JobState> jobStates = [];
 
         public void MainMenu() {
 
@@ -87,22 +87,24 @@ namespace EasySaveConsole.controller {
                     int start = int.Parse(range[0]);
                     int end = int.Parse(range[1]);
                     for (int i = start; i <= end; i++) {
-                        saveJobs[i - 1].SaveData(jobLogs);
+                        saveJobs[i - 1].SaveData(jobStates);
                     }
                 }
                 else if (choice.Contains(";")) {
                     string[] choices = choice.Split(";");
                     foreach (string c in choices) {
-                        saveJobs[int.Parse(c) - 1].SaveData(jobLogs);
+                        saveJobs[int.Parse(c) - 1].SaveData(jobStates);
                     }
                 }
                 else {
-                    saveJobs[int.Parse(choice) - 1].SaveData(jobLogs);
+                    saveJobs[int.Parse(choice) - 1].SaveData(jobStates);
                 }
             }
             catch (Exception) {
                 view.DisplayError(language.GetString("invalid_input"));
+                return;
             }
+            view.ClearConsole();
         }
 
         private void CreateSaveJob() {
