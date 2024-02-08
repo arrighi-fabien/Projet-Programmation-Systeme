@@ -84,13 +84,13 @@ Depending on your operating system, download the appropriate zip file from the r
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
 - Launch the application with `./EasySaveConsole`. <br>
 
-# Use with Docker
+## Use the application with Docker
 
 A Docker container is available to easily test the application on Linux. You can pull it from Docker Hub: <br>
-`docker pull airg213/easysaveconsole:1.0` <br>
+`docker pull airg213/easysaveconsole:latest` <br>
 
 To launch the container and access the application: <br>
-`docker run -it airg213/easysaveconsole:1.0` <br>
+`docker run -it --name easysaveconsole airg213/easysaveconsole:latest` <br>
 
 Once in the container, navigate to the application directory: <br>
 `cd /opt/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
@@ -133,7 +133,7 @@ The CI/CD pipeline for the EasySave project automates the process of compiling, 
 **Description :** Cleans up the post-build Jenkins workspace to avoid contamination between builds. <br>
 **Jenkins Action:** "Delete workspace when build is done." <br>
 
-# Using Docker Hub
+## Import Jenkins server with Docker Hub
 
 Jenkins server is available on the Docker Hub for easy recovery. You can pull the preconfigured Jenkins server with the CI/CD pipeline for EasySave: <br>
 `docker pull airg213/easysavejenkins:latest` <br>
