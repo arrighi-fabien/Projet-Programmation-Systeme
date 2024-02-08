@@ -17,4 +17,4 @@ Import from DockerHub :
 ----------
 docker pull airg213/easysavejenkins:latest
 
-docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest
+docker run -d -p 8080:8080 -p 50000:50000 --name easysavejenkins airg213/easysavejenkins:latest
