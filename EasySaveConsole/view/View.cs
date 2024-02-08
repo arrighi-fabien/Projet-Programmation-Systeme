@@ -49,5 +49,11 @@ namespace EasySaveConsole.view {
             DisplayOutput("╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝ by ProSoft");
         }
 
+        public void DisplayError(string error) {
+            ClearConsole();
+            DisplayOutput(error);
+            DisplayOutput("");
+        }
+
     }
 }
