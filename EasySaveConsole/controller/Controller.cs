@@ -155,22 +155,34 @@ namespace EasySaveConsole.controller {
             try {
                 int choice = int.Parse(view.GetInput());
                 view.DisplayOutput(language.GetString("enter_savejob_name"));
-                saveJobs[choice - 1].Name = view.GetInput();
+                string saveName = view.GetInput();
+                if (saveName.Length < 1) {
+                    view.DisplayError(language.GetString("invalid_input"));
+                    return;
+                }
                 view.DisplayOutput(language.GetString("enter_savejob_source"));
-                saveJobs[choice - 1].SourceFolder = view.GetInput();
+                string saveSource = view.GetInput();
+                if (!Directory.Exists(saveSource)) {
+                    view.DisplayError(language.GetString("source_folder_not_found"));
+                    return;
+                }
                 view.DisplayOutput(language.GetString("enter_savejob_destination"));
-                saveJobs[choice - 1].DestinationFolder = view.GetInput();
+                string saveDestination = view.GetInput();
+                if (!tool.PathDirectoryIsValid(saveDestination)) {
+                    view.DisplayError(language.GetString("destination_folder_not_found"));
+                    return;
+                }
                 view.DisplayOutput(language.GetString("enter_savejob_type"));
                 view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
                 view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
                 string saveType = view.GetInput();
                 switch (saveType) {
                     case "1":
-                        saveJobs[choice - 1] = new FullSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                        saveJobs[choice - 1] = new FullSave(saveName, saveSource, saveDestination);
                         tool.WriteSavedSaveJob(saveJobs);
                         break;
                     case "2":
-                        saveJobs[choice - 1] = new DifferentialSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                        saveJobs[choice - 1] = new DifferentialSave(saveName, saveSource, saveDestination);
                         tool.WriteSavedSaveJob(saveJobs);
                         break;
                     default:
