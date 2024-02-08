@@ -4,14 +4,17 @@
 
 This project is a simple backup software that allows you to create backups of your files and folders.
 
-# Sommaire
+# Summary
 
- - [User guide](##User-Guide)
+ - [User guide](#User-Guide)
  - [Available languages](#Available-languages)
  - [Interface](#Interface)
- - [Installation](#Installation)
- - [Autors](#Autors)
- - [Contact](#Contact)
+ - [Built With](#Built-With)
+ - [Download and use](#Download-and-use)
+ - [Use with Docker](#Use-with-Docker)
+ - [CI/CD pipeline for EasySave](#CI/CD-pipeline-for-EasySave)
+ - [Using Docker Hub](#Using-Docker-Hub)
+ - [Authors](#Authors)
 
 
 # User guide
@@ -26,111 +29,113 @@ This project is a simple backup software that allows you to create backups of yo
 
 Firstly, after launching the app we arrive at this interface menu where we can carry out these 6 different tasks:
 
-_1. Change language_
-_2. Execute one or more save jobs_
-_3. Create save job_
-_4. Update save job_
-_5. Delete save job_
-_6. Close application_
+_1. Change language_ <br>
+_2. Execute one or more save jobs_ <br>
+_3. Create save job_ <br>
+_4. Update save job_ <br>
+_5. Delete save job_ <br>
+_6. Close application_ <br>
 
 ### Change language 
-Choose "1" and select the language
+_Choose "1" and select the language._
 
 ### Execute one or more save jobs
-Write here
+_Choose "2" to launch one or more backup jobs._
 
 ### Create save job
-Write here
+_Choose "3" to create a job._ <br>
+_Then enter the name of the job._ <br>
+_Enter the path of the source folder and the path of the destination folder._ <br>
+_Then choose between a full save or a differential save._ <br>
 
 ### Update save job
-Write here
+_Choose "4" to update a job._
 
 ### Delete save job
-Write here
+_Choose "5" to delete a job._
 
 ### Close application
-Choose "6" to close the application
+_Choose "6" to close the application._
 
-## Built With
-.Net
-C#
+# Built With
 
+- .NET
+- C#
 
+# Download and use
 
-## Téléchargement et utilisation
-
-Selon votre système d'exploitation, téléchargez le fichier zip approprié depuis les releases sur notre page GitHub.
+Depending on your operating system, download the appropriate zip file from the releases on our GitHub page.
 
 ### Windows 64-bit
 
-- Téléchargez `EasySaveConsole_Win64.zip`.
-- Extrayez le fichier zip.
-- Lancez `EasySaveConsole.exe`.
+- Download `EasySaveConsole_Win64.zip`. <br>
+- Extract the zip file. <br>
+- Launch `EasySaveConsole.exe`. <br>
 
 ### Linux 64-bit
 
-- Téléchargez `EasySaveConsole_Linux64.zip`.
-- Extrayez le fichier zip.
-- Ouvrez un terminal et naviguez vers le dossier extrait : `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`.
-- Rendez le fichier exécutable avec `chmod +x EasySaveConsole`.
-- Lancez l'application avec `./EasySaveConsole`.
+- Download `EasySaveConsole_Linux64.zip`. <br>
+- Extract the zip file. <br>
+- Open a terminal and navigate to the extracted folder: `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`. <br>
+- Make the file executable with `chmod +x EasySaveConsole`. <br>
+- Launch the application with `./EasySaveConsole`. <br>
 
-### Utilisation avec Docker
+# Use with Docker
 
-Un conteneur Docker est disponible pour tester facilement l'application sous Linux. Vous pouvez le pull depuis Docker Hub :
-`docker pull airg213/easysaveconsole:1.0`
+A Docker container is available to easily test the application on Linux. You can pull it from Docker Hub: <br>
+`docker pull airg213/easysaveconsole:1.0` <br>
 
-Pour lancer le conteneur et accéder à l'application :
-`docker run -it airg213/easysaveconsole:1.0`
+To launch the container and access the application: <br>
+`docker run -it airg213/easysaveconsole:1.0` <br>
 
-Une fois dans le conteneur, naviguez vers le répertoire de l'application :
-`cd /etc/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`
+Once in the container, navigate to the application directory: <br>
+`cd /etc/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
 
-Lancez l'application avec :
-`./EasySaveConsole`
+Launch the application with: <br>
+`./EasySaveConsole` <br>
 
 
-## Pipeline CI/CD pour EasySave
+# CI/CD pipeline for EasySave
 
-Le pipeline CI/CD pour le projet EasySave automatise le processus de compilation, de test, de packaging, et de déploiement de l'application EasySave. Chaque changement poussé au référentiel Git déclenche ce pipeline, assurant une intégration et un déploiement continus.
+The CI/CD pipeline for the EasySave project automates the process of compiling, testing, packaging, and deploying the EasySave application. Every change pushed to the Git repository triggers this pipeline, ensuring continuous integration and deployment.
 
-### Étapes du Pipeline
+### Pipeline Stages
 
 #### 1. SCM Polling
-**Description :** Surveille la branche spécifiée du référentiel Git pour tout nouveau commit et déclenche le pipeline automatiquement.  
-**Configuration :** Configuré pour surveiller la branche "main".
+**Description:** Monitors the specified branch of the Git repository for any new commits and triggers the pipeline automatically. <br>
+**Configuration:** Configured to monitor the "main" branch. <br>
 
 #### 2. Build
-**Description :** Compile le code source en utilisant `dotnet publish` et génère les binaires nécessaires.  
+**Description :** Compiles the source code using `dotnet publish` and generates the necessary binaries.  
 
 #### 3. Run (Test)
-**Description :** Exécute l'application pour s'assurer qu'elle fonctionne comme prévu dans un environnement de test.  
+**Description :** Runs the application to ensure it works as expected in a test environment.  
 
 #### 4. Packaging (Zip)
-**Description :** Package l'application dans des fichiers ZIP séparés pour Windows et Linux.  
-**Commandes :**
-- Pour Windows : `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/`
-- Pour Linux : `zip -r EasySaveConsole_Linux.zip ./EasySaveConsole/publish/linux-x64/`
+**Description :** Package the application in separate ZIP files for Windows and Linux. <br>
+**Orders :** <br>
+- For Windows: `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/` <br>
+- For Linux: `zip -r EasySaveConsole_Linux.zip ./EasySaveConsole/publish/linux-x64/` <br>
 
 #### 5. Release
-**Description :** Publie les packages sur GitHub Releases, facilitant le déploiement de nouvelles versions de l'application.  
-**Commande :** Script pour créer un release sur GitHub et uploader les archives ZIP.
+**Description :** Publishes packages to GitHub Releases, making it easier to deploy new versions of the application. <br>
+**Command:** Script to create a release on GitHub and upload the ZIP archives. <br>
 
 #### 6. Tagging
-**Description :** Marque chaque build réussi avec un tag unique dans GitHub, permettant un suivi facile des versions.  
-**Configuration :** Utilise `$BUILD_ID` pour créer un tag unique, par exemple `v${BUILD_ID}`.
+**Description :** Marks each successful build with a unique tag in GitHub, allowing easy version tracking. <br>
+**Configuration:** Uses `$BUILD_ID` to create a unique tag, for example `v${BUILD_ID}`. <br>
 
 #### 7. Clean-Up
-**Description :** Nettoie l'espace de travail Jenkins post-build pour éviter toute contamination entre les builds.  
-**Action Jenkins :** "Delete workspace when build is done."
+**Description :** Cleans up the post-build Jenkins workspace to avoid contamination between builds. <br>
+**Jenkins Action:** "Delete workspace when build is done." <br>
 
-### Utilisation du Docker Hub
+# Using Docker Hub
 
-Le serveur Jenkins est disponible sur le Docker Hub pour une récupération facile. Vous pouvez pull le serveur Jenkins préconfiguré avec le pipeline CI/CD pour EasySave :
-`docker pull airg213/easysavejenkins:latest`
+Jenkins server is available on the Docker Hub for easy recovery. You can pull the preconfigured Jenkins server with the CI/CD pipeline for EasySave: <br>
+`docker pull airg213/easysavejenkins:latest` <br>
 
-Pour lancer le serveur Jenkins dans un conteneur Docker :
-`docker run -p 8080:8080 -p 50000:50000 airg213/easysavejenkins:latest`
+To launch the Jenkins server in a Docker container: <br>
+`docker run -p 8080:8080 -p 50000:50000 airg213/easysavejenkins:latest` <br>
 
 # Authors 
 
@@ -138,12 +143,5 @@ Pour lancer le serveur Jenkins dans un conteneur Docker :
 * **ARRIGHI Fabien** _alias_ [@arrighi-fabien](https://github.com/arrighi-fabien)
 * **GOUADFEL Rayan** _alias_ [@AirG213](https://github.com/AirG213)
 * **MARCELLI Enzo** _alias_ [@EnzoMrcli](https://github.com/EnzoMrcli)
-
-# Contact
-
-FODIL Nel - `nel.fodil@viacesi.fr`
-ARRIGHI Fabien - `fabien2a.arrighi@protonmail.com` 
-GOUADFEL Rayan -`rayan.gouadfel@viacesi.fr` 
-MARCELLI Enzo -`marcelli.enzo@gmail.com` 
 
 Project Link: [https://github.com/arrighi-fabien/Projet-Programmation-Systeme](https://github.com/arrighi-fabien/Projet-Programmation-Systeme)
