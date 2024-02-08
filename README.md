@@ -49,33 +49,88 @@ Write here
 Write here
 
 ### Close application
-Choose "1" to close the application
+Choose "6" to close the application
 
 ## Built With
+.Net
+C#
 
 
 
+## Téléchargement et utilisation
 
-# Installation 
+Selon votre système d'exploitation, téléchargez le fichier zip approprié depuis les releases sur notre page GitHub.
 
-_explanation here
-blabla
-blabla._
+### Windows 64-bit
 
-1. Do this
-2. Do...
-   ```sh
-   commande � �crire
-   ```
-3. Install...
-   ```sh
-   commande � �crire
-   ```
-4. Enter your API in `config.js`
-   ```js
-   commande � �crire
-   ```
+- Téléchargez `EasySaveConsole_Win64.zip`.
+- Extrayez le fichier zip.
+- Lancez `EasySaveConsole.exe`.
 
+### Linux 64-bit
+
+- Téléchargez `EasySaveConsole_Linux64.zip`.
+- Extrayez le fichier zip.
+- Ouvrez un terminal et naviguez vers le dossier extrait : `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`.
+- Rendez le fichier exécutable avec `chmod +x EasySaveConsole`.
+- Lancez l'application avec `./EasySaveConsole`.
+
+### Utilisation avec Docker
+
+Un conteneur Docker est disponible pour tester facilement l'application sous Linux. Vous pouvez le pull depuis Docker Hub :
+`docker pull airg213/easysaveconsole:1.0`
+
+Pour lancer le conteneur et accéder à l'application :
+`docker run -it airg213/easysaveconsole:1.0`
+
+Une fois dans le conteneur, naviguez vers le répertoire de l'application :
+`cd /etc/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`
+
+Lancez l'application avec :
+`./EasySaveConsole`
+
+
+## Pipeline CI/CD pour EasySave
+
+Le pipeline CI/CD pour le projet EasySave automatise le processus de compilation, de test, de packaging, et de déploiement de l'application EasySave. Chaque changement poussé au référentiel Git déclenche ce pipeline, assurant une intégration et un déploiement continus.
+
+### Étapes du Pipeline
+
+#### 1. SCM Polling
+**Description :** Surveille la branche spécifiée du référentiel Git pour tout nouveau commit et déclenche le pipeline automatiquement.  
+**Configuration :** Configuré pour surveiller la branche "main".
+
+#### 2. Build
+**Description :** Compile le code source en utilisant `dotnet publish` et génère les binaires nécessaires.  
+
+#### 3. Run (Test)
+**Description :** Exécute l'application pour s'assurer qu'elle fonctionne comme prévu dans un environnement de test.  
+
+#### 4. Packaging (Zip)
+**Description :** Package l'application dans des fichiers ZIP séparés pour Windows et Linux.  
+**Commandes :**
+- Pour Windows : `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/`
+- Pour Linux : `zip -r EasySaveConsole_Linux.zip ./EasySaveConsole/publish/linux-x64/`
+
+#### 5. Release
+**Description :** Publie les packages sur GitHub Releases, facilitant le déploiement de nouvelles versions de l'application.  
+**Commande :** Script pour créer un release sur GitHub et uploader les archives ZIP.
+
+#### 6. Tagging
+**Description :** Marque chaque build réussi avec un tag unique dans GitHub, permettant un suivi facile des versions.  
+**Configuration :** Utilise `$BUILD_ID` pour créer un tag unique, par exemple `v${BUILD_ID}`.
+
+#### 7. Clean-Up
+**Description :** Nettoie l'espace de travail Jenkins post-build pour éviter toute contamination entre les builds.  
+**Action Jenkins :** "Delete workspace when build is done."
+
+### Utilisation du Docker Hub
+
+Le serveur Jenkins est disponible sur le Docker Hub pour une récupération facile. Vous pouvez pull le serveur Jenkins préconfiguré avec le pipeline CI/CD pour EasySave :
+`docker pull airg213/easysavejenkins:latest`
+
+Pour lancer le serveur Jenkins dans un conteneur Docker :
+`docker run -p 8080:8080 -p 50000:50000 airg213/easysavejenkins:latest`
 
 # Autors 
 
