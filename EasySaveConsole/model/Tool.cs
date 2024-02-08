@@ -57,9 +57,9 @@ namespace EasySaveConsole.model {
             File.WriteAllText("config/config.json", json);
         }
 
-        public long GetFileSize(string path) {
+        public ulong GetFileSize(string path) {
             if (File.Exists(path)) {
-                return new FileInfo(path).Length;
+                return (ulong)new FileInfo(path).Length;
             }
             return 0;
         }
@@ -82,6 +82,25 @@ namespace EasySaveConsole.model {
                 return false;
 
             return true;
+        }
+
+        public void WriteJobLogJsonFile(string path, JobLog obj) {
+            string json = "";
+            if (File.Exists(path)) {
+                json = File.ReadAllText(path);
+                List<JobLog> jobLogs = JsonSerializer.Deserialize<List<JobLog>>(json);
+                jobLogs.Add(obj);
+                json = JsonSerializer.Serialize(jobLogs, new JsonSerializerOptions {
+                    WriteIndented = true
+                });
+            }
+            else {
+                List<JobLog> jobLogs = new List<JobLog> { obj };
+                json = JsonSerializer.Serialize(jobLogs, new JsonSerializerOptions {
+                    WriteIndented = true
+                });
+            }
+            File.WriteAllText(path, json);
         }
 
     }

@@ -40,7 +40,7 @@
 
         public abstract bool IsToSave(string path);
 
-        public void SaveData() {
+        public void SaveData(List<JobLog> jobLogs) {
             if (!Directory.Exists(DestinationFolder)) {
                 Directory.CreateDirectory(DestinationFolder);
             }
@@ -50,7 +50,16 @@
                 string fileName = file.Substring(SourceFolder.Length + 1);
                 if (IsToSave(fileName)) {
                     if (File.Exists(file)) {
+                        DateTime startTime = DateTime.Now;
                         File.Copy(file, Path.Combine([DestinationFolder, fileName]), true);
+                        DateTime endTime = DateTime.Now;
+                        TimeSpan duration = endTime - startTime;
+                        double durationInSeconds = duration.TotalSeconds;
+                        Tool tool = Tool.GetInstance();
+                        JobLog jobLog = new JobLog(Name, file, Path.Combine([DestinationFolder, fileName]), DateTime.Now.ToString(), tool.GetFileSize(file), durationInSeconds);
+                        jobLogs.Add(jobLog);
+                        string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        tool.WriteJobLogJsonFile($"logs/{date}.json", jobLog);
                     }
                     else {
                         Directory.CreateDirectory(Path.Combine([DestinationFolder, fileName]));

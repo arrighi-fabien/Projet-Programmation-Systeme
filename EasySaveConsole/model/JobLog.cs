@@ -2,7 +2,7 @@
     public class JobLog : LogSystem {
 
         private ulong fileSize;
-        private float transferTime;
+        private double transferTime;
 
         public ulong FileSize {
             get {
@@ -13,7 +13,7 @@
             }
         }
 
-        public float TransferTime {
+        public double TransferTime {
             get {
                 return transferTime;
             }
@@ -22,7 +22,7 @@
             }
         }
 
-        public JobLog(string name, string sourceFile, string destinationFile, string timestamp, ulong fileSize, float transferTime) : base(name, sourceFile, destinationFile, timestamp) {
+        public JobLog(string name, string sourceFile, string destinationFile, string timestamp, ulong fileSize, double transferTime) : base(name, sourceFile, destinationFile, timestamp) {
             FileSize = fileSize;
             TransferTime = transferTime;
         }

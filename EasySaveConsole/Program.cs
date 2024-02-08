@@ -1,11 +1,13 @@
 ﻿using EasySaveConsole.controller;
-using EasySaveConsole.model;
-using EasySaveConsole.view;
-using System.Resources;
 
 class Program {
 
     static void Main() {
+
+        if (!Directory.Exists("logs")) {
+            Directory.CreateDirectory("logs");
+        }
+
         Controller controller = new();
         controller.MainMenu();
     }

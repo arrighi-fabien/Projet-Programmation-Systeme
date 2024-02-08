@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="config\config.json" />
     <None Remove="config\language.json" />
+    <None Remove="config\savejobs.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="config\config.json">
+    <Content Include="config\savejobs.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\language.json">
