@@ -6,7 +6,7 @@
         }
 
         public override bool IsToSave(string path) {
-            Tool tool = Tool.getInstance();
+            Tool tool = Tool.GetInstance();
             string sourceElementPath = this.SourceFolder + path;
             string destinationElementPath = this.DestinationFolder + path;
             if (File.Exists(destinationElementPath)) {

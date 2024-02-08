@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Resources;
+using System.Text.Json;
 
 namespace EasySaveConsole.model {
     public class Language {
@@ -7,8 +8,12 @@ namespace EasySaveConsole.model {
         private readonly ResourceManager resourceManager;
         public static Language instance;
 
-        public Language(string lang="en") {
+        public Language() {
             resourceManager = new ResourceManager($"EasySaveConsole.config.locales.Resource", typeof(Program).Assembly);
+            string lang = GetSavedLanguage();
+            if (lang == "") {
+                lang = "en";
+            }
             SetLanguage(lang);
         }
 
@@ -29,7 +34,24 @@ namespace EasySaveConsole.model {
         }
 
         public void SetLanguage(string languageCode) {
+            WriteSavedLanguage(languageCode);
             cultureInfo = CultureInfo.GetCultureInfo(languageCode);
+        }
+
+        public string GetSavedLanguage() {
+            try {
+                string json = File.ReadAllText("config/language.json");
+                string language = JsonSerializer.Deserialize<Dictionary<string, string>>(json)["language"];
+                return language;
+            }
+            catch {
+                return "";
+            }
+        }
+
+        public void WriteSavedLanguage(string language) {
+            string json = JsonSerializer.Serialize(new Dictionary<string, string> { { "language", language } });
+            File.WriteAllText("config/language.json", json);
         }
 
     }

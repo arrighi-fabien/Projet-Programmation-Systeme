@@ -6,9 +6,12 @@ namespace EasySaveConsole.controller {
 
         private readonly View view = new();
         private readonly Language language = Language.GetInstance();
-        private readonly List<SaveJob> saveJobs = new List<SaveJob>();
+        private Tool tool = Tool.GetInstance();
+        private List<SaveJob> saveJobs;
 
         public void MainMenu() {
+
+            saveJobs = tool.GetSavedSaveJob();
 
             view.ClearConsole();
             string choice;
@@ -131,7 +134,7 @@ namespace EasySaveConsole.controller {
             }
             view.DisplayOutput(language.GetString("enter_savejob_destination"));
             string saveDestination = view.GetInput();
-            Tool tool = Tool.getInstance();
+            Tool tool = Tool.GetInstance();
             if (!tool.PathDirectoryIsValid(saveDestination)) {
                 view.ClearConsole();
                 view.DisplayOutput(language.GetString("destination_folder_not_found"));
@@ -146,10 +149,12 @@ namespace EasySaveConsole.controller {
             switch (saveType) {
                 case "1":
                     saveJobs.Add(new FullSave(saveName, saveSource, saveDestination));
+                    tool.WriteSavedSaveJob(saveJobs);
                     view.ClearConsole();
                     break;
                 case "2":
                     saveJobs.Add(new DifferentialSave(saveName, saveSource, saveDestination));
+                    tool.WriteSavedSaveJob(saveJobs);
                     view.ClearConsole();
                     break;
                 default:
@@ -179,9 +184,11 @@ namespace EasySaveConsole.controller {
                     switch (saveType) {
                         case "1":
                             saveJobs[choice - 1] = new FullSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                            tool.WriteSavedSaveJob(saveJobs);
                             break;
                         case "2":
                             saveJobs[choice - 1] = new DifferentialSave(saveJobs[choice - 1].Name, saveJobs[choice - 1].SourceFolder, saveJobs[choice - 1].DestinationFolder);
+                            tool.WriteSavedSaveJob(saveJobs);
                             break;
                         default:
                             view.DisplayOutput(language.GetString("invalid_input"));
@@ -205,6 +212,7 @@ namespace EasySaveConsole.controller {
                 try {
                     int choice = int.Parse(view.GetInput());
                     saveJobs.RemoveAt(choice - 1);
+                    tool.WriteSavedSaveJob(saveJobs);
                 }
                 catch (Exception) {
                     view.DisplayOutput(language.GetString("invalid_input"));
