@@ -37,10 +37,12 @@ _5. Delete save job_ <br>
 _6. Close application_ <br>
 
 ### Change language 
-_Choose "1" and select the language._
+_Choose "1" and select the language._ <br>
+_Select the desired language_ <br>
 
 ### Execute one or more save jobs
-_Choose "2" to launch one or more backup jobs._
+_Choose "2" to launch one or more backup jobs._ <br>
+_Enter the job to launch_ <br>
 
 ### Create save job
 _Choose "3" to create a job._ <br>
@@ -49,10 +51,12 @@ _Enter the path of the source folder and the path of the destination folder._ <b
 _Then choose between a full save or a differential save._ <br>
 
 ### Update save job
-_Choose "4" to update a job._
+_Choose "4" to update a job._ <br>
+_Enter the job to update_ <br>
 
 ### Delete save job
-_Choose "5" to delete a job._
+_Choose "5" to delete a job._ <br>
+_Enter the job to delete_ <br> 
 
 ### Close application
 _Choose "6" to close the application._
