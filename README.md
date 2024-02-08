@@ -139,7 +139,7 @@ Jenkins server is available on the Docker Hub for easy recovery. You can pull th
 `docker pull airg213/easysavejenkins:latest` <br>
 
 To launch the Jenkins server in a Docker container: <br>
-`docker run -d -p 8080:8080 -p 50000:50000 --name jenkins easysavejenkins:latest` <br>
+`docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest` <br>
 
 # Authors 
 
