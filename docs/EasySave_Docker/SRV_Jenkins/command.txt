@@ -7,7 +7,7 @@ Push to DockerHub :
 ----------
 docker commit easysavejenkins airg213/easysavejenkins:latest
 
-docker tag easysavejenkins:latest airg213/easysavejenkins
+docker tag airg213/easysavejenkins:latest airg213/easysavejenkins:latest
 
 docker push airg213/easysavejenkins:latest
 
@@ -17,8 +17,4 @@ Import from DockerHub :
 ----------
 docker pull airg213/easysavejenkins:latest
 
-docker run -d -p 8080:8080 -p 50000:50000 --name easysavejenkins easysavejenkins:latest
-
-
-
-
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest
