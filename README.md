@@ -132,7 +132,7 @@ Le serveur Jenkins est disponible sur le Docker Hub pour une récupération faci
 Pour lancer le serveur Jenkins dans un conteneur Docker :
 `docker run -p 8080:8080 -p 50000:50000 airg213/easysavejenkins:latest`
 
-# Autors 
+# Authors 
 
 * **FODIL Nel** _alias_ [@nel34](https://github.com/nel34)
 * **ARRIGHI Fabien** _alias_ [@arrighi-fabien](https://github.com/arrighi-fabien)
