@@ -41,34 +41,43 @@
         public abstract bool IsToSave(string path);
 
         public void SaveData(List<JobState> jobStates) {
+            Tool tool = Tool.GetInstance();
             if (!Directory.Exists(DestinationFolder)) {
                 Directory.CreateDirectory(DestinationFolder);
             }
+
             List<string> files = [];
             GetFileList(SourceFolder, files);
-            JobState jobState = new (Name, "", "", "ACTIVE", (uint)files.Count, 5465, 45646, 564);
+
+            JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
+            jobState.GetTotalFilesSize(SourceFolder);
             jobStates.Add(jobState);
-            Tool tool = Tool.GetInstance();
+
             foreach (string file in files) {
                 string fileName = file.Substring(SourceFolder.Length + 1);
-                if (IsToSave(fileName)) {
-                    if (File.Exists(file)) {
-                        DateTime startTime = DateTime.Now;
-                        File.Copy(file, Path.Combine([DestinationFolder, fileName]), true);
-                        DateTime endTime = DateTime.Now;
-                        TimeSpan duration = endTime - startTime;
-                        double durationInSeconds = duration.TotalSeconds;
-                        jobState.SourceFile = file;
-                        jobState.DestinationFile = Path.Combine([DestinationFolder, fileName]);
-                        tool.WriteJobStateJsonFile(jobStates);
-                        JobLog jobLog = new(Name, file, Path.Combine([DestinationFolder, fileName]), DateTime.Now.ToString(), tool.GetFileSize(file), durationInSeconds);
-                        string date = DateTime.Now.ToString("yyyy-MM-dd");
-                        tool.WriteJobLogJsonFile($"logs/{date}.json", jobLog);
-                    }
-                    else {
-                        Directory.CreateDirectory(Path.Combine([DestinationFolder, fileName]));
-                    }
+                if (!IsToSave(fileName)) {
+                    continue;
                 }
+
+                ulong fileSize = 0;
+                if (File.Exists(file)) {
+                    fileSize = tool.GetFileSize(file);
+                    DateTime startTime = DateTime.Now;
+                    File.Copy(file, Path.Combine([DestinationFolder, fileName]), true);
+                    DateTime endTime = DateTime.Now;
+                    double durationInSeconds = (endTime - startTime).TotalSeconds;
+                    JobLog jobLog = new(Name, file, Path.Combine([DestinationFolder, fileName]), fileSize, durationInSeconds);
+                    string date = DateTime.Now.ToString("yyyy-MM-dd");
+                    tool.WriteJobLogJsonFile($"logs/{date}.json", jobLog);
+                }
+                else {
+                    Directory.CreateDirectory(Path.Combine([DestinationFolder, fileName]));
+                }
+                jobState.SourceFile = file;
+                jobState.DestinationFile = Path.Combine([DestinationFolder, fileName]);
+                jobState.FilesLeft--;
+                jobState.FilesSizeLeft -= fileSize;
+                tool.WriteJobStateJsonFile(jobStates);
             }
             jobState.FinishJobState();
             tool.WriteJobStateJsonFile(jobStates);

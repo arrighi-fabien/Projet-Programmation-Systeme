@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace EasySaveConsole.model {
+﻿namespace EasySaveConsole.model {
     public class JobState : LogSystem {
 
         private string state;
@@ -64,12 +62,10 @@ namespace EasySaveConsole.model {
             }
         }
 
-        public JobState(string name, string sourceFile, string destinationFile, string state, uint totalFiles, ulong totalFilesSize, uint filesLeft, ulong filesSizeLeft) : base(name, sourceFile, destinationFile) {
+        public JobState(string name, string sourceFile, string destinationFile, string state, uint totalFiles) : base(name, sourceFile, destinationFile) {
             State = state;
             TotalFiles = totalFiles;
-            TotalFilesSize = totalFilesSize;
-            FilesLeft = filesLeft;
-            FilesSizeLeft = filesSizeLeft;
+            FilesLeft = totalFiles;
         }
 
         public void FinishJobState() {
@@ -81,6 +77,34 @@ namespace EasySaveConsole.model {
             Progression = 0;
             SourceFile = "";
             DestinationFile = "";
+        }
+
+        public void GetTotalFilesSize(string path) {
+            try {
+                // Check if the path exists
+                if (!Directory.Exists(path)) {
+                    Console.WriteLine("Le chemin spécifié n'existe pas.");
+                    return;
+                }
+
+                // Retrieve the size of files in the specified directory
+                string[] files = Directory.GetFiles(path);
+                foreach (string file in files) {
+                    FileInfo fileInfo = new(file);
+                    TotalFilesSize += (uint)fileInfo.Length;
+                    FilesSizeLeft += (uint)fileInfo.Length;
+                }
+
+                // Retrieve the size of files in subdirectories
+                string[] subdirectories = Directory.GetDirectories(path);
+                foreach (string subdirectory in subdirectories) {
+                    GetTotalFilesSize(subdirectory);
+                }
+
+            }
+            catch {
+
+            }
         }
 
     }

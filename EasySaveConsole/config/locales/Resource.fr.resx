@@ -183,6 +183,9 @@
   <data name="select_savejob_full" xml:space="preserve">
     <value>Sauvegarde complète</value>
   </data>
+  <data name="select_savejob_update" xml:space="preserve">
+    <value>Selectionnez un travail de sauvegarde à modifier</value>
+  </data>
   <data name="source_folder" xml:space="preserve">
     <value>Dossier source</value>
   </data>

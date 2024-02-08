@@ -17,7 +17,7 @@ namespace EasySaveConsole.model {
             try {
                 string json = File.ReadAllText("config/savejobs.json");
                 List<Dictionary<string, string>> saveJobsJson = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
-                List<SaveJob> saveJobs = new List<SaveJob>();
+                List<SaveJob> saveJobs = [];
                 foreach (Dictionary<string, string> saveJob in saveJobsJson) {
                     if (saveJob["type"] == "full") {
                         SaveJob savedSaveJob = new FullSave(saveJob["Name"], saveJob["SourceFolder"], saveJob["DestinationFolder"]);
@@ -36,9 +36,9 @@ namespace EasySaveConsole.model {
         }
 
         public void WriteSavedSaveJob(List<SaveJob> saveJobs) {
-            List<Dictionary<string, string>> saveJobsJson = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> saveJobsJson = [];
             foreach (SaveJob saveJob in saveJobs) {
-                Dictionary<string, string> saveJobJson = new Dictionary<string, string> {
+                Dictionary<string, string> saveJobJson = new() {
                     { "Name", saveJob.Name },
                     { "SourceFolder", saveJob.SourceFolder },
                     { "DestinationFolder", saveJob.DestinationFolder }
@@ -91,7 +91,7 @@ namespace EasySaveConsole.model {
                 json = JsonSerializer.Serialize(jobLogs, serializerOptions);
             }
             else {
-                List<JobLog> jobLogs = new List<JobLog> { obj };
+                List<JobLog> jobLogs = [obj];
                 json = JsonSerializer.Serialize(jobLogs, serializerOptions);
             }
             File.WriteAllText(path, json);

@@ -9,7 +9,7 @@ namespace EasySaveConsole.model {
         public static Language instance;
 
         public Language() {
-            resourceManager = new ResourceManager($"EasySaveConsole.config.locales.Resource", typeof(Program).Assembly);
+            resourceManager = new($"EasySaveConsole.config.locales.Resource", typeof(Program).Assembly);
             string lang = GetSavedLanguage();
             if (lang == "") {
                 lang = "en";

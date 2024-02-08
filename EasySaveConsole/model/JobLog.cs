@@ -32,10 +32,10 @@
             }
         }
 
-        public JobLog(string name, string sourceFile, string destinationFile, string timestamp, ulong fileSize, double transferTime) : base(name, sourceFile, destinationFile) {
+        public JobLog(string name, string sourceFile, string destinationFile, ulong fileSize, double transferTime) : base(name, sourceFile, destinationFile) {
             FileSize = fileSize;
             TransferTime = transferTime;
-            Timestamp = timestamp;
+            Timestamp = DateTime.Now.ToString();
         }
 
     }

@@ -183,6 +183,9 @@
   <data name="select_savejob_full" xml:space="preserve">
     <value>Full save</value>
   </data>
+  <data name="select_savejob_update" xml:space="preserve">
+    <value>Select a savejob to update</value>
+  </data>
   <data name="source_folder" xml:space="preserve">
     <value>Source folder</value>
   </data>

@@ -51,7 +51,6 @@ namespace EasySaveConsole.controller {
             view.DisplayOutput(language.GetString("select_language") + " :");
             view.DisplayOutput("1. English");
             view.DisplayOutput("2. Français");
-            view.DisplayOutput("3. Corsu");
 
             // Get the user's choice
             string choice = view.GetInput();
@@ -62,9 +61,6 @@ namespace EasySaveConsole.controller {
                     break;
                 case "2":
                     language.SetLanguage("fr");
-                    break;
-                case "3":
-                    language.SetLanguage("co");
                     break;
                 default:
                     view.DisplayError(language.GetString("invalid_input"));
@@ -154,7 +150,7 @@ namespace EasySaveConsole.controller {
                 view.DisplayError(language.GetString("no_savejob"));
                 return;
             }
-            view.DisplayOutput(language.GetString("select_savejob_update"));
+            view.DisplayOutput(language.GetString("select_savejob_update") + " :");
             view.DisplaySaveJobList(saveJobs);
             try {
                 int choice = int.Parse(view.GetInput());
@@ -181,6 +177,7 @@ namespace EasySaveConsole.controller {
                         view.DisplayError(language.GetString("no_savejob"));
                         break;
                 }
+                view.ClearConsole();
             }
             catch (Exception) {
                 view.DisplayError(language.GetString("no_savejob"));
@@ -192,12 +189,13 @@ namespace EasySaveConsole.controller {
                 view.DisplayError(language.GetString("no_savejob"));
                 return;
             }
-            view.DisplayOutput(language.GetString("select_savejob_delete"));
+            view.DisplayOutput(language.GetString("select_savejob_delete") + " :");
             view.DisplaySaveJobList(saveJobs);
             try {
                 int choice = int.Parse(view.GetInput());
                 saveJobs.RemoveAt(choice - 1);
                 tool.WriteSavedSaveJob(saveJobs);
+                view.ClearConsole();
             }
             catch (Exception) {
                 view.DisplayError(language.GetString("invalid_input"));
