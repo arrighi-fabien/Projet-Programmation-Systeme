@@ -11,7 +11,7 @@ This project is a simple backup software that allows you to create backups of yo
  - [Interface](#Interface)
  - [Built With](#Built-With)
  - [Download and use](#Download-and-use)
- - [CI/CD pipeline for EasySave](#CI/CD-pipeline-for-EasySave)
+ - [CI/CD pipeline for EasySave](#CI-CD-pipeline-for-EasySave)
  - [Authors](#Authors)
 
 
@@ -97,7 +97,7 @@ Launch the application with: <br>
 `./EasySaveConsole` <br>
 
 
-# CI/CD pipeline for EasySave
+# CI CD pipeline for EasySave
 
 The CI/CD pipeline for the EasySave project automates the process of compiling, testing, packaging, and deploying the EasySave application. Every change pushed to the Git repository triggers this pipeline, ensuring continuous integration and deployment.
 
