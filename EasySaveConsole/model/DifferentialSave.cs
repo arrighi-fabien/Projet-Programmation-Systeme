@@ -2,27 +2,31 @@
     // Class representing a differential save job, inheriting from SaveJob
     public class DifferentialSave : SaveJob {
 
-        // Constructor for DifferentialSave
+        /// <summary>
+        /// Constructor for DifferentialSave
+        /// </summary>
+        /// <param name="name">Name of savejob</param>
+        /// <param name="sourceFolder">Source folder of the savejob</param>
+        /// <param name="destinationFolder">Destination folder of the savejob</param>
         public DifferentialSave(string name, string sourceFolder, string destinationFolder) : base(name, sourceFolder, destinationFolder) {
 
         }
 
-        // Method to determine if a file should be saved (based on differences between source and destination)
+        /// <summary>
+        /// Return if the file should be saved
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>True if the file should be saved, false otherwise</returns>
         public override bool IsToSave(string path) {
-            
             // Get instance of Tool class
             Tool tool = Tool.GetInstance();
-
-            // Construct source file/folder path
+            // Get source path of the element
             string sourceElementPath = this.SourceFolder + path;
-
-
-            // Construct destination file/folder path
+            // Get destination path of the element
             string destinationElementPath = this.DestinationFolder + path;
 
             // Check if the destination element exists
             if (File.Exists(destinationElementPath)) {
-                
                 // If the file sizes match, no need to save
                 if (tool.GetFileSize(sourceElementPath) == tool.GetFileSize(destinationElementPath)) {
                     return false;

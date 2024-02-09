@@ -7,43 +7,42 @@ namespace EasySaveConsole.model {
     // Class to manage the language of the application
     public class Language {
         
-        // Variables for culture info and resource manager
+        // Attributes for the culture info, the resource manager and the instance of Language
         private CultureInfo cultureInfo;
-
-        // Resource manager for language
         private readonly ResourceManager resourceManager;
-        
-        // Constructor for Language
         public static Language instance;
 
-        // Constructor for Language
+        /// <summary>
+        /// Constructor for Language
+        /// </summary>
         public Language() {
-
             // Set resource manager
             resourceManager = new($"EasySaveConsole.config.locales.Resource", typeof(Program).Assembly);
-            
             // Get saved language
             string lang = GetSavedLanguage();
-            
             // If no language is saved, set to English
             if (lang == "") {
                 lang = "en";
             }
-
             // Set culture info
             SetLanguage(lang);
         }
 
-        // Method to get the instance of Language
+        /// <summary>
+        /// Method to get the instance of Language
+        /// </summary>
+        /// <returns>The instance of Language.</returns>
         public static Language GetInstance() {
-
             // If instance is null, create a new instance
             instance ??= new Language();
-
             return instance;
         }
 
-        // Method to get a string from the resource manager
+        /// <summary>
+        /// Method to get a string from the resource manager
+        /// </summary>
+        /// <param name="key">The key of the string to get.</param>
+        /// <returns>The string from the resource manager.</returns>
         public string GetString(string key) {
             try {
                 // Return the string from the resource manager
@@ -54,20 +53,23 @@ namespace EasySaveConsole.model {
                 return "[Missing translation]";
             }
         }
-        
-        // Method to set the language
+
+        /// <summary>
+        /// Method to set the language of the application
+        /// </summary>
+        /// <param name="languageCode">The language code to set.</param>
         public void SetLanguage(string languageCode) {
-            
             // Write the saved language
             WriteSavedLanguage(languageCode);
-
             // Set the culture info
             cultureInfo = CultureInfo.GetCultureInfo(languageCode);
         }
 
-        // Method to get the saved language
+        /// <summary>
+        /// Get the saved language from the language.json config file
+        /// </summary>
+        /// <returns>The saved language code</returns>
         public string GetSavedLanguage() {
-            
             // Try to read the saved language from the config file
             try {
                 string json = File.ReadAllText("config/language.json");
@@ -80,9 +82,11 @@ namespace EasySaveConsole.model {
             }
         }
 
-        // Method to write the saved language to the config file
+        /// <summary>
+        /// Method to write the saved language to the config file
+        /// </summary>
+        /// <param name="language">The language code to save.</param>
         public void WriteSavedLanguage(string language) {
-
             // Write the language to the config file
             string json = JsonSerializer.Serialize(new Dictionary<string, string> { { "language", language } });
             File.WriteAllText("config/language.json", json);

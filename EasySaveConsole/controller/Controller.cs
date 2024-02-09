@@ -3,25 +3,18 @@ using EasySaveConsole.view;
 
 namespace EasySaveConsole.controller {
     
-    // Class responsible
     public class Controller {
 
-        // Variables for view, language, and tool
+        // Attributes for view, language, tool, saveJobs, and jobStates
         private readonly View view = new();
-
-        // Language instance
         private readonly Language language = Language.GetInstance();
-        
-        // Tool instance
         private Tool tool = Tool.GetInstance();
-        
-        // List of save jobs
         private List<SaveJob> saveJobs;
-        
-        // List of job states
         private List<JobState> jobStates = [];
 
-        // Method to display the main menu
+        /// <summary>
+        /// Method to display the main menu
+        /// </summary>
         public void MainMenu() {
 
             // Get the saved save jobs
@@ -64,7 +57,9 @@ namespace EasySaveConsole.controller {
             } while (choice != "6");
         }
 
-        // Method to change the language
+        /// <summary>
+        /// Method to change the language
+        /// </summary>
         private void ChangeLanguage() {
             view.DisplayOutput(language.GetString("select_language") + " :");
             view.DisplayOutput("1. English");
@@ -86,7 +81,9 @@ namespace EasySaveConsole.controller {
             }
         }
 
-        // Method to run a save job
+        /// <summary>
+        /// Method to run a save job
+        /// </summary>
         private void RunSaveJob() {
             if (saveJobs.Count <= 0) {
                 view.DisplayError(language.GetString("no_savejob"));
@@ -124,7 +121,9 @@ namespace EasySaveConsole.controller {
             view.ClearConsole();
         }
 
-        // Method to create a save job
+        /// <summary>
+        /// Method to create a save job
+        /// </summary>
         private void CreateSaveJob() {
             view.DisplayOutput(language.GetString("create_savejob"));
             view.DisplayOutput(language.GetString("enter_savejob_name"));
@@ -174,9 +173,10 @@ namespace EasySaveConsole.controller {
             }
         }
         
-        // Method to update a save job
+        /// <summary>
+        /// Method to update a save job
+        /// </summary>
         private void UpdateSaveJob() {
-            
             // Check if there are save jobs
             if (saveJobs.Count <= 0) {
                 view.DisplayError(language.GetString("no_savejob"));
@@ -184,13 +184,12 @@ namespace EasySaveConsole.controller {
             }
             view.DisplayOutput(language.GetString("select_savejob_update") + " :");
             view.DisplaySaveJobList(saveJobs);
-            
+
             // Get the user's choice
             try {
                 int choice = int.Parse(view.GetInput());
                 view.DisplayOutput(language.GetString("enter_savejob_name"));
                 string saveName = view.GetInput();
-                
                 // Check if the name is valid
                 if (saveName.Length < 1) {
                     view.DisplayError(language.GetString("invalid_input"));
@@ -198,7 +197,7 @@ namespace EasySaveConsole.controller {
                 }
                 view.DisplayOutput(language.GetString("enter_savejob_source"));
                 string saveSource = view.GetInput();
-                
+
                 // Check if the source folder exists
                 if (!Directory.Exists(saveSource)) {
                     view.DisplayError(language.GetString("source_folder_not_found"));
@@ -206,7 +205,7 @@ namespace EasySaveConsole.controller {
                 }
                 view.DisplayOutput(language.GetString("enter_savejob_destination"));
                 string saveDestination = view.GetInput();
-                
+
                 // Check if the destination folder exists
                 if (!tool.PathDirectoryIsValid(saveDestination)) {
                     view.DisplayError(language.GetString("destination_folder_not_found"));
@@ -239,9 +238,10 @@ namespace EasySaveConsole.controller {
             }
         }
 
-        // Method to delete a save job
+        /// <summary>
+        /// Method to delete a save job
+        /// </summary>
         private void DeleteSaveJob() {
-
             // Check if there are save jobs
             if (saveJobs.Count <= 0) {
                 view.DisplayError(language.GetString("no_savejob"));
@@ -249,7 +249,7 @@ namespace EasySaveConsole.controller {
             }
             view.DisplayOutput(language.GetString("select_savejob_delete") + " :");
             view.DisplaySaveJobList(saveJobs);
-            
+
             // Get the user's choice
             try {
                 int choice = int.Parse(view.GetInput());

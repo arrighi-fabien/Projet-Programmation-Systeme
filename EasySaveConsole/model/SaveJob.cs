@@ -2,16 +2,12 @@
     // Abstract class to manage the save job
     public abstract class SaveJob {
 
-        // Variables for name, source folder, and destination folder
+        // Attributes for the name, sourceFolder and destinationFolder
         private string name;
-
-        // Property for name
         private string sourceFolder;
-
-        // Property for source folder
         private string destinationFolder;
 
-        // Property for destination folder
+        // Properties for the name, sourceFolder and destinationFolder
         public string Name {
             get {
                 return name;
@@ -21,7 +17,6 @@
             }
         }
 
-        // Property for source folder
         public string SourceFolder {
             get {
                 return sourceFolder;
@@ -31,7 +26,6 @@
             }
         }
 
-        // Property for destination folder
         public string DestinationFolder {
             get {
                 return destinationFolder;
@@ -41,17 +35,29 @@
             }
         }
 
-        // Constructor for SaveJob
+        /// <summary>
+        /// Constructor for SaveJob
+        /// </summary>
+        /// <param name="name">Name of savejob</param>
+        /// <param name="sourceFolder">Source folder of the savejob</param>
+        /// <param name="destinationFolder">Destination folder of the savejob</param>
         public SaveJob(string name, string sourceFolder, string destinationFolder) {
             Name = name;
             SourceFolder = sourceFolder;
             DestinationFolder = destinationFolder;
         }
 
-        // Method to determine if a file should be saved
+        /// <summary>
+        /// Return if the file should be saved
+        /// </summary>
+        /// <param name="path">Path of the file</param>
+        /// <returns>True if the file should be saved, false otherwise</returns>
         public abstract bool IsToSave(string path);
 
-        // Method to save data
+        /// <summary>
+        /// Save the data from the source folder to the destination folder
+        /// </summary>
+        /// <param name="jobStates">List of job states</param>
         public void SaveData(List<JobState> jobStates) {
             Tool tool = Tool.GetInstance();
 
@@ -76,10 +82,8 @@
                     continue;
                 }
 
-                // Get the file size
                 ulong fileSize = 0;
                 if (File.Exists(file)) {
-
                     // Get the file size
                     fileSize = tool.GetFileSize(file);
                     // Copy the file to the destination folder
@@ -112,8 +116,13 @@
             tool.WriteJobStateJsonFile(jobStates);
         }
 
-        // Method to get the list of files in a folder
+        /// <summary>
+        /// Get the list of files and folders in the specified directory
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="files"></param>
         public void GetFileList(string path, List<string> files) {
+            // Get the list of files
             string[] fichiers = Directory.GetFiles(path);
             files.AddRange(fichiers);
 
