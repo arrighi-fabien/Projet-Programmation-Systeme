@@ -11,9 +11,7 @@ This project is a simple backup software that allows you to create backups of yo
  - [Interface](#Interface)
  - [Built With](#Built-With)
  - [Download and use](#Download-and-use)
- - [Use with Docker](#Use-with-Docker)
  - [CI/CD pipeline for EasySave](#CI/CD-pipeline-for-EasySave)
- - [Using Docker Hub](#Using-Docker-Hub)
  - [Authors](#Authors)
 
 
@@ -72,13 +70,13 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download `EasySaveConsole_Win64.zip`. <br>
+- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Win64.zip). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveConsole.exe`. <br>
 
 ### Linux 64-bit
 
-- Download `EasySaveConsole_Linux64.zip`. <br>
+- Download [EasySaveConsole_Linux64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Linux64.zip) <br>
 - Extract the zip file. <br>
 - Open a terminal and navigate to the extracted folder: `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`. <br>
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
@@ -110,10 +108,10 @@ The CI/CD pipeline for the EasySave project automates the process of compiling, 
 **Configuration:** Configured to monitor the "main" branch. <br>
 
 #### 2. Build
-**Description :** Compiles the source code using `dotnet publish` and generates the necessary binaries.  
+**Description :** Compiles the source code using `dotnet publish` and generates the necessary binaries.  <br>
 
 #### 3. Run (Test)
-**Description :** Runs the application to ensure it works as expected in a test environment.  
+**Description :** Runs the application to ensure it works as expected in a test environment.  <br>
 
 #### 4. Packaging (Zip)
 **Description :** Package the application in separate ZIP files for Windows and Linux. <br>
@@ -140,6 +138,8 @@ Jenkins server is available on the Docker Hub for easy recovery. You can pull th
 
 To launch the Jenkins server in a Docker container: <br>
 `docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest` <br>
+
+Jenkins is accessible at http://127.0.0.1:8080. You can log in with the preconfigured credentials to manage the CI/CD pipelines for EasySave. <br>
 
 # Authors 
 
