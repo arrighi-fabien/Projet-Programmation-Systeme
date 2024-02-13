@@ -109,6 +109,7 @@
                 jobState.DestinationFile = Path.Combine([DestinationFolder, fileName]);
                 jobState.FilesLeft--;
                 jobState.FilesSizeLeft -= fileSize;
+                jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
                 tool.WriteJobStateJsonFile(jobStates);
             }
             // Finish the job
