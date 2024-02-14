@@ -60,12 +60,23 @@ Remove save jobs that are no longer needed.
   - Select `5` from the main menu.
   - Enter the number of the save job you wish to delete.
 
-## 6. Close Application
+## 6. Log Format Choice
 
-Exit the application safely, ensuring all configurations are saved.
+EasySave allows you to choose the format of your logs between JSON and XML, enabling flexibility in how you store and view backup information.
+
+- **To select the log format:**
+  - Choose `6` from the main menu after launching the app.
+  - You will be prompted to select the log format: `1. /JSON` or `2. /XML`.
+  - Type `1` for JSON or `2` for XML and press Enter.
+  - Your choice will apply to all future logs until you decide to change it again.
+
+## 7. Close Application
+
+This option safely exits the application, ensuring all your settings and configurations are preserved.
 
 - **To close the application:**
-  - Simply choose `6` from the main menu.
+  - Navigate to `7` on the main menu.
+  - Press Enter to confirm and safely exit EasySave.
 
 By following this guide, you can efficiently manage your backup jobs with EasySave, ensuring your data is backed up according to your needs and preferences. Whether you're performing routine backups or need to update your backup configurations, EasySave provides a user-friendly interface to accomplish your goals.
 
