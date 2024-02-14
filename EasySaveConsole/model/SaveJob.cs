@@ -3,9 +3,9 @@
     public abstract class SaveJob {
 
         // Attributes for the name, sourceFolder and destinationFolder
-        private string name;
-        private string sourceFolder;
-        private string destinationFolder;
+        private string? name;
+        private string? sourceFolder;
+        private string? destinationFolder;
 
         // Properties for the name, sourceFolder and destinationFolder
         public string Name {
@@ -98,7 +98,7 @@
                     // Write the job log to a JSON file
                     string date = DateTime.Now.ToString("yyyy-MM-dd");
                     // Check if the log file exists
-                    tool.WriteJobLogJsonFile($"logs/{date}.json", jobLog);
+                    tool.WriteJobLogJsonFile(date, jobLog);
                 }
                 // If the file is a directory, create the directory in the destination folder
                 else {
@@ -110,11 +110,11 @@
                 jobState.FilesLeft--;
                 jobState.FilesSizeLeft -= fileSize;
                 jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
-                tool.WriteJobStateJsonFile(jobStates);
+                tool.WriteJobStateFile(jobStates);
             }
             // Finish the job
             jobState.FinishJobState();
-            tool.WriteJobStateJsonFile(jobStates);
+            tool.WriteJobStateFile(jobStates);
         }
 
         /// <summary>

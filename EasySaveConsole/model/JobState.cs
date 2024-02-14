@@ -69,6 +69,13 @@
         /// <summary>
         /// Constructor for JobState
         /// </summary>
+        public JobState() : base() {
+
+        }
+
+        /// <summary>
+        /// Constructor for JobState
+        /// </summary>
         /// <param name="name">Name of savejob</param>
         /// <param name="sourceFile">Source files of the savejob</param>
         /// <param name="destinationFile">Destination files of the savejob</param>

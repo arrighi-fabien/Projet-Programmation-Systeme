@@ -1,12 +1,12 @@
 ﻿namespace EasySaveConsole.model {
-    
+
     // Abstract class to manage the logs of the application
     public abstract class LogSystem {
 
         // Attributes for name, sourceFile, and destinationFile
-        private string name;
-        private string sourceFile;
-        private string destinationFile;
+        private string? name;
+        private string? sourceFile;
+        private string? destinationFile;
 
         // Properties for name, sourceFile, and destinationFile
         public string Name {
@@ -35,6 +35,13 @@
 
                 destinationFile = value;
             }
+        }
+
+        /// <summary>
+        /// Constructor for LogSystem
+        /// </summary>
+        public LogSystem() {
+
         }
 
         /// <summary>
