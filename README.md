@@ -66,7 +66,7 @@ EasySave allows you to choose the format of your logs between JSON and XML, enab
 
 - **To select the log format:**
   - Choose `6` from the main menu after launching the app.
-  - You will be prompted to select the log format: `1. /JSON` or `2. /XML`.
+  - You will be prompted to select the log format: `1. JSON` or `2. XML`.
   - Type `1` for JSON or `2` for XML and press Enter.
   - Your choice will apply to all future logs until you decide to change it again.
 
