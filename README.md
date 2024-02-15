@@ -23,7 +23,7 @@ Upon starting the application, you're greeted with the option to select a langua
 
 - **To change the language:**
   - Type `1` and press Enter.
-  - You'll see `Select a language:` followed by the options `1. English` or `2. Français`.
+  - You'll see `Select a language:` followed by the options `1. English` or `2. FranÃ§ais`.
   - Type `1` for English or `2` for French and press Enter.
 
 ## 2. Execute One or More Save Jobs
