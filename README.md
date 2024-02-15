@@ -23,7 +23,7 @@ Upon starting the application, you're greeted with the option to select a langua
 
 - **To change the language:**
   - Type `1` and press Enter.
-  - You'll see `Select a language:` followed by the options `1. English` or `2. Français`.
+  - You'll see `Select a language:` followed by the options `1. English` or `2. FranÃ§ais`.
   - Type `1` for English or `2` for French and press Enter.
 
 ## 2. Execute One or More Save Jobs
@@ -91,13 +91,13 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Win64.zip). <br>
+- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Win64.zip). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveConsole.exe`. <br>
 
 ### Linux 64-bit
 
-- Download [EasySaveConsole_Linux64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Linux64.zip) <br>
+- Download [EasySaveConsole_Linux.tar.gz](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Linux.tar.gz) <br>
 - Extract the zip file. <br>
 - Open a terminal and navigate to the extracted folder: `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`. <br>
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
