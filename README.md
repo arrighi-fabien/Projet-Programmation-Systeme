@@ -91,28 +91,28 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Win64.zip). <br>
+- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Win64.zip). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveConsole.exe`. <br>
 
 ### Linux 64-bit
 
-- Download [EasySaveConsole_Linux64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Linux64.zip) <br>
-- Extract the zip file. <br>
-- Open a terminal and navigate to the extracted folder: `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`. <br>
+- Download [EasySaveConsole_Linux.tar.gz](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Linux.tar.gz) <br>
+- Extract the tar file with `tar -xzvf EasySaveConsole_Linux.tar.gz`. <br>
+- Open a terminal and navigate to the extracted folder: `cd /path/to/linux-x64`. <br>
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
 - Launch the application with `./EasySaveConsole`. <br>
 
 ## Use the application with Docker
 
 A Docker container is available to easily test the application on Linux. You can pull it from Docker Hub: <br>
-`docker pull airg213/easysaveconsole:latest` <br>
+`docker pull airg213/easysaveconsole-v1.1:latest` <br>
 
 To launch the container and access the application: <br>
-`docker run -it --name easysaveconsole airg213/easysaveconsole:latest` <br>
+`docker run -it --name easysaveconsole-v1.1 airg213/easysaveconsole-v1.1:latest` <br>
 
 Once in the container, navigate to the application directory: <br>
-`cd /opt/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
+`cd /opt/linux-x64` <br>
 
 Launch the application with: <br>
 `./EasySaveConsole` <br>
@@ -138,7 +138,7 @@ The CI/CD pipeline for the EasySave project automates the process of compiling, 
 **Description :** Package the application in separate ZIP files for Windows and Linux. <br>
 **Orders :** <br>
 - For Windows: `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/` <br>
-- For Linux: `zip -r EasySaveConsole_Linux.zip ./EasySaveConsole/publish/linux-x64/` <br>
+- For Linux: `tar -czvf EasySaveConsole_Linux.tar.gz -C ./EasySaveConsole/publish linux-x64/` <br>
 
 #### 5. Release
 **Description :** Publishes packages to GitHub Releases, making it easier to deploy new versions of the application. <br>

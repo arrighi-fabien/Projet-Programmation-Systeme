@@ -2,12 +2,12 @@ Build Dockerfile :
 ----------
 docker build -t airg213/easysaveconsole:latest .
 
-docker run -it --name easysave_console airg213/easysaveconsole:latest
+docker run -it --name easysaveconsole airg213/easysaveconsole:latest
 
 
 Push to DockerHub :
 ----------
-docker commit easysave_console airg213/easysaveconsole:latest
+docker commit easysaveconsole airg213/easysaveconsole:latest
 
 docker tag airg213/easysaveconsole:latest airg213/easysaveconsole:latest
 
@@ -19,3 +19,6 @@ Import from DockerHub :
 docker pull airg213/easysaveconsole:latest
 
 docker run -it --name easysaveconsole airg213/easysaveconsole:latest
+
+
+docker run -it --name easysaveconsole-v1.1 airg213/easysaveconsole:latest
