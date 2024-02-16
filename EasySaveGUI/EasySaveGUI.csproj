@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="model\" />
+    <Folder Include="config\" />
+    <Folder Include="view\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\icon.jpg" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿<Window x:Class="EasySaveGUI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveGUI"
+        mc:Ignorable="d"
+        Title="EasySave Setting" Icon="/assets/icon.jpg" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="330" Height="180">
+    <Grid>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="20"/>
+            <ComboBox x:Name="LanguageComboBox" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Width="120">
+                <ComboBoxItem Content="English" IsSelected="True"/>
+                <ComboBoxItem Content="Français"/>
+            </ComboBox>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Margin="178,10,10,0" VerticalAlignment="Top">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20"/>
+            <ComboBox x:Name="LogFormatComboBox" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Width="120">
+                <ComboBoxItem Content="JSON" IsSelected="True"/>
+                <ComboBoxItem Content="XML"/>
+            </ComboBox>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="137" Margin="10,83,0,10">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Input extension" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="InputExtensionTextBox" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+    </Grid>
+</Window>
