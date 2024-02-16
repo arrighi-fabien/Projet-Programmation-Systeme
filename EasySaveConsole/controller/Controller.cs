@@ -2,13 +2,13 @@
 using EasySaveConsole.view;
 
 namespace EasySaveConsole.controller {
-    
+
     public class Controller {
 
         // Attributes for view, language, tool, saveJobs, and jobStates
         private readonly View view = new();
         private readonly Language language = Language.GetInstance();
-        private Tool tool = Tool.GetInstance();
+        private readonly Tool tool = Tool.GetInstance();
         private List<SaveJob> saveJobs;
         private List<JobState> jobStates = [];
 
@@ -48,13 +48,16 @@ namespace EasySaveConsole.controller {
                         DeleteSaveJob();
                         break;
                     case "6":
+                        ChangeLogFormat();
+                        break;
+                    case "7":
                         break;
                     default:
                         view.DisplayError(language.GetString("invalid_input"));
                         break;
                 }
-            // Loop until the user chooses to quit
-            } while (choice != "6");
+                // Loop until the user chooses to quit
+            } while (choice != "7");
         }
 
         /// <summary>
@@ -126,53 +129,15 @@ namespace EasySaveConsole.controller {
         /// </summary>
         private void CreateSaveJob() {
             view.DisplayOutput(language.GetString("create_savejob"));
-            view.DisplayOutput(language.GetString("enter_savejob_name"));
-            string saveName = view.GetInput();
+            SaveJob? saveJob = CreateSaveJobInstance();
 
-            // Check if the name is valid
-            if (saveName.Length < 1) {
-                view.DisplayError(language.GetString("invalid_input"));
-                return;
-            }
-            view.DisplayOutput(language.GetString("enter_savejob_source"));
-            string saveSource = view.GetInput();
-            
-            // Check if the source folder exists
-            if (!Directory.Exists(saveSource)) {
-                view.DisplayError(language.GetString("source_folder_not_found"));
-                return;
-            }
-            view.DisplayOutput(language.GetString("enter_savejob_destination"));
-            string saveDestination = view.GetInput();
-            
-            // Check if the destination folder exists
-            if (!tool.PathDirectoryIsValid(saveDestination)) {
-                view.DisplayError(language.GetString("destination_folder_not_found"));
-                return;
-            }
-            view.DisplayOutput(language.GetString("enter_savejob_type"));
-            view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
-            view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
-            string saveType = view.GetInput();
-
-            // Switch case for the save type
-            switch (saveType) {
-                case "1":
-                    saveJobs.Add(new FullSave(saveName, saveSource, saveDestination));
-                    tool.WriteSavedSaveJob(saveJobs);
-                    view.ClearConsole();
-                    break;
-                case "2":
-                    saveJobs.Add(new DifferentialSave(saveName, saveSource, saveDestination));
-                    tool.WriteSavedSaveJob(saveJobs);
-                    view.ClearConsole();
-                    break;
-                default:
-                    view.DisplayError(language.GetString("invalid_input"));
-                    break;
+            if (saveJob != null) {
+                saveJobs.Add(saveJob);
+                tool.WriteSavedSaveJob(saveJobs);
+                view.ClearConsole();
             }
         }
-        
+
         /// <summary>
         /// Method to update a save job
         /// </summary>
@@ -188,54 +153,67 @@ namespace EasySaveConsole.controller {
             // Get the user's choice
             try {
                 int choice = int.Parse(view.GetInput());
-                view.DisplayOutput(language.GetString("enter_savejob_name"));
-                string saveName = view.GetInput();
-                // Check if the name is valid
-                if (saveName.Length < 1) {
-                    view.DisplayError(language.GetString("invalid_input"));
-                    return;
+                SaveJob? saveJob = CreateSaveJobInstance();
+                if (saveJob != null) {
+                    saveJobs[choice - 1] = saveJob;
+                    tool.WriteSavedSaveJob(saveJobs);
+                    view.ClearConsole();
                 }
-                view.DisplayOutput(language.GetString("enter_savejob_source"));
-                string saveSource = view.GetInput();
-
-                // Check if the source folder exists
-                if (!Directory.Exists(saveSource)) {
-                    view.DisplayError(language.GetString("source_folder_not_found"));
-                    return;
-                }
-                view.DisplayOutput(language.GetString("enter_savejob_destination"));
-                string saveDestination = view.GetInput();
-
-                // Check if the destination folder exists
-                if (!tool.PathDirectoryIsValid(saveDestination)) {
-                    view.DisplayError(language.GetString("destination_folder_not_found"));
-                    return;
-                }
-                view.DisplayOutput(language.GetString("enter_savejob_type"));
-                view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
-                view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
-                string saveType = view.GetInput();
-
-                // Switch case for the save type
-                switch (saveType) {
-                    case "1":
-                        saveJobs[choice - 1] = new FullSave(saveName, saveSource, saveDestination);
-                        tool.WriteSavedSaveJob(saveJobs);
-                        break;
-                    case "2":
-                        saveJobs[choice - 1] = new DifferentialSave(saveName, saveSource, saveDestination);
-                        tool.WriteSavedSaveJob(saveJobs);
-                        break;
-                    default:
-                        view.DisplayError(language.GetString("no_savejob"));
-                        break;
-                }
-                view.ClearConsole();
             }
-            // Catch invalid input
             catch (Exception) {
-                view.DisplayError(language.GetString("no_savejob"));
+                view.DisplayError(language.GetString("invalid_input"));
+                return;
             }
+        }
+
+        /// <summary>
+        /// Method to create a savejob instance
+        /// </summary>
+        /// <returns>SaveJob instance or null if inputs are invalid</returns>
+        private SaveJob? CreateSaveJobInstance() {
+            view.DisplayOutput(language.GetString("enter_savejob_name"));
+            string saveName = view.GetInput();
+
+            // Check if the name is valid
+            if (saveName.Length < 1) {
+                view.DisplayError(language.GetString("invalid_input"));
+                return null;
+            }
+            view.DisplayOutput(language.GetString("enter_savejob_source"));
+            string saveSource = view.GetInput();
+
+            // Check if the source folder exists
+            if (!Directory.Exists(saveSource)) {
+                view.DisplayError(language.GetString("source_folder_not_found"));
+                return null;
+            }
+            view.DisplayOutput(language.GetString("enter_savejob_destination"));
+            string saveDestination = view.GetInput();
+
+            // Check if the destination folder exists
+            if (!tool.PathDirectoryIsValid(saveDestination)) {
+                view.DisplayError(language.GetString("destination_folder_not_found"));
+                return null;
+            }
+            view.DisplayOutput(language.GetString("enter_savejob_type"));
+            view.DisplayOutput($"1. {language.GetString("select_savejob_full")}");
+            view.DisplayOutput($"2. {language.GetString("select_savejob_differential")}");
+            string saveType = view.GetInput();
+
+            // Switch case for the save type
+            SaveJob? saveJob = null;
+            switch (saveType) {
+                case "1":
+                    saveJob = new FullSave(saveName, saveSource, saveDestination);
+                    break;
+                case "2":
+                    saveJob = new DifferentialSave(saveName, saveSource, saveDestination);
+                    break;
+                default:
+                    view.DisplayError(language.GetString("invalid_input"));
+                    break;
+            }
+            return saveJob;
         }
 
         /// <summary>
@@ -257,10 +235,36 @@ namespace EasySaveConsole.controller {
                 tool.WriteSavedSaveJob(saveJobs);
                 view.ClearConsole();
             }
-            
             // Catch invalid input
             catch (Exception) {
                 view.DisplayError(language.GetString("invalid_input"));
+            }
+        }
+
+        /// <summary>
+        /// Method to change the log format
+        /// </summary>
+        private void ChangeLogFormat() {
+            string actualValue = tool.GetConfigValue("logFormat");
+            view.DisplayOutput(language.GetString("select_log_format") + " :");
+
+            // Add (X) to the actual value
+            view.DisplayOutput("1. JSON" + (actualValue == "json" ? " (X)" : ""));
+            view.DisplayOutput("2. XML" + (actualValue == "xml" ? " (X)" : ""));
+
+            string choice = view.GetInput();
+            switch (choice) {
+                case "1":
+                    tool.WriteConfigValue("logFormat", "json");
+                    view.ClearConsole();
+                    break;
+                case "2":
+                    tool.WriteConfigValue("logFormat", "xml");
+                    view.ClearConsole();
+                    break;
+                default:
+                    view.DisplayError(language.GetString("invalid_input"));
+                    break;
             }
         }
 

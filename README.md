@@ -6,58 +6,79 @@ This project is a simple backup software that allows you to create backups of yo
 
 # Summary
 
- - [User guide](#User-Guide)
- - [Available languages](#Available-languages)
- - [Interface](#Interface)
+ - [Usage guide](#Usage-Guide)
  - [Built With](#Built-With)
  - [Download and use](#Download-and-use)
- - [CI/CD pipeline for EasySave](#CI/CD-pipeline-for-EasySave)
+ - [CI/CD pipeline for EasySave](#CI-CD-pipeline-for-EasySave)
  - [Authors](#Authors)
 
 
-# User guide
+# Usage Guide
 
-## Available languages
+EasySave offers a straightforward interface for managing your backup jobs. Here's a step-by-step guide to using each feature with additional details and examples.
 
-- English
-- French
-- Corsican
+## 1. Change Language
 
-## Interface 
+Upon starting the application, you're greeted with the option to select a language. This changes the application's interface to your preferred language.
 
-Firstly, after launching the app we arrive at this interface menu where we can carry out these 6 different tasks:
+- **To change the language:**
+  - Type `1` and press Enter.
+  - You'll see `Select a language:` followed by the options `1. English` or `2. Français`.
+  - Type `1` for English or `2` for French and press Enter.
 
-_1. Change language_ <br>
-_2. Execute one or more save jobs_ <br>
-_3. Create save job_ <br>
-_4. Update save job_ <br>
-_5. Delete save job_ <br>
-_6. Close application_ <br>
+## 2. Execute One or More Save Jobs
 
-### Change language 
-_Choose "1" and select the language._ <br>
-_Select the desired language_ <br>
+You can execute previously configured save jobs individually or in bulk.
 
-### Execute one or more save jobs
-_Choose "2" to launch one or more backup jobs._ <br>
-_Enter the job to launch_ <br>
+- **To execute save jobs:**
+  - Choose `2` from the main menu.
+  - If you have multiple save jobs, you'll be prompted to select which ones to execute. Enter the job number(s), separated by `-` or `;` if executing multiple.
 
-### Create save job
-_Choose "3" to create a job._ <br>
-_Then enter the name of the job._ <br>
-_Enter the path of the source folder and the path of the destination folder._ <br>
-_Then choose between a full save or a differential save._ <br>
+## 3. Create Save Job
 
-### Update save job
-_Choose "4" to update a job._ <br>
-_Enter the job to update_ <br>
+Creating a save job involves specifying a source and destination folder, as well as choosing between a full or differential save.
 
-### Delete save job
-_Choose "5" to delete a job._ <br>
-_Enter the job to delete_ <br> 
+- **To create a new save job:**
+  - Select `3` and press Enter.
+  - Follow the prompts to enter a unique job name, source folder, and destination folder.
+  - Choose `1` for a full save, which backs up all files in the source folder, or `2` for a differential save. Differential saves only back up files that have been added or modified since the last save, saving time and storage space.
 
-### Close application
-_Choose "6" to close the application._
+## 4. Update Save Job
+
+Update existing save jobs to modify their settings or backup type.
+
+- **To update a save job:**
+  - Choose `4` from the main menu.
+  - Select the save job you wish to update by entering its number.
+  - You can then update the job's name, source folder, destination folder, and whether it should perform a full or differential save.
+
+## 5. Delete Save Job
+
+Remove save jobs that are no longer needed.
+
+- **To delete a save job:**
+  - Select `5` from the main menu.
+  - Enter the number of the save job you wish to delete.
+
+## 6. Log Format Choice
+
+EasySave allows you to choose the format of your logs between JSON and XML, enabling flexibility in how you store and view backup information.
+
+- **To select the log format:**
+  - Choose `6` from the main menu after launching the app.
+  - You will be prompted to select the log format: `1. JSON` or `2. XML`.
+  - Type `1` for JSON or `2` for XML and press Enter.
+  - Your choice will apply to all future logs until you decide to change it again.
+
+## 7. Close Application
+
+This option safely exits the application, ensuring all your settings and configurations are preserved.
+
+- **To close the application:**
+  - Navigate to `7` on the main menu.
+  - Press Enter to confirm and safely exit EasySave.
+
+By following this guide, you can efficiently manage your backup jobs with EasySave, ensuring your data is backed up according to your needs and preferences. Whether you're performing routine backups or need to update your backup configurations, EasySave provides a user-friendly interface to accomplish your goals.
 
 # Built With
 
@@ -70,34 +91,34 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Win64.zip). <br>
+- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Win64.zip). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveConsole.exe`. <br>
 
 ### Linux 64-bit
 
-- Download [EasySaveConsole_Linux64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v1/EasySaveConsole_Linux64.zip) <br>
-- Extract the zip file. <br>
-- Open a terminal and navigate to the extracted folder: `cd /path/to/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64`. <br>
+- Download [EasySaveConsole_Linux.tar.gz](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Linux.tar.gz) <br>
+- Extract the tar file with `tar -xzvf EasySaveConsole_Linux.tar.gz`. <br>
+- Open a terminal and navigate to the extracted folder: `cd /path/to/linux-x64`. <br>
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
 - Launch the application with `./EasySaveConsole`. <br>
 
 ## Use the application with Docker
 
 A Docker container is available to easily test the application on Linux. You can pull it from Docker Hub: <br>
-`docker pull airg213/easysaveconsole:latest` <br>
+`docker pull airg213/easysaveconsole-v1.1:latest` <br>
 
 To launch the container and access the application: <br>
-`docker run -it --name easysaveconsole airg213/easysaveconsole:latest` <br>
+`docker run -it --name easysaveconsole-v1.1 airg213/easysaveconsole-v1.1:latest` <br>
 
 Once in the container, navigate to the application directory: <br>
-`cd /opt/EasySaveConsole_Linux64/EasySaveConsole/publish/linux-x64` <br>
+`cd /opt/linux-x64` <br>
 
 Launch the application with: <br>
 `./EasySaveConsole` <br>
 
 
-# CI/CD pipeline for EasySave
+# CI CD pipeline for EasySave
 
 The CI/CD pipeline for the EasySave project automates the process of compiling, testing, packaging, and deploying the EasySave application. Every change pushed to the Git repository triggers this pipeline, ensuring continuous integration and deployment.
 
@@ -117,7 +138,7 @@ The CI/CD pipeline for the EasySave project automates the process of compiling, 
 **Description :** Package the application in separate ZIP files for Windows and Linux. <br>
 **Orders :** <br>
 - For Windows: `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/` <br>
-- For Linux: `zip -r EasySaveConsole_Linux.zip ./EasySaveConsole/publish/linux-x64/` <br>
+- For Linux: `tar -czvf EasySaveConsole_Linux.tar.gz -C ./EasySaveConsole/publish linux-x64/` <br>
 
 #### 5. Release
 **Description :** Publishes packages to GitHub Releases, making it easier to deploy new versions of the application. <br>

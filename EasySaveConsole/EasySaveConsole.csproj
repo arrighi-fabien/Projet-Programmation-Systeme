@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="config\language.json" />
+    <None Remove="config\config.json" />
     <None Remove="config\savejobs.json" />
   </ItemGroup>
 
@@ -16,7 +16,7 @@
     <Content Include="config\savejobs.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\language.json">
+    <Content Include="config\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -27,7 +27,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.fr.resx</DependentUpon>
     </Compile>
-    <Compile Update="config\locales\Resource.en.Designer.cs">
+    <Compile Update="config\locales\Resource.En.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.en.resx</DependentUpon>
@@ -41,7 +41,7 @@
     </EmbeddedResource>
     <EmbeddedResource Update="config\locales\Resource.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.En.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -1,5 +1,5 @@
 ﻿namespace EasySaveConsole.model {
-    
+
     // Class representing a log entry for a job, inheriting from LogSystem
     public class JobLog : LogSystem {
 
@@ -34,6 +34,13 @@
             set {
                 timestamp = value;
             }
+        }
+
+        /// <summary>
+        /// Constructor for JobLog
+        /// </summary>
+        public JobLog() : base() {
+
         }
 
         /// <summary>

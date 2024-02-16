@@ -10,7 +10,7 @@ namespace EasySaveConsole.model {
         // Attributes for the culture info, the resource manager and the instance of Language
         private CultureInfo cultureInfo;
         private readonly ResourceManager resourceManager;
-        public static Language instance;
+        public static Language? instance;
 
         /// <summary>
         /// Constructor for Language
@@ -19,7 +19,7 @@ namespace EasySaveConsole.model {
             // Set resource manager
             resourceManager = new($"EasySaveConsole.config.locales.Resource", typeof(Program).Assembly);
             // Get saved language
-            string lang = GetSavedLanguage();
+            string lang = Tool.GetInstance().GetConfigValue("language");
             // If no language is saved, set to English
             if (lang == "") {
                 lang = "en";
@@ -60,36 +60,9 @@ namespace EasySaveConsole.model {
         /// <param name="languageCode">The language code to set.</param>
         public void SetLanguage(string languageCode) {
             // Write the saved language
-            WriteSavedLanguage(languageCode);
+            Tool.GetInstance().WriteConfigValue("language", languageCode);
             // Set the culture info
             cultureInfo = CultureInfo.GetCultureInfo(languageCode);
-        }
-
-        /// <summary>
-        /// Get the saved language from the language.json config file
-        /// </summary>
-        /// <returns>The saved language code</returns>
-        public string GetSavedLanguage() {
-            // Try to read the saved language from the config file
-            try {
-                string json = File.ReadAllText("config/language.json");
-                string language = JsonSerializer.Deserialize<Dictionary<string, string>>(json)["language"];
-                return language;
-            }
-            // If the file is missing, return an empty string
-            catch {
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// Method to write the saved language to the config file
-        /// </summary>
-        /// <param name="language">The language code to save.</param>
-        public void WriteSavedLanguage(string language) {
-            // Write the language to the config file
-            string json = JsonSerializer.Serialize(new Dictionary<string, string> { { "language", language } });
-            File.WriteAllText("config/language.json", json);
         }
 
     }

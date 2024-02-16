@@ -56,7 +56,8 @@ namespace EasySaveConsole.view {
             DisplayOutput($"3. {language.GetString("menu_create_save")}");
             DisplayOutput($"4. {language.GetString("menu_update_save")}");
             DisplayOutput($"5. {language.GetString("menu_delete_save")}");
-            DisplayOutput($"6. {language.GetString("menu_quit_application")}");
+            DisplayOutput($"6. {language.GetString("menu_log_format")}");
+            DisplayOutput($"7. {language.GetString("menu_quit_application")}");
         }
 
         /// <summary>

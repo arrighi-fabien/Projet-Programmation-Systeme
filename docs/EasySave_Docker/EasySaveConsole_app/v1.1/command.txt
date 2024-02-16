@@ -1,0 +1,21 @@
+Build Dockerfile :
+----------
+docker build -t airg213/easysaveconsole-v1.1:latest .
+
+docker run -it --name easysaveconsole-v1.1 airg213/easysaveconsole-v1.1:latest
+
+
+Push to DockerHub :
+----------
+docker commit easysaveconsole-v1.1 airg213/easysaveconsole-v1.1:latest
+
+docker tag airg213/easysaveconsole-v1.1:latest airg213/easysaveconsole-v1.1:latest
+
+docker push airg213/easysaveconsole-v1.1:latest
+
+
+Import from DockerHub :
+----------
+docker pull airg213/easysaveconsole-v1.1:latest
+
+docker run -it --name easysaveconsole-v1.1 airg213/easysaveconsole-v1.1:latest

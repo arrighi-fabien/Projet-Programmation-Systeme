@@ -153,6 +153,9 @@
   <data name="menu_language" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="menu_log_format" xml:space="preserve">
+    <value>Choose log format</value>
+  </data>
   <data name="menu_quit_application" xml:space="preserve">
     <value>Close application</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="select_language" xml:space="preserve">
     <value>Select a language</value>
+  </data>
+  <data name="select_log_format" xml:space="preserve">
+    <value>Select log format</value>
   </data>
   <data name="select_savejob" xml:space="preserve">
     <value>Select one or more savejobs</value>
