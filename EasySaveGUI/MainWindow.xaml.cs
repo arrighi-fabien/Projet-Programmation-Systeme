@@ -58,7 +58,26 @@ namespace EasySaveGUI {
                     tool.WriteSavedSaveJob(saveJobs);
                 }
                 this.SaveJobList.Items.Refresh();
+            }
+        }
 
+        private void UpdateSaveJobButton_Click(object sender, RoutedEventArgs e) {
+            // If no save job is selected, show an error message
+            if (this.SaveJobList.SelectedItems.Count == 0) {
+                MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else {
+                // If multiple save jobs are selected, show an error message
+                if (this.SaveJobList.SelectedItems.Count > 1) {
+                    MessageBox.Show(language.GetString("multiple_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else {
+                    // Open the save job window with the selected save job
+                    int index = this.SaveJobList.Items.IndexOf(this.SaveJobList.SelectedItems[0]);
+                    OpenNewWindow(new SaveJobWindow(saveJobs[index]));
+                }
             }
         }
 
@@ -80,6 +99,27 @@ namespace EasySaveGUI {
             this.UpdateSaveJobButton.Content = language.GetString("menu_update_save");
             this.DeleteSaveJobButton.Content = language.GetString("menu_delete_save");
             this.SettingsButton.Content = language.GetString("settings");
+        }
+
+        private void LaunchSaveJobButton_Click(object sender, RoutedEventArgs e) {
+            // If no save job is selected, show an error message
+            if (this.SaveJobList.SelectedItems.Count == 0) {
+                MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
+
+        public void AddSaveJob(SaveJob saveJob) {
+            saveJobs.Add(saveJob);
+            tool.WriteSavedSaveJob(saveJobs);
+            this.SaveJobList.Items.Refresh();
+        }
+
+        public void UpdateSaveJob(SaveJob oldSaveJob, SaveJob newSaveJob) {
+            int index = saveJobs.IndexOf(oldSaveJob);
+            saveJobs[index] = newSaveJob;
+            tool.WriteSavedSaveJob(saveJobs);
+            this.SaveJobList.Items.Refresh();
         }
 
     }
