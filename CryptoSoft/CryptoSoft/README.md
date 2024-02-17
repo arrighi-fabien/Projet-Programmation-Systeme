@@ -6,16 +6,6 @@ This project is a simple console application to encrypt file with XOR algorithm.
 
 ## Usage
 
-```bash
-$ cryptosoft -h
-
-Usage of cryptosoft:
-  -d string
-		Decrypt file
-  -e string
-		Encrypt file
-  -k string
-		Key to encrypt/decrypt
-  -o string
-		Output file
+```
+CryptoSoft.exe -e <input_file> <output_file> <key>(optional)
 ```
