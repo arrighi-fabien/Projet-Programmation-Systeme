@@ -138,17 +138,32 @@
   <data name="enter_savejob_type" xml:space="preserve">
     <value>Entrez le type de sauvegarde</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="error_close_windows" xml:space="preserve">
+    <value>Veuillez fermer toutes les autres fenêtres avant de fermer l'application</value>
+  </data>
   <data name="invalid_input" xml:space="preserve">
     <value>Entrée invalide</value>
   </data>
+  <data name="label_encrypt_extensions" xml:space="preserve">
+    <value>Fichier à chiffrer</value>
+  </data>
+  <data name="label_language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="label_log_format" xml:space="preserve">
+    <value>Format des logs</value>
+  </data>
   <data name="menu_create_save" xml:space="preserve">
-    <value>Créer un travail de sauvegarde</value>
+    <value>Créer sauvegarde</value>
   </data>
   <data name="menu_delete_save" xml:space="preserve">
-    <value>Supprimer un travail de sauvegarde</value>
+    <value>Supprimer sauvegarde(s)</value>
   </data>
   <data name="menu_execute_save" xml:space="preserve">
-    <value>Lancer une ou des sauvegardes</value>
+    <value>Lancer sauvegarde(s)</value>
   </data>
   <data name="menu_language" xml:space="preserve">
     <value>Changer la langue</value>
@@ -160,10 +175,13 @@
     <value>Fermer l'application</value>
   </data>
   <data name="menu_update_save" xml:space="preserve">
-    <value>Modifier un travail de sauvegarde</value>
+    <value>Modifier sauvegarde</value>
   </data>
   <data name="no_savejob" xml:space="preserve">
     <value>Aucun travail de sauvegarde enregistré</value>
+  </data>
+  <data name="no_savejob_selected" xml:space="preserve">
+    <value>Pas de travail de sauvegarde sélectionné</value>
   </data>
   <data name="savejob_already_exists" xml:space="preserve">
     <value>Ce travail de sauvegarde existe déjà</value>
@@ -191,6 +209,9 @@
   </data>
   <data name="select_savejob_update" xml:space="preserve">
     <value>Selectionnez un travail de sauvegarde à modifier</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
   <data name="source_folder" xml:space="preserve">
     <value>Dossier source</value>

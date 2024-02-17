@@ -138,8 +138,23 @@
   <data name="enter_savejob_type" xml:space="preserve">
     <value>Enter save type</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error_close_windows" xml:space="preserve">
+    <value>Please close all windows before exiting the application</value>
+  </data>
   <data name="invalid_input" xml:space="preserve">
     <value>Invalid input</value>
+  </data>
+  <data name="label_encrypt_extensions" xml:space="preserve">
+    <value>Extensions to encrypt</value>
+  </data>
+  <data name="label_language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="label_log_format" xml:space="preserve">
+    <value>Log format</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
     <value>Create save job</value>
@@ -148,7 +163,7 @@
     <value>Delete save job</value>
   </data>
   <data name="menu_execute_save" xml:space="preserve">
-    <value>Execute one or more save jobs</value>
+    <value>Execute savejob(s)</value>
   </data>
   <data name="menu_language" xml:space="preserve">
     <value>Change language</value>
@@ -164,6 +179,9 @@
   </data>
   <data name="no_savejob" xml:space="preserve">
     <value>No savejob saved</value>
+  </data>
+  <data name="no_savejob_selected" xml:space="preserve">
+    <value>No savejob selected</value>
   </data>
   <data name="savejob_already_exists" xml:space="preserve">
     <value>Savejob already exist</value>
@@ -191,6 +209,9 @@
   </data>
   <data name="select_savejob_update" xml:space="preserve">
     <value>Select a savejob to update</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="source_folder" xml:space="preserve">
     <value>Source folder</value>

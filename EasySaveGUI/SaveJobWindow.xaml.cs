@@ -17,8 +17,10 @@ namespace EasySaveGUI
     /// <summary>
     /// Interaction logic for SaveJobWindow.xaml
     /// </summary>
-    public partial class SaveJobWindow : Window {
-        public SaveJobWindow() {
+    public partial class SaveJobWindow : Window
+    {
+        public SaveJobWindow()
+        {
             InitializeComponent();
         }
 
