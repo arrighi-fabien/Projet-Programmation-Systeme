@@ -1,0 +1,14 @@
+﻿<Window x:Class="EasySaveGUI.SaveJobRunWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveGUI"
+        mc:Ignorable="d"
+        Title="EasySave Run SaveJob" Height="200" Width="400" Icon="/assets/icon.jpg" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="19,48,0,0" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="saveJobProgressBar" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Value="0" Width="350"/>
+        <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="81,48,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

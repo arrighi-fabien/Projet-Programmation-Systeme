@@ -8,6 +8,8 @@ namespace EasySaveGUI {
     public partial class SaveJobWindow : Window {
 
         SaveJob? saveJob;
+        Language Language = Language.GetInstance();
+        Tool tool = Tool.GetInstance();
 
         public SaveJobWindow() {
             InitializeComponent();
@@ -25,6 +27,10 @@ namespace EasySaveGUI {
         private void Save_Click(object sender, RoutedEventArgs e) {
             if (this.SaveJobName.Text == "" || this.SourceFolder.Text == "" || this.DestinationFolder.Text == "") {
                 MessageBox.Show("Please fill all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!tool.PathDirectoryIsValid(this.SourceFolder.Text) || !tool.PathDirectoryIsValid(this.DestinationFolder.Text)) {
+                MessageBox.Show("Please enter a valid path", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             SaveJob saveJob;

@@ -32,6 +32,9 @@ namespace EasySaveGUI {
                     LogFormatComboBox.SelectedIndex = 1;
                     break;
             }
+            string savedEncryptExtensions = tool.GetConfigValue("encryptExtensions");
+            // Put one extension per line
+            EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
             Refresh();
         }
 
@@ -65,6 +68,15 @@ namespace EasySaveGUI {
         private void LogFormatComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
             string newLogFormat = (string)((System.Windows.Controls.ComboBoxItem)LogFormatComboBox.SelectedItem).Content;
             tool.WriteConfigValue("logFormat", newLogFormat.ToLower());
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            // Get all the extensions (one per line)
+            string extensions = EncryptExtensionTextBox.Text;
+            // Remove the empty lines
+            string result = string.Join(";", extensions.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
+            // Save the extensions in the config file
+            tool.WriteConfigValue("encryptExtensions", result);
         }
     }
 }

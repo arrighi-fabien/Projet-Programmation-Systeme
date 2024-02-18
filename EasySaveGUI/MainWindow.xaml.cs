@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -12,6 +13,9 @@ namespace EasySaveGUI {
         private List<SaveJob> saveJobs;
 
         public MainWindow() {
+            if (!Directory.Exists("logs")) {
+                Directory.CreateDirectory("logs");
+            }
             InitializeComponent();
             saveJobs = tool.GetSavedSaveJob();
             this.SaveJobList.ItemsSource = saveJobs;
@@ -106,6 +110,14 @@ namespace EasySaveGUI {
             if (this.SaveJobList.SelectedItems.Count == 0) {
                 MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
+            }
+            else {
+                List<SaveJob> saveJobToRun = [];
+                // Launch all selected save jobs
+                foreach (SaveJob saveJob in this.SaveJobList.SelectedItems) {
+                    saveJobToRun.Add(saveJob);
+                }
+                OpenNewWindow(new SaveJobRunWindow(saveJobToRun));
             }
         }
 
