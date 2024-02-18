@@ -80,8 +80,7 @@ namespace EasySaveGUI.model {
                 jobStates.Add(jobState);
 
                 // Get encrypted extensions
-                string encryptedExtension = tool.GetConfigValue("encryptExtensions");
-                Encrypt encrypt = new Encrypt(encryptedExtension);
+                Encrypt encrypt = new();
 
                 // Save each file
                 foreach (string file in files) {

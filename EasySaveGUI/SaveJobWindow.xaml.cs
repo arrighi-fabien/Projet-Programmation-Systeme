@@ -25,12 +25,14 @@ namespace EasySaveGUI {
         }
 
         private void Save_Click(object sender, RoutedEventArgs e) {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
             if (this.SaveJobName.Text == "" || this.SourceFolder.Text == "" || this.DestinationFolder.Text == "") {
-                ShowErrorMessageBox("Please fill all the fields");
+                mainWindow.ShowErrorMessageBox("Please fill all the fields");
                 return;
             }
             if (!tool.PathDirectoryIsValid(this.SourceFolder.Text) || !tool.PathDirectoryIsValid(this.DestinationFolder.Text)) {
-                ShowErrorMessageBox("Please enter a valid path");
+                mainWindow.ShowErrorMessageBox("Please enter a valid path");
                 return;
             }
 
@@ -42,7 +44,6 @@ namespace EasySaveGUI {
                 saveJob = new DifferentialSave(this.SaveJobName.Text, this.SourceFolder.Text, this.DestinationFolder.Text);
             }
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             if (this.saveJob != null) {
                 mainWindow.UpdateSaveJob(this.saveJob, saveJob);
             }
@@ -53,8 +54,5 @@ namespace EasySaveGUI {
             this.Close();
         }
 
-        private void ShowErrorMessageBox(string message) {
-            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
     }
 }

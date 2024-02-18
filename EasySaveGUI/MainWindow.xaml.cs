@@ -40,7 +40,7 @@ namespace EasySaveGUI {
         private void DeleteSaveJobButton_Click(object sender, RoutedEventArgs e) {
             // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
-                MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessageBox(language.GetString("no_savejob_selected"));
                 return;
             }
             else {
@@ -68,13 +68,13 @@ namespace EasySaveGUI {
         private void UpdateSaveJobButton_Click(object sender, RoutedEventArgs e) {
             // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
-                MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessageBox(language.GetString("no_savejob_selected"));
                 return;
             }
             else {
                 // If multiple save jobs are selected, show an error message
                 if (this.SaveJobList.SelectedItems.Count > 1) {
-                    MessageBox.Show(language.GetString("multiple_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    ShowErrorMessageBox(language.GetString("multiple_savejob_selected"));
                     return;
                 }
                 else {
@@ -89,7 +89,7 @@ namespace EasySaveGUI {
             foreach (Window window in Application.Current.Windows) {
                 if (window != this && window.IsVisible) {
                     e.Cancel = true;
-                    MessageBox.Show(language.GetString("error_close_windows"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    ShowErrorMessageBox(language.GetString("error_close_windows"));
                     return;
                 }
             }
@@ -108,7 +108,7 @@ namespace EasySaveGUI {
         private void LaunchSaveJobButton_Click(object sender, RoutedEventArgs e) {
             // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
-                MessageBox.Show(language.GetString("no_savejob_selected"), language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessageBox(language.GetString("no_savejob_selected"));
                 return;
             }
             else {
@@ -132,6 +132,10 @@ namespace EasySaveGUI {
             saveJobs[index] = newSaveJob;
             tool.WriteSavedSaveJob(saveJobs);
             this.SaveJobList.Items.Refresh();
+        }
+
+        internal void ShowErrorMessageBox(string message) {
+            MessageBox.Show(message, language.GetString("error"), MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
     }

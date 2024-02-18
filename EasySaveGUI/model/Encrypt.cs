@@ -2,23 +2,40 @@
 using System.IO;
 
 namespace EasySaveGUI.model {
+    /// <summary>
+    /// Class to encrypt files
+    /// </summary>
     class Encrypt {
 
         private List<string> encryptExtensions;
         private static Encrypt instance;
 
-        public Encrypt(string encryptExtensions) {
+        /// <summary>
+        /// Constructor for the Encrypt class
+        /// </summary>
+        public Encrypt() {
             // Put each extension in a list
+            string encryptExtensions = Tool.GetInstance().GetConfigValue("encryptExtensions");
             this.encryptExtensions = new List<string>(encryptExtensions.Split(';'));
         }
 
-        public Encrypt GetInstance(string? encryptExtensions) {
+        /// <summary>
+        /// Get the instance of the Encrypt class
+        /// </summary>
+        /// <returns>Instance of the Encrypt class</returns>
+        public Encrypt GetInstance() {
             if (instance == null) {
-                instance = new Encrypt(encryptExtensions);
+                instance = new Encrypt();
             }
             return instance;
         }
 
+        /// <summary>
+        /// Encrypt a file with the CryptoSoft program
+        /// </summary>
+        /// <param name="sourceFile">Source file to encrypt</param>
+        /// <param name="destinationFile">Destination file to encrypt</param>
+        /// <param name="key">Key to encrypt the file</param>
         public void EncryptFile(string sourceFile, string destinationFile, string? key) {
             Process process = new();
             process.StartInfo.FileName = "cryptosoft/CryptoSoft.exe";
@@ -29,6 +46,11 @@ namespace EasySaveGUI.model {
             process.WaitForExit();
         }
 
+        /// <summary>
+        /// Return if the file should be encrypted
+        /// </summary>
+        /// <param name="file">Path of the file</param>
+        /// <returns>True if the file should be encrypted, false otherwise</returns>
         public bool IsToEncrypt(string file) {
             // Check if the file extension is in the list
             string extension = Path.GetExtension(file);
