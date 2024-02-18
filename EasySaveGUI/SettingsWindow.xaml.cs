@@ -35,6 +35,7 @@ namespace EasySaveGUI {
             string savedEncryptExtensions = tool.GetConfigValue("encryptExtensions");
             // Put one extension per line
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
+
             Refresh();
         }
 

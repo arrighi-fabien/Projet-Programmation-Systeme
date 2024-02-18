@@ -7,9 +7,9 @@ namespace EasySaveGUI {
     /// </summary>
     public partial class SaveJobWindow : Window {
 
-        SaveJob? saveJob;
-        Language Language = Language.GetInstance();
-        Tool tool = Tool.GetInstance();
+        private SaveJob? saveJob;
+        private Language Language = Language.GetInstance();
+        private readonly Tool tool = Tool.GetInstance();
 
         public SaveJobWindow() {
             InitializeComponent();
@@ -26,13 +26,14 @@ namespace EasySaveGUI {
 
         private void Save_Click(object sender, RoutedEventArgs e) {
             if (this.SaveJobName.Text == "" || this.SourceFolder.Text == "" || this.DestinationFolder.Text == "") {
-                MessageBox.Show("Please fill all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessageBox("Please fill all the fields");
                 return;
             }
             if (!tool.PathDirectoryIsValid(this.SourceFolder.Text) || !tool.PathDirectoryIsValid(this.DestinationFolder.Text)) {
-                MessageBox.Show("Please enter a valid path", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessageBox("Please enter a valid path");
                 return;
             }
+
             SaveJob saveJob;
             if (this.TypeComboBox.SelectedIndex == 0) {
                 saveJob = new FullSave(this.SaveJobName.Text, this.SourceFolder.Text, this.DestinationFolder.Text);
@@ -40,15 +41,20 @@ namespace EasySaveGUI {
             else {
                 saveJob = new DifferentialSave(this.SaveJobName.Text, this.SourceFolder.Text, this.DestinationFolder.Text);
             }
+
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             if (this.saveJob != null) {
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.UpdateSaveJob(this.saveJob, saveJob);
             }
             else {
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.AddSaveJob(saveJob);
             }
+
             this.Close();
+        }
+
+        private void ShowErrorMessageBox(string message) {
+            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
