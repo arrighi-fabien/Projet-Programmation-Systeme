@@ -9,25 +9,25 @@
     <Grid>
         <Grid>
             <Grid HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Margin="10,10,0,0">
-                <Label Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
             </Grid>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,64,0,0">
-                <Label Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="SourceFolder" HorizontalAlignment="Center" Height="46" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
             </Grid>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,142,0,0">
-                <Label Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="46" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="120" Margin="10,219,0,0">
-                <Label Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Full"/>
                     <ComboBoxItem Content="Differential"/>
                 </ComboBox>
             </Grid>
-            <Button x:Name="Save" Content="Save" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Width="76" Click="Save_Click"/>
+            <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Width="76" Click="Save_Click"/>
         </Grid>
     </Grid>
 </Window>

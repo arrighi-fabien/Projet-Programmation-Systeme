@@ -117,35 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="create_savejob" xml:space="preserve">
-    <value>Creation of savejob</value>
-  </data>
-  <data name="destination_folder" xml:space="preserve">
-    <value>Destination folder</value>
-  </data>
-  <data name="destination_folder_not_found" xml:space="preserve">
-    <value>Destination folder not valid</value>
-  </data>
-  <data name="enter_savejob_destination" xml:space="preserve">
-    <value>Enter destination folder</value>
-  </data>
-  <data name="enter_savejob_name" xml:space="preserve">
-    <value>Enter name</value>
-  </data>
-  <data name="enter_savejob_source" xml:space="preserve">
-    <value>Enter source folder</value>
-  </data>
-  <data name="enter_savejob_type" xml:space="preserve">
-    <value>Enter save type</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Error</value>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
     <value>Please close all windows before exiting the application</value>
   </data>
-  <data name="invalid_input" xml:space="preserve">
-    <value>Invalid input</value>
+  <data name="error_enter_valid_path" xml:space="preserve">
+    <value>Please enter a valid path</value>
+  </data>
+  <data name="error_fill_all_fields" xml:space="preserve">
+    <value>Please fill all the fields</value>
+  </data>
+  <data name="error_multiple_savejob_selected" xml:space="preserve">
+    <value>Please select only one savejob</value>
+  </data>
+  <data name="error_no_savejob_selected" xml:space="preserve">
+    <value>No savejob selected</value>
+  </data>
+  <data name="label_destination_folder" xml:space="preserve">
+    <value>Destination folder</value>
   </data>
   <data name="label_encrypt_extensions" xml:space="preserve">
     <value>Extensions to encrypt</value>
@@ -156,6 +147,15 @@
   <data name="label_log_format" xml:space="preserve">
     <value>Log format</value>
   </data>
+  <data name="label_savejob_name" xml:space="preserve">
+    <value>SaveJob name</value>
+  </data>
+  <data name="label_save_type" xml:space="preserve">
+    <value>Save type</value>
+  </data>
+  <data name="label_source_folder" xml:space="preserve">
+    <value>Source folder</value>
+  </data>
   <data name="menu_create_save" xml:space="preserve">
     <value>Create save job</value>
   </data>
@@ -165,58 +165,22 @@
   <data name="menu_execute_save" xml:space="preserve">
     <value>Execute savejob(s)</value>
   </data>
-  <data name="menu_language" xml:space="preserve">
-    <value>Change language</value>
-  </data>
-  <data name="menu_log_format" xml:space="preserve">
-    <value>Choose log format</value>
-  </data>
-  <data name="menu_quit_application" xml:space="preserve">
-    <value>Close application</value>
-  </data>
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
-  <data name="no_savejob" xml:space="preserve">
-    <value>No savejob saved</value>
+  <data name="popup_delete_savejob" xml:space="preserve">
+    <value>Savejob deletion</value>
   </data>
-  <data name="no_savejob_selected" xml:space="preserve">
-    <value>No savejob selected</value>
+  <data name="popup_error" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="savejob_already_exists" xml:space="preserve">
-    <value>Savejob already exist</value>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="save_type" xml:space="preserve">
-    <value>Save type</value>
-  </data>
-  <data name="select_language" xml:space="preserve">
-    <value>Select a language</value>
-  </data>
-  <data name="select_log_format" xml:space="preserve">
-    <value>Select log format</value>
-  </data>
-  <data name="select_savejob" xml:space="preserve">
-    <value>Select one or more savejobs</value>
-  </data>
-  <data name="select_savejob_delete" xml:space="preserve">
-    <value>Select savejob to delete</value>
-  </data>
-  <data name="select_savejob_differential" xml:space="preserve">
-    <value>Differential save</value>
-  </data>
-  <data name="select_savejob_full" xml:space="preserve">
-    <value>Full save</value>
-  </data>
-  <data name="select_savejob_update" xml:space="preserve">
-    <value>Select a savejob to update</value>
+  <data name="savejob_finished" xml:space="preserve">
+    <value>SaveJob finished</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
-  </data>
-  <data name="source_folder" xml:space="preserve">
-    <value>Source folder</value>
-  </data>
-  <data name="source_folder_not_found" xml:space="preserve">
-    <value>Source folder not found</value>
   </data>
 </root>

@@ -8,6 +8,7 @@ namespace EasySaveGUI {
     public partial class SaveJobRunWindow : Window {
 
         private List<JobState> jobStates = [];
+        private Language language = EasySaveGUI.model.Language.GetInstance();
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace EasySaveGUI {
 
             saveJobProgressBar.Value = 100;
 
-            MessageBox.Show("Save job finished", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

@@ -8,15 +8,20 @@ namespace EasySaveGUI {
     public partial class SaveJobWindow : Window {
 
         private SaveJob? saveJob;
-        private Language Language = Language.GetInstance();
+        private Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
 
         public SaveJobWindow() {
             InitializeComponent();
+            // Change label to the language
+            this.SaveJobNameLabel.Content = language.GetString("label_savejob_name");
+            this.SaveJobSourceLabel.Content = language.GetString("label_source_folder");
+            this.SaveJobDestinationLabel.Content = language.GetString("label_destination_folder");
+            this.SaveJobTypeLabel.Content = language.GetString("label_save_type");
+            this.SaveButton.Content = language.GetString("save");
         }
 
-        public SaveJobWindow(SaveJob saveJob) {
-            InitializeComponent();
+        public SaveJobWindow(SaveJob saveJob) : base() {
             this.saveJob = saveJob;
             this.SaveJobName.Text = saveJob.Name;
             this.SourceFolder.Text = saveJob.SourceFolder;
@@ -28,11 +33,11 @@ namespace EasySaveGUI {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
             if (this.SaveJobName.Text == "" || this.SourceFolder.Text == "" || this.DestinationFolder.Text == "") {
-                mainWindow.ShowErrorMessageBox("Please fill all the fields");
+                mainWindow.ShowErrorMessageBox(language.GetString("error_fill_all_fields"));
                 return;
             }
             if (!tool.PathDirectoryIsValid(this.SourceFolder.Text) || !tool.PathDirectoryIsValid(this.DestinationFolder.Text)) {
-                mainWindow.ShowErrorMessageBox("Please enter a valid path");
+                mainWindow.ShowErrorMessageBox(language.GetString("error_enter_valid_path"));
                 return;
             }
 
