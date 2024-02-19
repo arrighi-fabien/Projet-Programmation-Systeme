@@ -2,7 +2,7 @@ name: EasySave_CI-CD_Pipeline_v2.0
 
 on:
   push:
-    branches: [ main ]
+    branches: [ v2.0 ]
 
 jobs:
   build-and-release:
