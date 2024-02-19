@@ -70,7 +70,7 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases). <br>
+- Download [EasySaveGUI.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveGUI.exe`. <br>
 
