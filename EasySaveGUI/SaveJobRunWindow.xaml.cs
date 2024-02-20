@@ -22,12 +22,22 @@ namespace EasySaveGUI {
         private void RunSaveJobs(List<SaveJob> saveJobs) {
             foreach (SaveJob saveJob in saveJobs) {
                 runningSaveJobTextBlock.Text = saveJob.Name;
-                saveJob.SaveData(jobStates);
+                int result = saveJob.SaveData(jobStates);
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                switch (result) {
+                    case 0:
+                        MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    case 1:
+                        mainWindow.ShowErrorMessageBox(language.GetString("error_professionalapp"));
+                        break;
+                    case 2:
+                        mainWindow.ShowErrorMessageBox(language.GetString("error_savejob"));
+                        break;
+                }
             }
 
             saveJobProgressBar.Value = 100;
-
-            MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

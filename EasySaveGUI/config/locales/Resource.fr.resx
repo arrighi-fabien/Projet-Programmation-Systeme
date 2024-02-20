@@ -135,6 +135,12 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Pas de travail de sauvegarde sélectionné</value>
   </data>
+  <data name="error_professionalapp" xml:space="preserve">
+    <value>Une application métier est lancée</value>
+  </data>
+  <data name="error_savejob" xml:space="preserve">
+    <value>Une erreur est survenue</value>
+  </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Dossier de destination</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="label_log_format" xml:space="preserve">
     <value>Format des logs</value>
+  </data>
+  <data name="label_professional_app" xml:space="preserve">
+    <value>Applications métier</value>
   </data>
   <data name="label_savejob_name" xml:space="preserve">
     <value>Nom du travail de sauvegarde</value>

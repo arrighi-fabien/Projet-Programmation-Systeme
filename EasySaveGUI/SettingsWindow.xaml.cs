@@ -32,9 +32,11 @@ namespace EasySaveGUI {
                     LogFormatComboBox.SelectedIndex = 1;
                     break;
             }
+            // Get the saved extensions and apps
             string savedEncryptExtensions = tool.GetConfigValue("encryptExtensions");
-            // Put one extension per line
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
+            string savedProfessionalApp = tool.GetConfigValue("professsionalApp");
+            ProfessionalAppTextBox.Text = savedProfessionalApp.Replace(";", "\r\n");
 
             Refresh();
         }
@@ -46,6 +48,10 @@ namespace EasySaveGUI {
             LanguageLabel.Text = language.GetString("label_language");
             LogFormatLabel.Text = language.GetString("label_log_format");
             EncryptExtensionLabel.Text = language.GetString("label_encrypt_extensions");
+            ProfessionalAppLabel.Text = language.GetString("label_professional_app");
+            // Set the buttons to the language
+            EncryptExtensionSaveButton.Content = language.GetString("save");
+            ProfessionalAppSaveBtton.Content = language.GetString("save");
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.Refresh();
@@ -71,13 +77,19 @@ namespace EasySaveGUI {
             tool.WriteConfigValue("logFormat", newLogFormat.ToLower());
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            // Get all the extensions (one per line)
-            string extensions = EncryptExtensionTextBox.Text;
+        private void EncryptExtensionSaveButton_Click(object sender, RoutedEventArgs e) {
+            SaveTextAreas(EncryptExtensionTextBox.Text, "encryptExtensions");
+        }
+
+        private void ProfessionalAppSaveBtton_Click(object sender, RoutedEventArgs e) {
+            SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
+        }
+
+        private void SaveTextAreas(string content, string key) {
             // Remove the empty lines
-            string result = string.Join(";", extensions.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
-            // Save the extensions in the config file
-            tool.WriteConfigValue("encryptExtensions", result);
+            string result = string.Join(";", content.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
+            // Save the apps in the config file
+            tool.WriteConfigValue(key, result);
         }
     }
 }

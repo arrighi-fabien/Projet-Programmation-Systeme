@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Diagnostics;
+using System.IO;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -61,10 +61,18 @@ namespace EasySaveGUI.model {
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
-        public void SaveData(List<JobState> jobStates) {
-            try {
-                Tool tool = Tool.GetInstance();
+        public int SaveData(List<JobState> jobStates) {
+            Tool tool = Tool.GetInstance();
 
+            // Check if professionnal apps are running
+            string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
+            string[] apps = savedProfessionalApps.Split(";");
+            foreach (string app in apps) {
+                if (Process.GetProcessesByName(app).Length > 0) {
+                    return 1;
+                }
+            }
+            try {
                 // Check if the destination folder exists, if not, create it
                 if (!Directory.Exists(DestinationFolder)) {
                     Directory.CreateDirectory(DestinationFolder);
@@ -133,10 +141,10 @@ namespace EasySaveGUI.model {
                 // Finish the job
                 jobState.FinishJobState();
                 tool.WriteJobStateFile(jobStates);
+                return 0;
             }
-            catch (Exception e) {
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+            catch (Exception) {
+                return 2;
             }
         }
 

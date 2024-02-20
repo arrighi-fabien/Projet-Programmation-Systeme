@@ -135,6 +135,12 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>No savejob selected</value>
   </data>
+  <data name="error_professionalapp" xml:space="preserve">
+    <value>A professional application is launched</value>
+  </data>
+  <data name="error_savejob" xml:space="preserve">
+    <value>An error occured</value>
+  </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Destination folder</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="label_log_format" xml:space="preserve">
     <value>Log format</value>
+  </data>
+  <data name="label_professional_app" xml:space="preserve">
+    <value>Professional apps</value>
   </data>
   <data name="label_savejob_name" xml:space="preserve">
     <value>SaveJob name</value>

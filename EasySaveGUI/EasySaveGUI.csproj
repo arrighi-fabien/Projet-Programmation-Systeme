@@ -28,11 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="viewmodel\" />
-    <Folder Include="view\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="assets\icon.jpg" />
   </ItemGroup>
 
