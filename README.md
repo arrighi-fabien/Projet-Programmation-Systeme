@@ -6,84 +6,63 @@ This project is a simple backup software that allows you to create backups of yo
 
 # Summary
 
- - [Usage guide](#Usage-Guide)
  - [Built With](#Built-With)
+ - [Usage guide](#Usage-Guide)
  - [Download and use](#Download-and-use)
  - [CI/CD pipeline for EasySave](#CI-CD-pipeline-for-EasySave)
  - [Authors](#Authors)
-
-
-# Usage Guide
-
-EasySave offers a straightforward interface for managing your backup jobs. Here's a step-by-step guide to using each feature with additional details and examples.
-
-## 1. Change Language
-
-Upon starting the application, you're greeted with the option to select a language. This changes the application's interface to your preferred language.
-
-- **To change the language:**
-  - Type `1` and press Enter.
-  - You'll see `Select a language:` followed by the options `1. English` or `2. Français`.
-  - Type `1` for English or `2` for French and press Enter.
-
-## 2. Execute One or More Save Jobs
-
-You can execute previously configured save jobs individually or in bulk.
-
-- **To execute save jobs:**
-  - Choose `2` from the main menu.
-  - If you have multiple save jobs, you'll be prompted to select which ones to execute. Enter the job number(s), separated by `-` or `;` if executing multiple.
-
-## 3. Create Save Job
-
-Creating a save job involves specifying a source and destination folder, as well as choosing between a full or differential save.
-
-- **To create a new save job:**
-  - Select `3` and press Enter.
-  - Follow the prompts to enter a unique job name, source folder, and destination folder.
-  - Choose `1` for a full save, which backs up all files in the source folder, or `2` for a differential save. Differential saves only back up files that have been added or modified since the last save, saving time and storage space.
-
-## 4. Update Save Job
-
-Update existing save jobs to modify their settings or backup type.
-
-- **To update a save job:**
-  - Choose `4` from the main menu.
-  - Select the save job you wish to update by entering its number.
-  - You can then update the job's name, source folder, destination folder, and whether it should perform a full or differential save.
-
-## 5. Delete Save Job
-
-Remove save jobs that are no longer needed.
-
-- **To delete a save job:**
-  - Select `5` from the main menu.
-  - Enter the number of the save job you wish to delete.
-
-## 6. Log Format Choice
-
-EasySave allows you to choose the format of your logs between JSON and XML, enabling flexibility in how you store and view backup information.
-
-- **To select the log format:**
-  - Choose `6` from the main menu after launching the app.
-  - You will be prompted to select the log format: `1. JSON` or `2. XML`.
-  - Type `1` for JSON or `2` for XML and press Enter.
-  - Your choice will apply to all future logs until you decide to change it again.
-
-## 7. Close Application
-
-This option safely exits the application, ensuring all your settings and configurations are preserved.
-
-- **To close the application:**
-  - Navigate to `7` on the main menu.
-  - Press Enter to confirm and safely exit EasySave.
-
-By following this guide, you can efficiently manage your backup jobs with EasySave, ensuring your data is backed up according to your needs and preferences. Whether you're performing routine backups or need to update your backup configurations, EasySave provides a user-friendly interface to accomplish your goals.
-
-# Built With
+	
+ # Built With
 
 - .NET
 - C#
+
+# Usage Guide
+
+EasySave now offers an enhanced interface for managing your backup jobs. Below is a comprehensive guide to navigate through the application's features. <br>
+
+## Main Menu
+
+Upon launching the application, the main menu presents you with the following options: <br>
+
+- **Execute Save Job**: Run configured backup jobs. <br>
+- **Create Save Job**: Set up a new backup job. <br>
+- **Update Save Job**: Modify existing backup jobs. <br>
+- **Delete Save Job**: Remove backup jobs that are no longer needed. <br>
+- **Settings**: Adjust application settings such as language, log format, and encryption extensions. <br>
+
+## Execute or Delete Save Job
+
+To execute or delete a save job: <br>
+- Navigate to the corresponding option from the main menu. <br>
+- Select the desired job from the list displayed on the right side of the interface. <br>
+
+## Create or Update Save Job
+
+Both creating a new save job and updating an existing one share a similar process: <br>
+- **For creation**: Choose `Create Save Job` from the main menu. A new page opens. <br>
+- **For update**: Select a save job to modify, then choose `Update Save Job`. You'll be directed to a similar page as for creation. <br>
+
+On the configuration page: <br>
+- **Save Job Name**: Enter a unique name for the job. <br>
+- **Source Folder**: Specify the folder you wish to back up. <br>
+- **Destination Folder**: Define where the backup should be stored. <br>
+- **Save Type**: Select between a full or differential backup. <br>
+
+## Settings
+
+Accessing `Settings` from the main menu opens a new page where you can configure: <br>
+- **Language**: Choose between English and French. <br>
+- **Log Format**: Select your preferred format for logs, either JSON or XML. <br>
+- **Extensions to Encrypt**: Manually input file extensions you want to encrypt during the backup process. <br>
+
+## Closing the Application
+
+To exit the application safely: <br>
+- Navigate to `Close Application` from any page. <br>
+- Confirm to ensure all your settings and configurations are saved. <br>
+
+By adhering to this guide, you'll be able to efficiently manage your backup jobs with EasySave. Whether it's performing routine backups or adjusting settings, EasySave's intuitive interface caters to all your data protection needs. <br>
 
 # Download and use
 
@@ -91,19 +70,19 @@ Depending on your operating system, download the appropriate zip file from the r
 
 ### Windows 64-bit
 
-- Download [EasySaveConsole_Win64.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Win64.zip). <br>
+- Download [EasySaveGUI.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases). <br>
 - Extract the zip file. <br>
-- Launch `EasySaveConsole.exe`. <br>
+- Launch `EasySaveGUI.exe`. <br>
 
 ### Linux 64-bit
 
-- Download [EasySaveConsole_Linux.tar.gz](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Linux.tar.gz) <br>
+- Download [EasySaveConsole_Linux64.tar.gz](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases/download/JENKINS-v2/EasySaveConsole_Linux.tar.gz) <br>
 - Extract the tar file with `tar -xzvf EasySaveConsole_Linux.tar.gz`. <br>
 - Open a terminal and navigate to the extracted folder: `cd /path/to/linux-x64`. <br>
 - Make the file executable with `chmod +x EasySaveConsole`. <br>
 - Launch the application with `./EasySaveConsole`. <br>
 
-## Use the application with Docker
+## Use the console application with Docker
 
 A Docker container is available to easily test the application on Linux. You can pull it from Docker Hub: <br>
 `docker pull airg213/easysaveconsole-v1.1:latest` <br>
@@ -118,49 +97,41 @@ Launch the application with: <br>
 `./EasySaveConsole` <br>
 
 
-# CI CD pipeline for EasySave
+# CI/CD pipeline for EasySave with GitHub Actions
 
-The CI/CD pipeline for the EasySave project automates the process of compiling, testing, packaging, and deploying the EasySave application. Every change pushed to the Git repository triggers this pipeline, ensuring continuous integration and deployment.
+The CI/CD pipeline for EasySave is now powered by GitHub Actions, enabling automated workflows for building, testing, and deploying the EasySave application directly from GitHub. This pipeline ensures that every change pushed to the main branch goes through a rigorous process of validation before being made available for release. <br>
 
-### Pipeline Stages
+## Workflow Stages
 
-#### 1. SCM Polling
-**Description:** Monitors the specified branch of the Git repository for any new commits and triggers the pipeline automatically. <br>
-**Configuration:** Configured to monitor the "main" branch. <br>
+### 1. Build and Test
+- **Trigger:** Any push or pull request to the `main` branch. <br>
+- **Actions:** The .NET application is built and tested using the latest version of the .NET framework. This ensures that all changes are verified and meet the project's quality standards. <br>
 
-#### 2. Build
-**Description :** Compiles the source code using `dotnet publish` and generates the necessary binaries.  <br>
+### 2. Publish
+- **Trigger:** Successful completion of the build and test stage on the `main` branch. <br>
+- **Actions:** The application is published, and the artifacts (executable files) are prepared for deployment. These artifacts are then archived and uploaded as workflow artifacts, ensuring they are available for deployment. <br>
 
-#### 3. Run (Test)
-**Description :** Runs the application to ensure it works as expected in a test environment.  <br>
+### 3. Release
+- **Trigger:** Manual trigger by the repository maintainers or automated trigger upon successful completion of the publish stage. <br>
+- **Actions:** A new release is created on GitHub, and the archived artifacts from the publish stage are attached to the release. This makes the latest version of the application readily available for users to download directly from the GitHub releases page. <br>
 
-#### 4. Packaging (Zip)
-**Description :** Package the application in separate ZIP files for Windows and Linux. <br>
-**Orders :** <br>
-- For Windows: `zip -r EasySaveConsole_Win.zip ./EasySaveConsole/publish/win-x64/` <br>
-- For Linux: `tar -czvf EasySaveConsole_Linux.tar.gz -C ./EasySaveConsole/publish linux-x64/` <br>
+## Getting Started with GitHub Actions
 
-#### 5. Release
-**Description :** Publishes packages to GitHub Releases, making it easier to deploy new versions of the application. <br>
-**Command:** Script to create a release on GitHub and upload the ZIP archives. <br>
+To view and manage the CI/CD pipeline: <br>
+1. Navigate to the GitHub repository. <br>
+2. Click on the "Actions" tab to see the list of workflows. <br>
+3. You can see the status of recent workflows, view logs, and manage workflow runs. <br>
 
-#### 6. Tagging
-**Description :** Marks each successful build with a unique tag in GitHub, allowing easy version tracking. <br>
-**Configuration:** Uses `$BUILD_ID` to create a unique tag, for example `v${BUILD_ID}`. <br>
+## Download and Use
 
-#### 7. Clean-Up
-**Description :** Cleans up the post-build Jenkins workspace to avoid contamination between builds. <br>
-**Jenkins Action:** "Delete workspace when build is done." <br>
+To download the latest version of EasySave: <br>
+- Visit the [Releases](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases) page of the EasySave GitHub repository. <br>
+- Download the appropriate artifact for your operating system (Windows/Linux). <br>
+- Follow the usage guide for installation and operation instructions. <br>
 
-## Import Jenkins server with Docker Hub
+The GitHub Actions CI/CD pipeline ensures that EasySave is continuously integrated and delivered with the highest standards of quality and reliability. <br>
 
-Jenkins server is available on the Docker Hub for easy recovery. You can pull the preconfigured Jenkins server with the CI/CD pipeline for EasySave: <br>
-`docker pull airg213/easysavejenkins:latest` <br>
-
-To launch the Jenkins server in a Docker container: <br>
-`docker run -d -p 8080:8080 -p 50000:50000 --name jenkins airg213/easysavejenkins:latest` <br>
-
-Jenkins is accessible at http://127.0.0.1:8080. You can log in with the preconfigured credentials to manage the CI/CD pipelines for EasySave. <br>
+For more details on GitHub Actions and workflows, visit the [GitHub Actions documentation](https://docs.github.com/en/actions). <br>
 
 # Authors 
 
