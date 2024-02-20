@@ -22,6 +22,7 @@ namespace EasySaveGUI {
         }
 
         public SaveJobWindow(SaveJob saveJob) : base() {
+            InitializeComponent();
             this.saveJob = saveJob;
             this.SaveJobName.Text = saveJob.Name;
             this.SourceFolder.Text = saveJob.SourceFolder;
