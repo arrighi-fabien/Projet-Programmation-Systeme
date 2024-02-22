@@ -2,7 +2,7 @@ name: EasySave_CI-CD_Pipeline_v2.0
 
 on:
   push:
-    branches: [ v2.0 ]
+    branches: [ main ]
 
 jobs:
   build-and-release:
@@ -21,6 +21,9 @@ jobs:
 
     - name: Build
       run: dotnet build EasySaveGUI/EasySaveGUI.csproj --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --no-build --verbosity normal
 
     - name: Publish
       run: |
