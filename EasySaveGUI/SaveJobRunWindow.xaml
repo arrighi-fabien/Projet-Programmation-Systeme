@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Run SaveJob" Height="200" Width="400" Icon="/assets/icon.jpg" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.jpg" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="19,48,0,0" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Top"/>
-        <ProgressBar x:Name="saveJobProgressBar" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Value="0" Width="350"/>
-        <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="81,48,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Top"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Width="122" Margin="0,56,0,0">
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Right" Margin="62,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" FontSize="16"/>
+        </Grid>
     </Grid>
 </Window>

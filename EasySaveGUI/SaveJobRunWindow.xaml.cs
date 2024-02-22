@@ -15,7 +15,12 @@ namespace EasySaveGUI {
 
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
-                RunSaveJobs(saveJobs);
+                // Wait 1 second before running the save jobs
+                Task.Delay(1000).ContinueWith(t => {
+                    Dispatcher.Invoke(() => {
+                        RunSaveJobs(saveJobs);
+                    });
+                });
             };
         }
 
@@ -26,7 +31,6 @@ namespace EasySaveGUI {
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 switch (result) {
                     case 0:
-                        MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                     case 1:
                         mainWindow.ShowErrorMessageBox(language.GetString("error_professionalapp"));
@@ -37,7 +41,8 @@ namespace EasySaveGUI {
                 }
             }
 
-            saveJobProgressBar.Value = 100;
+            MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
             this.Close();
         }
     }
