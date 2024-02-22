@@ -5,31 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Setting" Icon="/assets/icon.jpg" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="470" Height="295">
+        Title="EasySave Setting" Icon="/icon.png" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="470" Height="295">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF06283D" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-            <TextBlock x:Name="LanguageLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock x:Name="LanguageLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="20" Foreground="#FFDFF6FF"/>
             <ComboBox x:Name="LanguageComboBox" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LanguageComboBox_SelectionChanged">
                 <ComboBoxItem Content="English"/>
                 <ComboBoxItem Content="Français"/>
             </ComboBox>
         </Grid>
         <Grid HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top">
-            <TextBlock x:Name="LogFormatLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock x:Name="LogFormatLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20" Foreground="#FFDFF6FF"/>
             <ComboBox x:Name="LogFormatComboBox" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LogFormatComboBox_SelectionChanged">
                 <ComboBoxItem Content="JSON"/>
                 <ComboBoxItem Content="XML"/>
             </ComboBox>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="200" Margin="230,85,0,0">
-            <TextBlock x:Name="EncryptExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Extensions to encrypt" VerticalAlignment="Top" FontSize="20" Width="194"/>
+            <TextBlock x:Name="EncryptExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Extensions to encrypt" VerticalAlignment="Top" FontSize="20" Width="194" Foreground="#FFDFF6FF"/>
             <TextBox x:Name="EncryptExtensionTextBox" TextWrapping="Wrap" Width="200" Margin="0,32,0,25" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
-            <Button x:Name="EncryptExtensionSaveButton" Content="Save" HorizontalAlignment="Left" Margin="125,137,0,0" VerticalAlignment="Top" Width="75" Click="EncryptExtensionSaveButton_Click"/>
+            <Button x:Name="EncryptExtensionSaveButton" Content="Save" HorizontalAlignment="Left" Margin="125,137,0,0" VerticalAlignment="Top" Width="75" Click="EncryptExtensionSaveButton_Click" Background="#FFDFF6FF" BorderBrush="White"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="200" Margin="10,85,0,0">
-            <TextBlock x:Name="ProfessionalAppLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Professional app" VerticalAlignment="Top" FontSize="20" Width="194"/>
+            <TextBlock x:Name="ProfessionalAppLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Professional app" VerticalAlignment="Top" FontSize="20" Width="194" Foreground="#FFDFF6FF"/>
             <TextBox x:Name="ProfessionalAppTextBox" TextWrapping="Wrap" Width="200" Margin="0,32,0,25" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
-            <Button x:Name="ProfessionalAppSaveBtton" Content="Save" HorizontalAlignment="Left" Margin="125,137,0,0" VerticalAlignment="Top" Width="75" Click="ProfessionalAppSaveBtton_Click"/>
+            <Button x:Name="ProfessionalAppSaveBtton" Content="Save" HorizontalAlignment="Left" Margin="125,137,0,0" VerticalAlignment="Top" Width="75" Click="ProfessionalAppSaveBtton_Click" Background="#FFDFF6FF" BorderBrush="White"/>
         </Grid>
     </Grid>
 </Window>

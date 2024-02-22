@@ -13,6 +13,7 @@
     <None Remove="config\savejobs.json" />
     <None Remove="cryptosoft\CryptoSoft.exe" />
     <None Remove="icon.jpg" />
+    <None Remove="icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
 
   <ItemGroup>
     <Resource Include="assets\icon.jpg" />
+    <Resource Include="icon.png" />
   </ItemGroup>
 
 </Project>

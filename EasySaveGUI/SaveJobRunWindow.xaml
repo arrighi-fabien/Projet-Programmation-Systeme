@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.jpg" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF06283D" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Width="122" Margin="0,56,0,0">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Center" FontSize="16"/>
-            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Right" Margin="62,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Center" FontSize="16" Foreground="#FFDFF6FF"/>
+            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Right" Margin="62,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" FontSize="16" Foreground="#FFDFF6FF"/>
         </Grid>
     </Grid>
 </Window>

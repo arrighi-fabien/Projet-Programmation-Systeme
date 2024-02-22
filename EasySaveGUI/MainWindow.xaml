@@ -5,18 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="740" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/assets/icon.jpg" Closing="MainWindow_Closing">
+        Title="EasySave" Height="450" Width="740" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/icon.png" Closing="MainWindow_Closing" Background="Black">
     <Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="30"/>
-            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="12"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF06283D" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0">
+            <TextBlock TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="30" Foreground="#FFDFF6FF" Margin="0,0,27,0"/>
+            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="12" Foreground="#FFDFF6FF"/>
         </Grid>
-        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="60,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click"/>
-        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="60,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150"/>
-        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="60,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click"/>
-        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="60,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150"/>
-        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="60,307,0,0" VerticalAlignment="Top" Click="SettingsButton_Click" Width="150"/>
-        <ListView x:Name="SaveJobList" HorizontalAlignment="Right" VerticalAlignment="Center" Height="384" Margin="0,10,25,10" SelectionMode="Multiple">
+        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" BorderBrush="White" Background="#FFDFF6FF"/>
+        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="48,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150" BorderBrush="White" Background="#FFDFF6FF"/>
+        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="48,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click" BorderBrush="White" Background="#FFDFF6FF"/>
+        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="48,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150" BorderBrush="White" Background="#FFDFF6FF"/>
+        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="48,307,0,0" VerticalAlignment="Top" Click="SettingsButton_Click" Width="150" BorderBrush="#FF1363DF" Background="White"/>
+        <ListView x:Name="SaveJobList" HorizontalAlignment="Center" VerticalAlignment="Center" Height="384" Margin="231,0,0,0" SelectionMode="Multiple" Background="#FFDFF6FF" Foreground="Black" VerticalContentAlignment="Center" Width="402">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
