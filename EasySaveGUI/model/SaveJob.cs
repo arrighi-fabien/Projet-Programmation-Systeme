@@ -157,20 +157,16 @@ namespace EasySaveGUI.model {
         /// <summary>
         /// Get the list of files and folders in the specified directory
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="files"></param>
+        /// <param name="path">The path of the directory</param>
+        /// <param name="files">The list to which files will be added</param>
         public void GetFileList(string path, List<string> files) {
-            // Get the list of files
             string[] fichiers = Directory.GetFiles(path);
             files.AddRange(fichiers);
 
-            // Get the list of subdirectories
             string[] folders = Directory.GetDirectories(path);
             foreach (string folder in folders) {
-                files.Add(folder);
                 GetFileList(folder, files);
             }
         }
-
     }
 }
