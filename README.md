@@ -17,6 +17,15 @@ This project is a simple backup software that allows you to create backups of yo
 - .NET
 - C#
 
+# Languages
+- English
+- French
+- Spanish
+- German
+- Italian
+- Russian
+- Arabic
+
 # Usage Guide
 
 EasySave now offers an enhanced interface for managing your backup jobs. Below is a comprehensive guide to navigate through the application's features. <br>

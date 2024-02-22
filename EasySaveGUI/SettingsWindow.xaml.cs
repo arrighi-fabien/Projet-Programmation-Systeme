@@ -21,6 +21,21 @@ namespace EasySaveGUI {
                 case "fr":
                     LanguageComboBox.SelectedIndex = 1;
                     break;
+                case "es":
+                    LanguageComboBox.SelectedIndex = 2;
+                    break;
+                case "de":
+                    LanguageComboBox.SelectedIndex = 3;
+                    break;
+                case "it":
+                    LanguageComboBox.SelectedIndex = 4;
+                    break;
+                case "ru":
+                    LanguageComboBox.SelectedIndex = 5;
+                    break;
+                case "ar":
+                    LanguageComboBox.SelectedIndex = 6;
+                    break;
             }
             // Set the log format combobox to the saved log format
             string savedLogFormat = tool.GetConfigValue("logFormat");
@@ -67,6 +82,24 @@ namespace EasySaveGUI {
                     break;
                 case "Français":
                     language.SetLanguage("fr");
+                    break;
+                case "Español":
+                    language.SetLanguage("es");
+                    break;
+                case "Deutsch":
+                    language.SetLanguage("de");
+                    break;
+                case "Italiano":
+                    language.SetLanguage("it");
+                    break;
+                case "普通话":
+                    language.SetLanguage("ma");
+                    break;
+                case "Русский":
+                    language.SetLanguage("ru");
+                    break;
+                case "العربية":
+                    language.SetLanguage("ar");
                     break;
             }
             Refresh();
