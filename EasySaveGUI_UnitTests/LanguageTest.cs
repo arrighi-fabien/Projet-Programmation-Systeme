@@ -7,7 +7,7 @@ namespace EasySaveGUI.Tests {
         [TestMethod]
         public void TestMissingStringReturnsPlaceholder() {
             // Arrange
-            Language language = new Language();
+            Language language = new();
             string expectedString = "[Missing translation]";
 
             // Act
@@ -20,7 +20,7 @@ namespace EasySaveGUI.Tests {
         [TestMethod]
         public void TestSetLanguageSetsCorrectLanguage() {
             // Arrange
-            Language language = new Language();
+            Language language = new();
             string expectedLanguageCode = "fr";
 
             // Act

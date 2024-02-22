@@ -12,7 +12,7 @@ namespace EasySaveGUI.Tests {
             string destinationFolder = @"C:\Destination\";
 
             // Create a new instance of FullSave
-            FullSave fullSave = new FullSave(name, sourceFolder, destinationFolder);
+            FullSave fullSave = new(name, sourceFolder, destinationFolder);
 
             // Act
             bool result = fullSave.IsToSave("anyfilepath.txt");

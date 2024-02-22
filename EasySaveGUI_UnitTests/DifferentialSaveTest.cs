@@ -29,7 +29,7 @@ namespace EasySaveGUI.Tests {
         public void TestNonExistentDestinationFile() {
             // Arrange
             string name = "TestJob";
-            DifferentialSave save = new DifferentialSave(name, sourceFolder, destinationFolder);
+            DifferentialSave save = new(name, sourceFolder, destinationFolder);
 
             // Act
             bool result = save.IsToSave(filePath);
@@ -44,7 +44,7 @@ namespace EasySaveGUI.Tests {
             string name = "TestJob";
             string destinationFilePath = Path.Combine(destinationFolder, filePath);
             File.WriteAllText(destinationFilePath, "DifferentContent");
-            DifferentialSave save = new DifferentialSave(name, sourceFolder, destinationFolder);
+            DifferentialSave save = new(name, sourceFolder, destinationFolder);
 
             // Act
             bool result = save.IsToSave(filePath);
@@ -62,7 +62,7 @@ namespace EasySaveGUI.Tests {
             string name = "TestJob";
             string destinationFilePath = Path.Combine(destinationFolder, filePath);
             File.Copy(Path.Combine(sourceFolder, filePath), destinationFilePath);
-            DifferentialSave save = new DifferentialSave(name, sourceFolder, destinationFolder);
+            DifferentialSave save = new(name, sourceFolder, destinationFolder);
 
             // Act
             bool result = save.IsToSave(filePath);

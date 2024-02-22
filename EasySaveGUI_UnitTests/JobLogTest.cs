@@ -14,7 +14,7 @@ namespace EasySaveGUI.Tests {
             double transferTime = 5.3; // 5.3 seconds
 
             // Act
-            JobLog jobLog = new JobLog(name, sourceFile, destinationFile, fileSize, transferTime);
+            JobLog jobLog = new(name, sourceFile, destinationFile, fileSize, transferTime);
 
             // Assert
             Assert.AreEqual(name, jobLog.Name);

@@ -14,7 +14,7 @@ namespace EasySaveGUI.Tests {
             uint totalFiles = 10;
 
             // Act
-            JobState jobState = new JobState(name, sourceFile, destinationFile, state, totalFiles);
+            JobState jobState = new(name, sourceFile, destinationFile, state, totalFiles);
 
             // Assert
             Assert.AreEqual<string>(name, jobState.Name);
@@ -31,7 +31,7 @@ namespace EasySaveGUI.Tests {
         [TestMethod]
         public void TestFinishJobState() {
             // Arrange
-            JobState jobState = new JobState();
+            JobState jobState = new();
 
             // Act
             jobState.FinishJobState();
