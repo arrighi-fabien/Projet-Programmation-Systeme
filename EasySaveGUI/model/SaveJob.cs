@@ -78,7 +78,7 @@ namespace EasySaveGUI.model {
                     return 1;
                 }
             }
-            try {
+
                 // Check if the destination folder exists, if not, create it
                 if (!Directory.Exists(DestinationFolder)) {
                     Directory.CreateDirectory(DestinationFolder);
@@ -148,10 +148,7 @@ namespace EasySaveGUI.model {
                 jobState.FinishJobState();
                 tool.WriteJobStateFile(jobStates);
                 return 0;
-            }
-            catch (Exception) {
-                return 2;
-            }
+
         }
 
         /// <summary>
@@ -165,6 +162,7 @@ namespace EasySaveGUI.model {
 
             string[] folders = Directory.GetDirectories(path);
             foreach (string folder in folders) {
+                files.Add(folder);
                 GetFileList(folder, files);
             }
         }
