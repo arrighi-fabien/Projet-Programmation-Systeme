@@ -10,15 +10,15 @@
         <Grid>
             <Grid HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Margin="10,10,0,0">
                 <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+                <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Text="{Binding Name}"/>
             </Grid>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,64,0,0">
                 <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="SourceFolder" HorizontalAlignment="Center" Height="46" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
+                <TextBox x:Name="SourceFolder" HorizontalAlignment="Center" Height="46" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Text="{Binding SourceFolder}"/>
             </Grid>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,142,0,0">
                 <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="46" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
+                <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="46" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Text="{Binding DestinationFolder}"/>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="120" Margin="10,219,0,0">
                 <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top"/>
