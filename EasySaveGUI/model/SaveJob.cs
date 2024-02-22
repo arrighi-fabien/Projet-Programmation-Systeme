@@ -38,6 +38,12 @@ namespace EasySaveGUI.model {
             }
         }
 
+        public string Type {
+            get {
+                return GetType().Name;
+            }
+        }
+
         /// <summary>
         /// Constructor for SaveJob
         /// </summary>

@@ -39,7 +39,7 @@ namespace EasySaveConsole {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySaveConsole.config.locales.en", typeof(En).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySaveGUI.config.locales.en", typeof(En).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
