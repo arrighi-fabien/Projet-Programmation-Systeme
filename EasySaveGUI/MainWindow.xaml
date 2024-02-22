@@ -20,10 +20,10 @@
             <TextBlock TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="30" Foreground="#FFDFF6FF" Margin="0,0,27,0"/>
             <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="12" Foreground="#FFDFF6FF"/>
         </Grid>
-        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" BorderBrush="White" Background="#FFDFF6FF"/>
-        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="48,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150" BorderBrush="White" Background="#FFDFF6FF"/>
-        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="48,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click" BorderBrush="White" Background="#FFDFF6FF"/>
-        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="48,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150" BorderBrush="White" Background="#FFDFF6FF"/>
+        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" BorderBrush="White" Background="White"/>
+        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="48,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150" BorderBrush="White" Background="White"/>
+        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="48,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click" BorderBrush="White" Background="White"/>
+        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="48,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150" BorderBrush="White" Background="White"/>
         <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="48,307,0,0" VerticalAlignment="Top" Click="SettingsButton_Click" Width="150" BorderBrush="#FF1363DF" Background="White"/>
         <ListView x:Name="SaveJobList" HorizontalAlignment="Center" VerticalAlignment="Center" Height="384" Margin="231,0,0,0" SelectionMode="Multiple" Background="#FFDFF6FF" Foreground="Black" VerticalContentAlignment="Center" Width="402">
             <ListView.View>
