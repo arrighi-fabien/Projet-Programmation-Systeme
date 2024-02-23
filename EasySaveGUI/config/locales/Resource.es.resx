@@ -120,6 +120,12 @@
   <data name="delete" xml:space="preserve">
     <value>Eliminar</value>
   </data>
+  <data name="differential" xml:space="preserve">
+    <value />
+  </data>
+  <data name="differential_save" xml:space="preserve">
+    <value>Diferencial</value>
+  </data>
   <data name="error_close_windows" xml:space="preserve">
     <value>Por favor, cierre todas las ventanas antes de salir de la aplicación</value>
   </data>
@@ -140,6 +146,12 @@
   </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Se produjo un error</value>
+  </data>
+  <data name="full" xml:space="preserve">
+    <value />
+  </data>
+  <data name="full_save" xml:space="preserve">
+    <value>Completo</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Carpeta de destino</value>
@@ -188,6 +200,9 @@
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Guardado finalizado</value>
+  </data>
+  <data name="save_button" xml:space="preserve">
+    <value>Guardar</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Configuración</value>
