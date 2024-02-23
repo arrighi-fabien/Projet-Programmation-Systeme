@@ -36,14 +36,18 @@ namespace EasySaveGUI.model {
         /// <param name="sourceFile">Source file to encrypt</param>
         /// <param name="destinationFile">Destination file to encrypt</param>
         /// <param name="key">Key to encrypt the file</param>
-        public void EncryptFile(string sourceFile, string destinationFile, string? key) {
+        public double EncryptFile(string sourceFile, string destinationFile, string? key = "") {
             Process process = new();
             process.StartInfo.FileName = "cryptosoft/CryptoSoft.exe";
             // Add the arguments to the process (key is added if it's not null)
-            process.StartInfo.Arguments = key == "" ? $"{sourceFile} {destinationFile}" : $"{sourceFile} {destinationFile} {key}";
+            // Put the source file and the destination file in " " to avoid problems with spaces in the path
+            process.StartInfo.Arguments = key == "" ? $"\"{sourceFile}\" \"{destinationFile}\"" : $"\"{sourceFile}\" \"{destinationFile}\" \"{key}\"";
             process.StartInfo.CreateNoWindow = true;
             process.Start();
             process.WaitForExit();
+            // Get return value of the process
+            double returnValue = process.ExitCode;
+            return returnValue;
         }
 
         /// <summary>

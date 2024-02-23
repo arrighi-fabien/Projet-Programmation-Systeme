@@ -121,7 +121,7 @@
     <value>Elimina</value>
   </data>
   <data name="differential" xml:space="preserve">
-    <value />
+    <value>Differenziale</value>
   </data>
   <data name="differential_save" xml:space="preserve">
     <value>Differenziale</value>
@@ -148,10 +148,22 @@
     <value>Si è verificato un errore</value>
   </data>
   <data name="full" xml:space="preserve">
-    <value />
+    <value>Completo</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
+  </data>
+  <data name="HeaderDestination" xml:space="preserve">
+    <value>Destinazione</value>
+  </data>
+  <data name="HeaderName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="HeaderSource" xml:space="preserve">
+    <value>Origine</value>
+  </data>
+  <data name="HeaderType" xml:space="preserve">
+    <value>Tipo</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Cartella di destinazione</value>

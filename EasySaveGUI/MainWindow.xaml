@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="600" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/assets/icon.jpg" Closing="MainWindow_Closing">
-    <Grid Width="600">
+        Title="EasySave" Height="450" Width="740" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/assets/icon.jpg" Closing="MainWindow_Closing">
+    <Grid>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="30"/>
             <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="12"/>
@@ -22,6 +22,7 @@
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Source" Width="100" DisplayMemberBinding="{Binding SourceFolder}"/>
                     <GridViewColumn Header="Destination" Width="100" DisplayMemberBinding="{Binding DestinationFolder}"/>
+                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
                 </GridView>
             </ListView.View>
         </ListView>

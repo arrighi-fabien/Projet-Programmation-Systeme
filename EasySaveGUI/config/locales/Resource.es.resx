@@ -121,7 +121,7 @@
     <value>Eliminar</value>
   </data>
   <data name="differential" xml:space="preserve">
-    <value />
+    <value>Diferencial</value>
   </data>
   <data name="differential_save" xml:space="preserve">
     <value>Diferencial</value>
@@ -148,10 +148,22 @@
     <value>Se produjo un error</value>
   </data>
   <data name="full" xml:space="preserve">
-    <value />
+    <value>Completo</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
+  </data>
+  <data name="HeaderDestination" xml:space="preserve">
+    <value>Destino</value>
+  </data>
+  <data name="HeaderName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="HeaderSource" xml:space="preserve">
+    <value>Fuente</value>
+  </data>
+  <data name="HeaderType" xml:space="preserve">
+    <value>Tipo</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Carpeta de destino</value>

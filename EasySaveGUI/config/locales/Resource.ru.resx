@@ -121,7 +121,7 @@
     <value>Удалить</value>
   </data>
   <data name="differential" xml:space="preserve">
-    <value />
+    <value>Дифференциал</value>
   </data>
   <data name="differential_save" xml:space="preserve">
     <value>Дифференциал</value>
@@ -148,10 +148,22 @@
     <value>Произошла ошибка</value>
   </data>
   <data name="full" xml:space="preserve">
-    <value />
+    <value>Полный</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Полный</value>
+  </data>
+  <data name="HeaderDestination" xml:space="preserve">
+    <value>Назначение</value>
+  </data>
+  <data name="HeaderName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="HeaderSource" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="HeaderType" xml:space="preserve">
+    <value>Тип</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Папка назначения</value>

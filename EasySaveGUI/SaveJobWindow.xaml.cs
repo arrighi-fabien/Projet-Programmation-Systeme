@@ -34,16 +34,8 @@ namespace EasySaveGUI {
         public SaveJobWindow(SaveJob saveJob) : base() {
             InitializeComponent();
             this.saveJob = saveJob;
-            this.SaveJobName.Text = saveJob.Name;
-            this.SourceFolder.Text = saveJob.SourceFolder;
-            this.DestinationFolder.Text = saveJob.DestinationFolder;
-
-            if (saveJob is FullSave) {
-                this.TypeComboBox.SelectedIndex = 0; 
-            }
-            else if (saveJob is DifferentialSave) {
-                this.TypeComboBox.SelectedIndex = 1; 
-            }
+            DataContext = this.saveJob;
+            this.TypeComboBox.SelectedIndex = saveJob.GetType().Name == "FullSave" ? 0 : 1;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e) {
