@@ -120,9 +120,6 @@
   <data name="delete" xml:space="preserve">
     <value>Eliminar</value>
   </data>
-  <data name="differential" xml:space="preserve">
-    <value>Diferencial</value>
-  </data>
   <data name="differential_save" xml:space="preserve">
     <value>Diferencial</value>
   </data>
@@ -146,9 +143,6 @@
   </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Se produjo un error</value>
-  </data>
-  <data name="full" xml:space="preserve">
-    <value>Completo</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
@@ -206,9 +200,6 @@
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="save" xml:space="preserve">
-    <value>Guardar</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Guardado finalizado</value>

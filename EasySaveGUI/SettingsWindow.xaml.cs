@@ -65,8 +65,8 @@ namespace EasySaveGUI {
             EncryptExtensionLabel.Text = language.GetString("label_encrypt_extensions");
             ProfessionalAppLabel.Text = language.GetString("label_professional_app");
             // Set the buttons to the language
-            EncryptExtensionSaveButton.Content = language.GetString("save");
-            ProfessionalAppSaveBtton.Content = language.GetString("save");
+            EncryptExtensionSaveButton.Content = language.GetString("save_button");
+            ProfessionalAppSaveBtton.Content = language.GetString("save_button");
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.Refresh();

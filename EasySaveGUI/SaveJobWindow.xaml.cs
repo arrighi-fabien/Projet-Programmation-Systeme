@@ -22,21 +22,22 @@ namespace EasySaveGUI {
             this.SaveButton.Content = language.GetString("save_button");
 
             // Update ComboBox items to the selected language
-            if (TypeComboBox.Items[0] is ComboBoxItem comboBoxItemFull) {
-                comboBoxItemFull.Content = language.GetString("full_save");
-            }
-
-            if (TypeComboBox.Items[1] is ComboBoxItem comboBoxItemDifferential) {
-                comboBoxItemDifferential.Content = language.GetString("differential_save");
+            if (TypeComboBox.Items.Count >= 2) { // Assure that there are at least two items
+                (TypeComboBox.Items[0] as ComboBoxItem).Content = language.GetString("full_save");
+                (TypeComboBox.Items[1] as ComboBoxItem).Content = language.GetString("differential_save");
             }
         }
 
-        public SaveJobWindow(SaveJob saveJob) : base() {
-            InitializeComponent();
+        public SaveJobWindow(SaveJob saveJob) : this() { // Call the base constructor
             this.saveJob = saveJob;
-            DataContext = this.saveJob;
-            this.TypeComboBox.SelectedIndex = saveJob.GetType().Name == "FullSave" ? 0 : 1;
+            this.SaveJobName.Text = saveJob.Name;
+            this.SourceFolder.Text = saveJob.SourceFolder;
+            this.DestinationFolder.Text = saveJob.DestinationFolder;
+
+            // Set the selected index based on the type of saveJob
+            this.TypeComboBox.SelectedIndex = saveJob is FullSave ? 0 : 1;
         }
+
 
         private void Save_Click(object sender, RoutedEventArgs e) {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;

@@ -120,9 +120,6 @@
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="differential" xml:space="preserve">
-    <value>Différentiel</value>
-  </data>
   <data name="differential_save" xml:space="preserve">
     <value>Différentiel</value>
   </data>
@@ -147,11 +144,8 @@
   <data name="error_savejob" xml:space="preserve">
     <value>An error occured</value>
   </data>
-  <data name="full" xml:space="preserve">
-    <value>Complete</value>
-  </data>
   <data name="full_save" xml:space="preserve">
-    <value>Complete</value>
+    <value>Full</value>
   </data>
   <data name="HeaderDestination" xml:space="preserve">
     <value>Destination</value>
@@ -206,9 +200,6 @@
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="save" xml:space="preserve">
-    <value>Save</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>SaveJob finished</value>
