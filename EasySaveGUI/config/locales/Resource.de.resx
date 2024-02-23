@@ -144,19 +144,22 @@
   <data name="error_savejob" xml:space="preserve">
     <value>Ein Fehler ist aufgetreten</value>
   </data>
+  <data name="executing" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
   <data name="full_save" xml:space="preserve">
     <value>Complete</value>
   </data>
-  <data name="HeaderDestination" xml:space="preserve">
+  <data name="header-destination" xml:space="preserve">
     <value>Ziel</value>
   </data>
-  <data name="HeaderName" xml:space="preserve">
+  <data name="header-name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="HeaderSource" xml:space="preserve">
+  <data name="header-source" xml:space="preserve">
     <value>Quelle</value>
   </data>
-  <data name="HeaderType" xml:space="preserve">
+  <data name="header-type" xml:space="preserve">
     <value>Typ</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">

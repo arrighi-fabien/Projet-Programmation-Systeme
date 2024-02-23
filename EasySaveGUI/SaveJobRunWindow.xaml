@@ -8,8 +8,9 @@
         Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.jpg" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Width="122" Margin="0,56,0,0">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Center" FontSize="16"/>
-            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Right" Margin="62,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing" VerticalAlignment="Center" FontSize="16" Margin="-18,0,0,0"/>
+            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="81,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" FontSize="16" Width="70"/>
         </Grid>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text=":" VerticalAlignment="Top" FontSize="16" Margin="151,56,0,0"/>
     </Grid>
 </Window>
