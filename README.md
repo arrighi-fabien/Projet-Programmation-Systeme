@@ -55,6 +55,7 @@ Accessing `Settings` from the main menu opens a new page where you can configure
 - **Language**: Choose between English and French. <br>
 - **Log Format**: Select your preferred format for logs, either JSON or XML. <br>
 - **Extensions to Encrypt**: Manually input file extensions you want to encrypt during the backup process. <br>
+- **Professional App**: Block the transfer if the application(s) in Professional App are open
 
 ## Closing the Application
 
