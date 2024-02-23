@@ -12,7 +12,6 @@
     <None Remove="config\config.json" />
     <None Remove="config\savejobs.json" />
     <None Remove="cryptosoft\CryptoSoft.exe" />
-    <None Remove="icon.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets\icon.jpg" />
+    <Resource Include="assets\icon.png" />
   </ItemGroup>
 
 </Project>
