@@ -38,7 +38,7 @@ Upon launching the application, the main menu presents you with the following op
 - **Create Save Job**: Set up a new backup job. <br>
 - **Update Save Job**: Modify existing backup jobs. <br>
 - **Delete Save Job**: Remove backup jobs that are no longer needed. <br>
-- **Settings**: Adjust application settings such as language, log format, and encryption extensions. <br>
+- **Settings**: Adjust application settings such as language, log format, encryption extensions and professional app. <br>
 
 ## Execute or Delete Save Job
 

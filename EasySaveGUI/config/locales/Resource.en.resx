@@ -121,7 +121,7 @@
     <value>Delete</value>
   </data>
   <data name="differential_save" xml:space="preserve">
-    <value>Différentiel</value>
+    <value>Differential</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
     <value>Please close all windows before exiting the application</value>
