@@ -135,7 +135,7 @@ namespace EasySaveGUI.model {
                     }
                     stopwatch.Stop();
                     // Create a new job log
-                    JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.ElapsedMilliseconds, cipherTime);
+                    JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
                     // Write the job log to a JSON file
                     string date = DateTime.Now.ToString("yyyy-MM-dd");
                     // Check if the log file exists
