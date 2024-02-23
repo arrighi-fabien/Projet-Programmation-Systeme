@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Windows;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -72,10 +73,12 @@ namespace EasySaveGUI.model {
 
             // Check if professionnal apps are running
             string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
-            string[] apps = savedProfessionalApps.Split(";");
-            foreach (string app in apps) {
-                if (Process.GetProcessesByName(app).Length > 0) {
-                    return 1;
+            if (savedProfessionalApps != "") {
+                string[] apps = savedProfessionalApps.Split(";");
+                foreach (string app in apps) {
+                    if (Process.GetProcessesByName(app).Length > 0) {
+                        return 1;
+                    }
                 }
             }
 
