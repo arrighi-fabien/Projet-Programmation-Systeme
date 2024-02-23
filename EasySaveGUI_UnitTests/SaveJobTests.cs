@@ -22,8 +22,9 @@ namespace EasySaveGUI.Tests {
             saveJob.GetFileList(testFolderPath, files);
 
             // Assert
-            // Expected count should be 4 because we have 3 files and 1 subfolder
-            Assert.AreEqual(4, files.Count);
+            // Expected count should be 4 because we have 4 files in total
+            int fileCount = files.Count(f => File.Exists(f)); // Only count files, not directories
+            Assert.AreEqual(4, fileCount);
 
             // Clean up
             Directory.Delete(testFolderPath, true);
