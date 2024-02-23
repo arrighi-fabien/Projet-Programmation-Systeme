@@ -1,0 +1,15 @@
+﻿<Window x:Class="EasySaveGUI.SaveJobRunWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveGUI"
+        mc:Ignorable="d"
+        Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Background="{StaticResource MainBackground}">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="124,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
+        </Grid>
+    </Grid>
+</Window>

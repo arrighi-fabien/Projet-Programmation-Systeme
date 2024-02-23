@@ -1,0 +1,58 @@
+name: EasySave_CI-CD_Pipeline_v2.0
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.x' 
+
+    - name: Restore dependencies
+      run: dotnet restore EasySaveGUI/EasySaveGUI.csproj
+
+    - name: Build
+      run: dotnet build EasySaveGUI/EasySaveGUI.csproj --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --no-build --verbosity normal
+
+    - name: Publish
+      run: |
+        dotnet publish EasySaveGUI/EasySaveGUI.csproj -c Release -o publish
+        Compress-Archive -Path publish/* -DestinationPath EasySaveGUI.zip -Force
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: EasySaveGUI
+        path: ./EasySaveGUI.zip
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: GithubAction-v${{ github.run_number }}
+        release_name: Release EasySave-v2.0
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./EasySaveGUI.zip
+        asset_name: EasySaveGUI.zip
+        asset_content_type: application/zip

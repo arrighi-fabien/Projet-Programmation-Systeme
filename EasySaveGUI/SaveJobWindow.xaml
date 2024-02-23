@@ -1,0 +1,29 @@
+﻿<Window x:Class="EasySaveGUI.SaveJobWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveGUI"
+        mc:Ignorable="d"
+        Title="SaveJob EasySave" Height="363" Width="370" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/assets/icon.png">
+    <Grid Background="{StaticResource MainBackground}">
+        <Grid Margin="10">
+            <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Text="{Binding Name}"/>
+
+            <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,59,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Height="23" Margin="0,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"  Text="{Binding SourceFolder}"/>
+
+            <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,120,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="23" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"  Text="{Binding DestinationFolder}"/>
+
+            <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,210,0,0" Width="120">
+                <ComboBoxItem Content="Full"/>
+                <ComboBoxItem Content="Differential"/>
+            </ComboBox>
+
+            <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="130,268,0,0" VerticalAlignment="Top" Width="76" Click="Save_Click" Style="{StaticResource CustomButtonStyle}"/>
+        </Grid>
+    </Grid>
+</Window>
