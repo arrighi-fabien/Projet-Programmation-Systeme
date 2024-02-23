@@ -106,10 +106,10 @@ namespace EasySaveGUI {
             this.SettingsButton.Content = language.GetString("settings");
             // Refresh headers
             if (this.SaveJobList.View is GridView gridView) {
-                gridView.Columns[0].Header = language.GetString("header-name");
-                gridView.Columns[1].Header = language.GetString("header-source");
-                gridView.Columns[2].Header = language.GetString("header-destination");
-                gridView.Columns[3].Header = language.GetString("header-type");
+                gridView.Columns[0].Header = language.GetString("header_name");
+                gridView.Columns[1].Header = language.GetString("header_source");
+                gridView.Columns[2].Header = language.GetString("header_destination");
+                gridView.Columns[3].Header = language.GetString("header_type");
             }
         }
 

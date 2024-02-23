@@ -150,16 +150,16 @@
   <data name="full_save" xml:space="preserve">
     <value>مكتمل</value>
   </data>
-  <data name="header-destination" xml:space="preserve">
+  <data name="header_destination" xml:space="preserve">
     <value>الوجهة</value>
   </data>
-  <data name="header-name" xml:space="preserve">
+  <data name="header_name" xml:space="preserve">
     <value>الاسم</value>
   </data>
-  <data name="header-source" xml:space="preserve">
+  <data name="header_source" xml:space="preserve">
     <value>المصدر</value>
   </data>
-  <data name="header-type" xml:space="preserve">
+  <data name="header_type" xml:space="preserve">
     <value>النوع</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">

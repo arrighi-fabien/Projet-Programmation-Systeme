@@ -150,16 +150,16 @@
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
   </data>
-  <data name="header-destination" xml:space="preserve">
+  <data name="header_destination" xml:space="preserve">
     <value>Destinazione</value>
   </data>
-  <data name="header-name" xml:space="preserve">
+  <data name="header_name" xml:space="preserve">
     <value>Nome</value>
   </data>
-  <data name="header-source" xml:space="preserve">
+  <data name="header_source" xml:space="preserve">
     <value>Origine</value>
   </data>
-  <data name="header-type" xml:space="preserve">
+  <data name="header_type" xml:space="preserve">
     <value>Tipo</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
