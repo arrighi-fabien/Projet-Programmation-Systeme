@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="SaveJob EasySave" Height="388" Width="370" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/icon.png">
+        Title="SaveJob EasySave" Height="363" Width="370" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/assets/icon.png">
     <Grid Background="{StaticResource MainBackground}">
         <Grid Margin="10">
-            <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{StaticResource ForegroundBrush}"/>
-            <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" BorderBrush="{StaticResource ButtonBorderBrush}"/>
+            <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
 
-            <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,54,0,0" Foreground="{StaticResource ForegroundBrush}"/>
-            <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Height="23" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" BorderBrush="{StaticResource ButtonBorderBrush}"/>
+            <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,59,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Height="23" Margin="0,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
 
-            <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,133,0,0" Foreground="{StaticResource ForegroundBrush}"/>
-            <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="23" Margin="0,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" BorderBrush="{StaticResource ButtonBorderBrush}"/>
+            <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,120,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="23" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"/>
 
-            <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,212,0,0" Foreground="{StaticResource ForegroundBrush}"/>
-            <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,238,0,0" Width="120" BorderBrush="{StaticResource ButtonBorderBrush}">
+            <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0" Style="{StaticResource CustomLabelStyle}"/>
+            <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,210,0,0" Width="120">
                 <ComboBoxItem Content="Full"/>
                 <ComboBoxItem Content="Differential"/>
             </ComboBox>
 
-            <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="0,281,0,0" VerticalAlignment="Top" Width="76" Click="Save_Click" Background="{StaticResource ButtonBackground}" BorderBrush="{StaticResource ButtonBorderBrush}"/>
+            <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="130,268,0,0" VerticalAlignment="Top" Width="76" Click="Save_Click" Style="{StaticResource CustomButtonStyle}"/>
         </Grid>
     </Grid>
 </Window>

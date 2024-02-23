@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="740" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/icon.png" Closing="MainWindow_Closing">
+        Title="EasySave" Height="450" Width="740" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/assets/icon.png" Closing="MainWindow_Closing">
 
     <Grid Background="{StaticResource MainBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0">
-            <TextBlock TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="30" Foreground="{StaticResource ForegroundBrush}" Margin="0,0,27,0"/>
-            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="12" Foreground="{StaticResource ForegroundBrush}"/>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0" Width="204">
+            <TextBlock TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="40" Margin="0,0,27,0" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
         </Grid>
 
-        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" BorderBrush="{StaticResource ButtonBorderBrush}" Background="{StaticResource ButtonBackground}"/>
-        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="48,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150" BorderBrush="{StaticResource ButtonBorderBrush}" Background="{StaticResource ButtonBackground}"/>
-        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="48,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click" BorderBrush="{StaticResource ButtonBorderBrush}" Background="{StaticResource ButtonBackground}"/>
-        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="48,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150" BorderBrush="{StaticResource ButtonBorderBrush}" Background="{StaticResource ButtonBackground}"/>
-        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="48,307,0,0" VerticalAlignment="Top" Click="SettingsButton_Click" Width="150" BorderBrush="#FF1363DF" Background="{StaticResource ButtonBackground}"/>
+        <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" Style="{StaticResource CustomButtonStyle}"/>
+        <Button x:Name="CreateSaveJobButton" Content="Create savejob" HorizontalAlignment="Left" Margin="48,187,0,0" VerticalAlignment="Top" Click="SaveJobButton_Click" Width="150" Style="{StaticResource CustomButtonStyle}"/>
+        <Button x:Name="UpdateSaveJobButton" Content="Update savejob" HorizontalAlignment="Left" Margin="48,227,0,0" VerticalAlignment="Top" Width="150" Click="UpdateSaveJobButton_Click" Style="{StaticResource CustomButtonStyle}"/>
+        <Button x:Name="DeleteSaveJobButton" Content="Delete savejob" HorizontalAlignment="Left" Margin="48,267,0,0" VerticalAlignment="Top" Click="DeleteSaveJobButton_Click" Width="150" Style="{StaticResource CustomButtonStyle}"/>
+        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="48,307,0,0" VerticalAlignment="Top" Click="SettingsButton_Click" Width="150" Style="{StaticResource CustomButtonStyle}"/>
 
-        <ListView x:Name="SaveJobList" HorizontalAlignment="Center" VerticalAlignment="Center" Height="384" Margin="231,0,0,0" SelectionMode="Multiple" Background="#FFDFF6FF" Foreground="Black" VerticalContentAlignment="Center" Width="402">
+        <ListView x:Name="SaveJobList" HorizontalAlignment="Center" VerticalAlignment="Center" Height="384" Margin="231,0,0,0" SelectionMode="Multiple" VerticalContentAlignment="Center" Width="410" Style="{StaticResource CustomListViewStyle}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
