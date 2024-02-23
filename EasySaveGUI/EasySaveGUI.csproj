@@ -12,8 +12,6 @@
     <None Remove="config\config.json" />
     <None Remove="config\savejobs.json" />
     <None Remove="cryptosoft\CryptoSoft.exe" />
-    <None Remove="icon.jpg" />
-    <None Remove="icon.png" />
   </ItemGroup>
 
   <ItemGroup>
