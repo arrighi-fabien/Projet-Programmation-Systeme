@@ -9,13 +9,13 @@
     <Grid Background="{StaticResource MainBackground}">
         <Grid Margin="10">
             <Label x:Name="SaveJobNameLabel" Content="SaveJob Name" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CustomLabelStyle}"/>
-            <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+            <TextBox x:Name="SaveJobName" HorizontalAlignment="Left" Height="23" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Text="{Binding Name}"/>
 
             <Label x:Name="SaveJobSourceLabel" Content="Source" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,59,0,0" Style="{StaticResource CustomLabelStyle}"/>
-            <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Height="23" Margin="0,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"/>
+            <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Height="23" Margin="0,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335"  Text="{Binding SourceFolder}"/>
 
             <Label x:Name="SaveJobDestinationLabel" Content="Destination" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,120,0,0" Style="{StaticResource CustomLabelStyle}"/>
-            <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="23" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"/>
+            <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Height="23" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="336"  Text="{Binding DestinationFolder}"/>
 
             <Label x:Name="SaveJobTypeLabel" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0" Style="{StaticResource CustomLabelStyle}"/>
             <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,210,0,0" Width="120">

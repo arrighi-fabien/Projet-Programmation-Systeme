@@ -8,8 +8,8 @@
         Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="{StaticResource MainBackground}">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing :" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="124,0,0,0" TextWrapping="Wrap" Text="Save1" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="124,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Windows;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -82,82 +81,86 @@ namespace EasySaveGUI.model {
                 }
             }
 
-            // Check if the destination folder exists, if not, create it
-            if (!Directory.Exists(DestinationFolder)) {
-                Directory.CreateDirectory(DestinationFolder);
-            }
-
-            // Get the list of files to save
-            List<string> files = [];
-            GetFileList(SourceFolder, files);
-
-            // Create a new job state
-            JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
-            jobState.GetTotalFilesSize(SourceFolder);
-            jobStates.Add(jobState);
-
-            // Get encrypted extensions
-            Encrypt encrypt = new();
-
-            // Save each file
-            foreach (string file in files) {
-                string fileName = file.Substring(SourceFolder.Length + 1);
-                string destinationFile = Path.Combine([DestinationFolder, fileName]);
-
-                if (!IsToSave(fileName)) {
-                    continue;
+            try {
+                // Check if the destination folder exists, if not, create it
+                if (!Directory.Exists(DestinationFolder)) {
+                    Directory.CreateDirectory(DestinationFolder);
                 }
 
-                ulong fileSize = 0;
-                if (File.Exists(file)) {
-                    double cipherTime = 0;
-                    // Get the file size
-                    fileSize = tool.GetFileSize(file);
-                    // Copy the file to the destination folder
-                    Stopwatch stopwatch = new();
-                    stopwatch.Start();
+                // Get the list of files to save
+                List<string> files = [];
+                GetFileList(SourceFolder, files);
 
-                    // Check if the file should be encrypted
-                    if (encrypt.IsToEncrypt(file)) {
-                        // Try 3 times to encrypt the file
-                        for (int i = 0; i < 3; i++) {
-                            cipherTime = encrypt.EncryptFile(file, destinationFile);
-                            if (cipherTime > -1) {
-                                break;
+                // Create a new job state
+                JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
+                jobState.GetTotalFilesSize(SourceFolder);
+                jobStates.Add(jobState);
+
+                // Get encrypted extensions
+                Encrypt encrypt = new();
+
+                // Save each file
+                foreach (string file in files) {
+                    string fileName = file.Substring(SourceFolder.Length + 1);
+                    string destinationFile = Path.Combine([DestinationFolder, fileName]);
+
+                    if (!IsToSave(fileName)) {
+                        continue;
+                    }
+
+                    ulong fileSize = 0;
+                    if (File.Exists(file)) {
+                        double cipherTime = 0;
+                        // Get the file size
+                        fileSize = tool.GetFileSize(file);
+                        // Copy the file to the destination folder
+                        Stopwatch stopwatch = new();
+                        stopwatch.Start();
+
+                        // Check if the file should be encrypted
+                        if (encrypt.IsToEncrypt(file)) {
+                            // Try 3 times to encrypt the file
+                            for (int i = 0; i < 3; i++) {
+                                cipherTime = encrypt.EncryptFile(file, destinationFile);
+                                if (cipherTime > -1) {
+                                    break;
+                                }
+                            }
+                            if (cipherTime == -1) {
+                                File.Copy(file, destinationFile, true);
                             }
                         }
-                        if (cipherTime == -1) {
+                        else {
                             File.Copy(file, destinationFile, true);
                         }
+                        stopwatch.Stop();
+                        // Create a new job log
+                        JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
+                        // Write the job log to a JSON file
+                        string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        // Check if the log file exists
+                        tool.WriteJobLogJsonFile(date, jobLog);
                     }
+                    // If the file is a directory, create the directory in the destination folder
                     else {
-                        File.Copy(file, destinationFile, true);
+                        Directory.CreateDirectory(destinationFile);
                     }
-                    stopwatch.Stop();
-                    // Create a new job log
-                    JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
-                    // Write the job log to a JSON file
-                    string date = DateTime.Now.ToString("yyyy-MM-dd");
-                    // Check if the log file exists
-                    tool.WriteJobLogJsonFile(date, jobLog);
+                    // Update the job state
+                    jobState.SourceFile = file;
+                    jobState.DestinationFile = destinationFile;
+                    jobState.FilesLeft--;
+                    jobState.FilesSizeLeft -= fileSize;
+                    jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
+                    tool.WriteJobStateFile(jobStates);
                 }
-                // If the file is a directory, create the directory in the destination folder
-                else {
-                    Directory.CreateDirectory(destinationFile);
-                }
-                // Update the job state
-                jobState.SourceFile = file;
-                jobState.DestinationFile = destinationFile;
-                jobState.FilesLeft--;
-                jobState.FilesSizeLeft -= fileSize;
-                jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
+                // Finish the job
+                jobState.FinishJobState();
                 tool.WriteJobStateFile(jobStates);
+                return 0;
             }
-            // Finish the job
-            jobState.FinishJobState();
-            tool.WriteJobStateFile(jobStates);
-            return 0;
-
+            catch (Exception) {
+                return 2;
+            }
         }
 
         /// <summary>

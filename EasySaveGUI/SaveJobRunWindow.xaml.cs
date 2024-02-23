@@ -29,11 +29,6 @@ namespace EasySaveGUI {
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
             foreach (SaveJob saveJob in saveJobs) {
-                // Set the name of the currently running save job
-                Dispatcher.Invoke(() => {
-                    runningSaveJobTextBlock.Text = saveJob.Name;
-                });
-
                 int result = saveJob.SaveData(jobStates);
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 switch (result) {
