@@ -7,11 +7,14 @@ namespace EasySaveGUI {
     /// </summary>
     public partial class SaveJobRunWindow : Window {
 
-        private List<JobState> jobStates = [];
+        private List<JobState> jobStates = new List<JobState>(); 
         private Language language = EasySaveGUI.model.Language.GetInstance();
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
             InitializeComponent();
+
+            // Set the text for "Executing :" dynamically based on selected language
+            textBlock.Text = $"{language.GetString("executing")}";
 
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
@@ -26,11 +29,16 @@ namespace EasySaveGUI {
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
             foreach (SaveJob saveJob in saveJobs) {
-                runningSaveJobTextBlock.Text = saveJob.Name;
+                // Set the name of the currently running save job
+                Dispatcher.Invoke(() => {
+                    runningSaveJobTextBlock.Text = saveJob.Name;
+                });
+
                 int result = saveJob.SaveData(jobStates);
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 switch (result) {
                     case 0:
+                        // Success, no action needed here
                         break;
                     case 1:
                         mainWindow.ShowErrorMessageBox(language.GetString("error_professionalapp"));

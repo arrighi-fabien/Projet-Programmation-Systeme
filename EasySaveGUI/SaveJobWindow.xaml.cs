@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -18,15 +19,22 @@ namespace EasySaveGUI {
             this.SaveJobSourceLabel.Content = language.GetString("label_source_folder");
             this.SaveJobDestinationLabel.Content = language.GetString("label_destination_folder");
             this.SaveJobTypeLabel.Content = language.GetString("label_save_type");
-            this.SaveButton.Content = language.GetString("save");
+            this.SaveButton.Content = language.GetString("save_button");
+
+            // Update ComboBox items to the selected language
+            if (TypeComboBox.Items.Count >= 2) { // Assure that there are at least two items
+                (TypeComboBox.Items[0] as ComboBoxItem).Content = language.GetString("full_save");
+                (TypeComboBox.Items[1] as ComboBoxItem).Content = language.GetString("differential_save");
+            }
         }
 
-        public SaveJobWindow(SaveJob saveJob) : base() {
-            InitializeComponent();
+        public SaveJobWindow(SaveJob saveJob) : this() { // Call the base constructor
             this.saveJob = saveJob;
             DataContext = this.saveJob;
-            this.TypeComboBox.SelectedIndex = saveJob.GetType().Name == "FullSave" ? 0 : 1;
+            // Set the selected index based on the type of saveJob
+            this.TypeComboBox.SelectedIndex = saveJob is FullSave ? 0 : 1;
         }
+
 
         private void Save_Click(object sender, RoutedEventArgs e) {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;

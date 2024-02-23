@@ -118,99 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Löschen</value>
   </data>
   <data name="differential_save" xml:space="preserve">
-    <value>Différentiel</value>
+    <value>Differential</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
-    <value>Please close all windows before exiting the application</value>
+    <value>Bitte schließen Sie alle Fenster, bevor Sie die Anwendung beenden</value>
   </data>
   <data name="error_enter_valid_path" xml:space="preserve">
-    <value>Please enter a valid path</value>
+    <value>Bitte geben Sie einen gültigen Pfad ein</value>
   </data>
   <data name="error_fill_all_fields" xml:space="preserve">
-    <value>Please fill all the fields</value>
+    <value>Bitte füllen Sie alle Felder aus</value>
   </data>
   <data name="error_multiple_savejob_selected" xml:space="preserve">
-    <value>Please select only one savejob</value>
+    <value>Bitte wählen Sie nur einen Speicherauftrag aus</value>
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
-    <value>No savejob selected</value>
+    <value>Kein Speicherauftrag ausgewählt</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
-    <value>A professional application is launched</value>
+    <value>Eine professionelle Anwendung wird ausgeführt</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
-    <value>An error occured</value>
+    <value>Ein Fehler ist aufgetreten</value>
   </data>
   <data name="executing" xml:space="preserve">
-    <value>Executing</value>
+    <value>Ausführen</value>
   </data>
   <data name="full_save" xml:space="preserve">
-    <value>Full</value>
+    <value>Complete</value>
   </data>
   <data name="header_destination" xml:space="preserve">
-    <value>Destination</value>
+    <value>Ziel</value>
   </data>
   <data name="header_name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="header_source" xml:space="preserve">
-    <value>Source</value>
+    <value>Quelle</value>
   </data>
   <data name="header_type" xml:space="preserve">
-    <value>Type</value>
+    <value>Typ</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
-    <value>Destination folder</value>
+    <value>Zielordner</value>
   </data>
   <data name="label_encrypt_extensions" xml:space="preserve">
-    <value>Extensions to encrypt</value>
+    <value>Zu verschlüsselnde Erweiterungen</value>
   </data>
   <data name="label_language" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="label_log_format" xml:space="preserve">
-    <value>Log format</value>
+    <value>Log-Format</value>
   </data>
   <data name="label_professional_app" xml:space="preserve">
-    <value>Professional apps</value>
+    <value>Professionelle Anwendungen</value>
   </data>
   <data name="label_savejob_name" xml:space="preserve">
-    <value>SaveJob name</value>
+    <value>Name des Speicherauftrags</value>
   </data>
   <data name="label_save_type" xml:space="preserve">
-    <value>Save type</value>
+    <value>Speichertyp</value>
   </data>
   <data name="label_source_folder" xml:space="preserve">
-    <value>Source folder</value>
+    <value>Quellordner</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
-    <value>Create save job</value>
+    <value>Speicherauftrag erstellen</value>
   </data>
   <data name="menu_delete_save" xml:space="preserve">
-    <value>Delete save job</value>
+    <value>Speicherauftrag löschen</value>
   </data>
   <data name="menu_execute_save" xml:space="preserve">
-    <value>Execute savejob(s)</value>
+    <value>Speicherauftrag(e) ausführen</value>
   </data>
   <data name="menu_update_save" xml:space="preserve">
-    <value>Update save job</value>
+    <value>Speicherauftrag aktualisieren</value>
   </data>
   <data name="popup_delete_savejob" xml:space="preserve">
-    <value>Savejob deletion</value>
+    <value>Löschung des Speicherauftrags</value>
   </data>
   <data name="popup_error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
-    <value>SaveJob finished</value>
+    <value>Speicherauftrag abgeschlossen</value>
   </data>
   <data name="save_button" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
 </root>

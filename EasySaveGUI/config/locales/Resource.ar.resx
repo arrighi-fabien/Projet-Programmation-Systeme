@@ -118,99 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>حذف</value>
   </data>
   <data name="differential_save" xml:space="preserve">
-    <value>Différentiel</value>
+    <value>التفاضلية</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
-    <value>Please close all windows before exiting the application</value>
+    <value>الرجاء إغلاق جميع النوافذ قبل الخروج من التطبيق</value>
   </data>
   <data name="error_enter_valid_path" xml:space="preserve">
-    <value>Please enter a valid path</value>
+    <value>الرجاء إدخال مسار صالح</value>
   </data>
   <data name="error_fill_all_fields" xml:space="preserve">
-    <value>Please fill all the fields</value>
+    <value>الرجاء ملء جميع الحقول</value>
   </data>
   <data name="error_multiple_savejob_selected" xml:space="preserve">
-    <value>Please select only one savejob</value>
+    <value>الرجاء تحديد عمل حفظ واحد فقط</value>
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
-    <value>No savejob selected</value>
+    <value>لم يتم تحديد عمل حفظ</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
-    <value>A professional application is launched</value>
+    <value>تم تشغيل تطبيق احترافي</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
-    <value>An error occured</value>
+    <value>حدث خطأ</value>
   </data>
   <data name="executing" xml:space="preserve">
-    <value>Executing</value>
+    <value>تنفيذ</value>
   </data>
   <data name="full_save" xml:space="preserve">
-    <value>Full</value>
+    <value>مكتمل</value>
   </data>
   <data name="header_destination" xml:space="preserve">
-    <value>Destination</value>
+    <value>الوجهة</value>
   </data>
   <data name="header_name" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="header_source" xml:space="preserve">
-    <value>Source</value>
+    <value>المصدر</value>
   </data>
   <data name="header_type" xml:space="preserve">
-    <value>Type</value>
+    <value>النوع</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
-    <value>Destination folder</value>
+    <value>مجلد الوجهة</value>
   </data>
   <data name="label_encrypt_extensions" xml:space="preserve">
-    <value>Extensions to encrypt</value>
+    <value>امتدادات للتشفير</value>
   </data>
   <data name="label_language" xml:space="preserve">
-    <value>Language</value>
+    <value>اللغة</value>
   </data>
   <data name="label_log_format" xml:space="preserve">
-    <value>Log format</value>
+    <value>تنسيق السجل</value>
   </data>
   <data name="label_professional_app" xml:space="preserve">
-    <value>Professional apps</value>
+    <value>التطبيقات الاحترافية</value>
   </data>
   <data name="label_savejob_name" xml:space="preserve">
-    <value>SaveJob name</value>
+    <value>اسم عمل الحفظ</value>
   </data>
   <data name="label_save_type" xml:space="preserve">
-    <value>Save type</value>
+    <value>نوع الحفظ</value>
   </data>
   <data name="label_source_folder" xml:space="preserve">
-    <value>Source folder</value>
+    <value>مجلد المصدر</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
-    <value>Create save job</value>
+    <value>إنشاء عمل حفظ</value>
   </data>
   <data name="menu_delete_save" xml:space="preserve">
-    <value>Delete save job</value>
+    <value>حذف عمل حفظ</value>
   </data>
   <data name="menu_execute_save" xml:space="preserve">
-    <value>Execute savejob(s)</value>
+    <value>تنفيذ عمل الحفظ</value>
   </data>
   <data name="menu_update_save" xml:space="preserve">
-    <value>Update save job</value>
+    <value>تحديث عمل حفظ</value>
   </data>
   <data name="popup_delete_savejob" xml:space="preserve">
-    <value>Savejob deletion</value>
+    <value>حذف عمل الحفظ</value>
   </data>
   <data name="popup_error" xml:space="preserve">
-    <value>Error</value>
+    <value>خطأ</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
-    <value>SaveJob finished</value>
+    <value>اكتمل عمل الحفظ</value>
   </data>
   <data name="save_button" xml:space="preserve">
-    <value>Save</value>
+    <value>حفظ</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
 </root>

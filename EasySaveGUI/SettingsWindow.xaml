@@ -12,7 +12,12 @@
             <ComboBox x:Name="LanguageComboBox" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LanguageComboBox_SelectionChanged">
                 <ComboBoxItem Content="English"/>
                 <ComboBoxItem Content="Français"/>
-            </ComboBox>
+				<ComboBoxItem Content="Español"/>
+				<ComboBoxItem Content="Deutsch"/>
+				<ComboBoxItem Content="Italiano"/>
+				<ComboBoxItem Content="Русский"/>
+				<ComboBoxItem Content="العربية"/>
+			</ComboBox>
         </Grid>
         <Grid HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top">
             <TextBlock x:Name="LogFormatLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>

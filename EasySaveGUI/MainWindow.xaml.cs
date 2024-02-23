@@ -1,6 +1,7 @@
-﻿using System.IO;
+﻿using EasySaveGUI.model;
+using System.IO;
 using System.Windows;
-using EasySaveGUI.model;
+using System.Windows.Controls;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -103,6 +104,13 @@ namespace EasySaveGUI {
             this.UpdateSaveJobButton.Content = language.GetString("menu_update_save");
             this.DeleteSaveJobButton.Content = language.GetString("menu_delete_save");
             this.SettingsButton.Content = language.GetString("settings");
+            // Refresh headers
+            if (this.SaveJobList.View is GridView gridView) {
+                gridView.Columns[0].Header = language.GetString("header_name");
+                gridView.Columns[1].Header = language.GetString("header_source");
+                gridView.Columns[2].Header = language.GetString("header_destination");
+                gridView.Columns[3].Header = language.GetString("header_type");
+            }
         }
 
         private void LaunchSaveJobButton_Click(object sender, RoutedEventArgs e) {
