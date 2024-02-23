@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -18,7 +19,16 @@ namespace EasySaveGUI {
             this.SaveJobSourceLabel.Content = language.GetString("label_source_folder");
             this.SaveJobDestinationLabel.Content = language.GetString("label_destination_folder");
             this.SaveJobTypeLabel.Content = language.GetString("label_save_type");
-            this.SaveButton.Content = language.GetString("save");
+            this.SaveButton.Content = language.GetString("save_button");
+
+            // Update ComboBox items to the selected language
+            if (TypeComboBox.Items[0] is ComboBoxItem comboBoxItemFull) {
+                comboBoxItemFull.Content = language.GetString("full_save");
+            }
+
+            if (TypeComboBox.Items[1] is ComboBoxItem comboBoxItemDifferential) {
+                comboBoxItemDifferential.Content = language.GetString("differential_save");
+            }
         }
 
         public SaveJobWindow(SaveJob saveJob) : base() {
@@ -27,7 +37,13 @@ namespace EasySaveGUI {
             this.SaveJobName.Text = saveJob.Name;
             this.SourceFolder.Text = saveJob.SourceFolder;
             this.DestinationFolder.Text = saveJob.DestinationFolder;
-            this.TypeComboBox.SelectedIndex = saveJob.GetType().Name == "FullSave" ? 0 : 1;
+
+            if (saveJob is FullSave) {
+                this.TypeComboBox.SelectedIndex = 0; 
+            }
+            else if (saveJob is DifferentialSave) {
+                this.TypeComboBox.SelectedIndex = 1; 
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e) {
