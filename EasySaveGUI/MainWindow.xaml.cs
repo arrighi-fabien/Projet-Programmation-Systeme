@@ -1,7 +1,6 @@
-﻿using EasySaveGUI.model;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
+using EasySaveGUI.model;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -21,7 +20,6 @@ namespace EasySaveGUI {
             saveJobs = tool.GetSavedSaveJob();
             this.SaveJobList.ItemsSource = saveJobs;
             Refresh();
-            RefreshHeaders(); // Appelez la méthode pour rafraîchir les en-têtes
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e) {
@@ -105,14 +103,6 @@ namespace EasySaveGUI {
             this.UpdateSaveJobButton.Content = language.GetString("menu_update_save");
             this.DeleteSaveJobButton.Content = language.GetString("menu_delete_save");
             this.SettingsButton.Content = language.GetString("settings");
-            RefreshHeaders();
-        }
-
-        private void RefreshHeaders() {
-            (this.SaveJobList.View as GridView).Columns[0].Header = language.GetString("HeaderName");
-            (this.SaveJobList.View as GridView).Columns[1].Header = language.GetString("HeaderSource");
-            (this.SaveJobList.View as GridView).Columns[2].Header = language.GetString("HeaderDestination");
-            (this.SaveJobList.View as GridView).Columns[3].Header = language.GetString("HeaderType");
         }
 
         private void LaunchSaveJobButton_Click(object sender, RoutedEventArgs e) {
