@@ -138,6 +138,9 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>No savejob selected</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>An other instance of the app is launched</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>A professional application is launched</value>
   </data>
