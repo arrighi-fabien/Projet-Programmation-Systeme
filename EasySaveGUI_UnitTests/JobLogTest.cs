@@ -12,9 +12,10 @@ namespace EasySaveGUI.Tests {
             string destinationFile = @"C:\Destination\testfile.txt";
             ulong fileSize = 1024; // 1 KB
             double transferTime = 5.3; // 5.3 seconds
+            double cipherTime = 1.0;
 
             // Act
-            JobLog jobLog = new(name, sourceFile, destinationFile, fileSize, transferTime);
+            JobLog jobLog = new JobLog(name, sourceFile, destinationFile, fileSize, transferTime, cipherTime);
 
             // Assert
             Assert.AreEqual(name, jobLog.Name);
@@ -22,6 +23,7 @@ namespace EasySaveGUI.Tests {
             Assert.AreEqual(destinationFile, jobLog.DestinationFile);
             Assert.AreEqual(fileSize, jobLog.FileSize);
             Assert.AreEqual(transferTime, jobLog.TransferTime);
+            Assert.AreEqual(cipherTime, jobLog.CipherTime);
             // Timestamp is dynamically generated, so it cannot be directly asserted
             Assert.IsNotNull(jobLog.Timestamp);
         }
