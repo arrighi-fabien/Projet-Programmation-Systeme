@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -7,15 +8,13 @@ namespace EasySaveGUI {
     /// </summary>
     public partial class SaveJobRunWindow : Window {
 
-        private List<JobState> jobStates = []; 
+        private List<JobState> jobStates = [];
         private Language language = EasySaveGUI.model.Language.GetInstance();
+        private List<Thread> saveJobThreadList = [];
+        private ManualResetEvent manualResetEvent = new(true);
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
             InitializeComponent();
-
-            // Set the text for "Executing :" dynamically based on selected language
-            textBlock.Text = $"{language.GetString("executing")}";
-
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
                 // Wait 1 second before running the save jobs
@@ -35,8 +34,7 @@ namespace EasySaveGUI {
                 // Create thread for each save job
                 Thread thread = new(() => {
                     // Run the save job
-                    int result = saveJob.SaveData(jobStates);
-                    countdownEvent.Signal();
+                    int result = saveJob.SaveData(jobStates, manualResetEvent);
                     Dispatcher.Invoke(() => {
                         MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                         switch (result) {
@@ -51,15 +49,46 @@ namespace EasySaveGUI {
                                 break;
                         }
                     });
+                    countdownEvent.Signal();
                 });
                 thread.Start();
+                saveJobThreadList.Add(thread);
             }
+            SaveJobRun.ItemsSource = jobStates;
+            Thread threadRefreshListView = new(() => {
+                // Refresh SaveJobRun every 100ms
+                while (countdownEvent.CurrentCount > 0) {
+                    Dispatcher.Invoke(() => {
+                        SaveJobRun.Items.Refresh();
+                    });
+                    Thread.Sleep(10);
+                }
+                Dispatcher.Invoke(() => {
+                    SaveJobRun.Items.Refresh();
+                });
+            });
+            threadRefreshListView.Start();
 
-            countdownEvent.Wait();
+            Thread threadEnd = new(() => {
+                // Wait for all save jobs to finish
+                countdownEvent.Wait();
+                MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            this.Close();
+                // Close the window
+                Dispatcher.Invoke(() => {
+                    this.Close();
+                });
+            });
+            threadEnd.Start();
         }
+
+        private void PauseSaveJob_Click(object sender, RoutedEventArgs e) {
+            manualResetEvent.Reset();
+        }
+
+        private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
+            manualResetEvent.Set();
+        }
+
     }
 }

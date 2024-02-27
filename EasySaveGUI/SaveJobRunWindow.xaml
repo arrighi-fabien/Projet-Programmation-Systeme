@@ -5,11 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Run SaveJob" Height="166" Width="302" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="EasySave Run SaveJob" Height="334" Width="512" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="{StaticResource MainBackground}">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Executing" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBlock x:Name="runningSaveJobTextBlock" HorizontalAlignment="Left" Margin="124,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource CustomTextBoxStyle}"/>
-        </Grid>
+        <ListView x:Name="SaveJobRun" HorizontalAlignment="Center" VerticalAlignment="Top" Height="144" Margin="0,29,0,0" VerticalContentAlignment="Center" Width="407" Style="{StaticResource CustomListViewStyle}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Bar" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar Value="{Binding Progression}" Maximum="100" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Progress" Width="100" DisplayMemberBinding="{Binding Progression, StringFormat=\{0\}%}"/>
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding State}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Pause" Height="20" Width="50" Click="PauseSaveJob_Click" HorizontalAlignment="Left" Margin="175,206,0,45"/>
+        <Button Content="Resume" Height="20" Width="50" Click="ResumeSaveJob_Click" Margin="292,206,0,45" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
