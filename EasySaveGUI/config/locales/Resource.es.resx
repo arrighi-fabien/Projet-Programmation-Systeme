@@ -230,14 +230,14 @@ Puerto actualizado correctamente</value>
     <value>Guardar</value>
   </data>
   <data name="server_port" xml:space="preserve">
-    <value>Puerto del servidor</value>
+    <value>Puerto servidor</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
     <value>
 Servidor iniciado en puerto </value>
   </data>
   <data name="server_status" xml:space="preserve">
-    <value>Estado del servidor</value>
+    <value>Estado servidor</value>
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>Server fermato</value>
