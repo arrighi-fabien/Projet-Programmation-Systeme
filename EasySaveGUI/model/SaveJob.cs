@@ -69,17 +69,7 @@ namespace EasySaveGUI.model {
         /// <param name="jobStates">List of job states</param>
         public int SaveData(List<JobState> jobStates) {
             Tool tool = Tool.GetInstance();
-
-            // Check if professionnal apps are running
-            string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
-            if (savedProfessionalApps != "") {
-                string[] apps = savedProfessionalApps.Split(";");
-                foreach (string app in apps) {
-                    if (Process.GetProcessesByName(app).Length > 0) {
-                        return 1;
-                    }
-                }
-            }
+            
 
             try {
                 // Check if the destination folder exists, if not, create it
@@ -101,6 +91,18 @@ namespace EasySaveGUI.model {
 
                 // Save each file
                 foreach (string file in files) {
+
+                    // Check if professionnal apps are running
+                    string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
+                    if (savedProfessionalApps != "") {
+                        string[] apps = savedProfessionalApps.Split(";");
+                        foreach (string app in apps) {
+                            if (Process.GetProcessesByName(app).Length > 0) {
+                                return 1;
+                            }
+                        }
+                    }
+
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine([DestinationFolder, fileName]);
 
@@ -125,6 +127,7 @@ namespace EasySaveGUI.model {
                                 if (cipherTime > -1) {
                                     break;
                                 }
+
                             }
                             if (cipherTime == -1) {
                                 File.Copy(file, destinationFile, true);
@@ -152,6 +155,16 @@ namespace EasySaveGUI.model {
                     jobState.FilesSizeLeft -= fileSize;
                     jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
                     tool.WriteJobStateFile(jobStates);
+
+                    string savedProfessionalAppsDuringProcess = tool.GetConfigValue("professsionalApp");
+                    if (savedProfessionalAppsDuringProcess != "") {
+                        string[] apps = savedProfessionalAppsDuringProcess.Split(";");
+                        foreach (string app in apps) {
+                            if (Process.GetProcessesByName(app).Length > 0) {
+                                return 1; // Return 1 to indicate professional app is running
+                            }
+                        }
+                    }
                 }
                 // Finish the job
                 jobState.FinishJobState();
