@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Net;
+using EasySaveGUI.model;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -63,12 +65,19 @@ namespace EasySaveGUI.model {
         /// <returns>True if the file should be saved, false otherwise</returns>
         public abstract bool IsToSave(string path);
 
+        // Network load threshold( in %)
+        private const double NetworkLoadThreshold = 50.0; // Exemple de seuil à 50%
+
         /// <summary>
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
         public int SaveData(List<JobState> jobStates) {
             Tool tool = Tool.GetInstance();
+
+            double networkLoad = NetworkUtil.GetNetworkLoad();
+            bool reduceParallelTasks = networkLoad > NetworkLoadThreshold;
+
 
             // Check if professionnal apps are running
             string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
@@ -101,6 +110,14 @@ namespace EasySaveGUI.model {
 
                 // Save each file
                 foreach (string file in files) {
+
+                    if (reduceParallelTasks) {
+                        Thread.Sleep(100);
+                    }
+                    // Update and check network load regularly
+                    networkLoad = NetworkUtil.GetNetworkLoad();
+                    reduceParallelTasks = networkLoad > NetworkLoadThreshold;
+                   
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine([DestinationFolder, fileName]);
 
