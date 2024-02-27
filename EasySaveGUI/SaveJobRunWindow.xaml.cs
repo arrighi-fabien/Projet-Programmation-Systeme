@@ -7,7 +7,7 @@ namespace EasySaveGUI {
     /// </summary>
     public partial class SaveJobRunWindow : Window {
 
-        private List<JobState> jobStates = new List<JobState>(); 
+        private List<JobState> jobStates = []; 
         private Language language = EasySaveGUI.model.Language.GetInstance();
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
@@ -29,6 +29,7 @@ namespace EasySaveGUI {
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
             CountdownEvent countdownEvent = new(saveJobs.Count);
+            SaveJob.countdownEvent = new(saveJobs.Count);
 
             foreach (SaveJob saveJob in saveJobs) {
                 // Create thread for each save job
