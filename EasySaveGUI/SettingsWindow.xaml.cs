@@ -44,6 +44,8 @@ namespace EasySaveGUI {
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
             string savedProfessionalApp = tool.GetConfigValue("professsionalApp");
             ProfessionalAppTextBox.Text = savedProfessionalApp.Replace(";", "\r\n");
+            string savedPriorityExtensions = tool.GetConfigValue("priorityExtensions");
+            PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
 
             Refresh();
         }
