@@ -45,6 +45,8 @@ namespace EasySaveGUI {
             ProfessionalAppTextBox.Text = savedProfessionalApp.Replace(";", "\r\n");
             string savedPriorityExtensions = tool.GetConfigValue("priorityExtensions");
             PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
+            string savedFileSize = tool.GetConfigValue("fileSize");
+            FileSizeTextBox.Text = savedFileSize;
 
             Refresh();
         }
@@ -87,6 +89,9 @@ namespace EasySaveGUI {
             SaveTextAreas(PriorityExtensionTextBox.Text, "priorityExtensions");
             SaveTextAreas(EncryptExtensionTextBox.Text, "encryptExtensions");
             SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
+            // Convert value to int or set to 10 if not a number
+            int fileSize = int.TryParse(FileSizeTextBox.Text, out int result) ? result : 10;
+            tool.WriteConfigValue("fileSize", fileSize.ToString());
         }
 
         private void SaveTextAreas(string content, string key) {
