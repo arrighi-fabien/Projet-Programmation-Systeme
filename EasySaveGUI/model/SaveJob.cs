@@ -68,7 +68,7 @@ namespace EasySaveGUI.model {
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
-        public int SaveData(List<JobState> jobStates) {
+        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent) {
             Tool tool = Tool.GetInstance();
 
             // Check if professionnal apps are running
@@ -103,12 +103,17 @@ namespace EasySaveGUI.model {
 
                 // Save each file
                 foreach (string file in files) {
+
+                    manualResetEvent.WaitOne();
+
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine([DestinationFolder, fileName]);
 
                     if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownEvent.CurrentCount > 0) {
                         countdownEvent.Signal();
+                        jobState.State = "WAITING";
                         countdownEvent.Wait();
+                        jobState.State = "ACTIVE";
                     }
 
                     if (!IsToSave(fileName)) {
