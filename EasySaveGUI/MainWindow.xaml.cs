@@ -23,8 +23,6 @@ namespace EasySaveGUI {
             saveJobs = tool.GetSavedSaveJob();
             this.SaveJobList.ItemsSource = saveJobs;
             Refresh();
-
-            saveJobs = tool.GetSavedSaveJob();
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e) {
