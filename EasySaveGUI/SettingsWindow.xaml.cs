@@ -15,7 +15,6 @@ namespace EasySaveGUI {
             { "Español", "es" },
             { "Deutsch", "de" },
             { "Italiano", "it" },
-            { "普通话", "ma" },
             { "Русский", "ru" },
             { "العربية", "ar" }
         };
