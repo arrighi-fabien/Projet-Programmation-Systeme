@@ -6,6 +6,8 @@ namespace EasySaveGUI.model {
     // Abstract class to manage the save job
     public abstract class SaveJob {
 
+        private readonly Language language = EasySaveGUI.model.Language.GetInstance();
+
         // Attributes for the name, sourceFolder and destinationFolder
         private string? name;
         private string? sourceFolder;
@@ -103,7 +105,8 @@ namespace EasySaveGUI.model {
                                 isPaused = true;
                                 string runningAppNames = string.Join(", ", runningApps);
                                 // Popup to show error
-                                MessageBox.Show($"The following professional application is blocking loading files : {runningAppNames}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                // MessageBox.Show($"The following professional application is blocking loading files : {runningAppNames}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(language.GetString("following_professional"));
                                 // Wait 2 second before checking again
                                 Thread.Sleep(2000);
                                 continue;
@@ -112,7 +115,8 @@ namespace EasySaveGUI.model {
 
                         if (isPaused) {
                             // Popup to show information
-                            MessageBox.Show("The transfer starts again...", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                            // MessageBox.Show("The transfer starts again...", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show(language.GetString("transfer_starts"));
                             isPaused = false;
                         }
                         // Exit the loop if no professional application is active

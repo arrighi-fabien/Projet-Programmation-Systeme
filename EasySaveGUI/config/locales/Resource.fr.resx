@@ -150,6 +150,12 @@
   <data name="executing" xml:space="preserve">
     <value>Exécution</value>
   </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>The following professional application is blocking loading files :</value>
+  </data>
+  <data name="following_professional1" xml:space="preserve">
+    <value>The following professional application is blocking loading files </value>
+  </data>
   <data name="full_save" xml:space="preserve">
     <value>Complete</value>
   </data>
@@ -215,5 +221,8 @@
   </data>
   <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>The transfer starts again...</value>
   </data>
 </root>
