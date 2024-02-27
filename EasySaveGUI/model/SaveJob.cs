@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -56,6 +58,8 @@ namespace EasySaveGUI.model {
             DestinationFolder = destinationFolder;
         }
 
+
+
         /// <summary>
         /// Return if the file should be saved
         /// </summary>
@@ -69,42 +73,64 @@ namespace EasySaveGUI.model {
         /// <param name="jobStates">List of job states</param>
         public int SaveData(List<JobState> jobStates) {
             Tool tool = Tool.GetInstance();
-            
+
+
 
             try {
-                // Check if the destination folder exists, if not, create it
+                // Check if the destination folder exists, if not create it
                 if (!Directory.Exists(DestinationFolder)) {
                     Directory.CreateDirectory(DestinationFolder);
                 }
 
-                // Get the list of files to save
-                List<string> files = [];
+                // Get the list of files to backup
+                List<string> files = new List<string>();
                 GetFileList(SourceFolder, files);
 
                 // Create a new job state
-                JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
+                JobState jobState = new JobState(Name, "", "", "ACTIVE", (uint)files.Count);
                 jobState.GetTotalFilesSize(SourceFolder);
                 jobStates.Add(jobState);
 
                 // Get encrypted extensions
-                Encrypt encrypt = new();
+                Encrypt encrypt = new Encrypt();
 
-                // Save each file
+                // Back up each file
                 foreach (string file in files) {
+                    bool isPaused = false;
 
-                    // Check if professionnal apps are running
-                    string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
-                    if (savedProfessionalApps != "") {
-                        string[] apps = savedProfessionalApps.Split(";");
-                        foreach (string app in apps) {
-                            if (Process.GetProcessesByName(app).Length > 0) {
-                                return 1;
+                    // Continuous verification loop for business applications
+                    while (true) {
+                        string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
+                        if (!string.IsNullOrEmpty(savedProfessionalApps)) {
+                            string[] apps = savedProfessionalApps.Split(';');
+                            var runningApps = apps.Where(app => Process.GetProcessesByName(app).Any()).ToList();
+                            if (apps.Any(app => Process.GetProcessesByName(app).Length > 0)) {
+                                if (!isPaused) {
+                                    isPaused = true;
+                                    string runningAppNames = string.Join(", ", runningApps);
+
+                                    // Popup to show error
+                                    MessageBox.Show($"The following professional application is blocking loading files : {runningAppNames}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    
+
+                                }
+                                Thread.Sleep(5000); // Wait 5 seconds before checking again
+                                continue;
                             }
                         }
+
+                        if (isPaused) {
+                            // Popup to show information
+                            MessageBox.Show("The transfer starts again...", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            isPaused = false;
+                        }
+
+                        break; // Exit the loop if no professional application is active
                     }
 
                     string fileName = file.Substring(SourceFolder.Length + 1);
-                    string destinationFile = Path.Combine([DestinationFolder, fileName]);
+                    string destinationFile = Path.Combine(DestinationFolder, fileName);
 
                     if (!IsToSave(fileName)) {
                         continue;
@@ -113,10 +139,10 @@ namespace EasySaveGUI.model {
                     ulong fileSize = 0;
                     if (File.Exists(file)) {
                         double cipherTime = 0;
-                        // Get the file size
+                        // Get file size
                         fileSize = tool.GetFileSize(file);
                         // Copy the file to the destination folder
-                        Stopwatch stopwatch = new();
+                        Stopwatch stopwatch = new Stopwatch();
                         stopwatch.Start();
 
                         // Check if the file should be encrypted
@@ -127,7 +153,6 @@ namespace EasySaveGUI.model {
                                 if (cipherTime > -1) {
                                     break;
                                 }
-
                             }
                             if (cipherTime == -1) {
                                 File.Copy(file, destinationFile, true);
@@ -138,33 +163,22 @@ namespace EasySaveGUI.model {
                         }
                         stopwatch.Stop();
                         // Create a new job log
-                        JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
+                        JobLog jobLog = new JobLog(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalMilliseconds, cipherTime);
                         // Write the job log to a JSON file
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
-                        // Check if the log file exists
                         tool.WriteJobLogJsonFile(date, jobLog);
                     }
                     // If the file is a directory, create the directory in the destination folder
                     else {
                         Directory.CreateDirectory(destinationFile);
                     }
-                    // Update the job state
+                    // Update job status
                     jobState.SourceFile = file;
                     jobState.DestinationFile = destinationFile;
                     jobState.FilesLeft--;
                     jobState.FilesSizeLeft -= fileSize;
                     jobState.Progression = (int)((files.Count - jobState.FilesLeft) * 100 / files.Count);
                     tool.WriteJobStateFile(jobStates);
-
-                    string savedProfessionalAppsDuringProcess = tool.GetConfigValue("professsionalApp");
-                    if (savedProfessionalAppsDuringProcess != "") {
-                        string[] apps = savedProfessionalAppsDuringProcess.Split(";");
-                        foreach (string app in apps) {
-                            if (Process.GetProcessesByName(app).Length > 0) {
-                                return 1; // Return 1 to indicate professional app is running
-                            }
-                        }
-                    }
                 }
                 // Finish the job
                 jobState.FinishJobState();
@@ -175,7 +189,7 @@ namespace EasySaveGUI.model {
                 return 2;
             }
         }
-
+   
         /// <summary>
         /// Get the list of files and folders in the specified directory
         /// </summary>
