@@ -198,6 +198,9 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Message received</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Savejob deletion</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="server_start" xml:space="preserve">
+    <value>Server started on port</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server stopped</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>

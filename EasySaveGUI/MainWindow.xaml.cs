@@ -13,17 +13,16 @@ namespace EasySaveGUI {
     public partial class MainWindow : Window {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
+        private readonly Server server = new EasySaveGUI.model.Server();
         private readonly Tool tool = Tool.GetInstance();
         private List<SaveJob> saveJobs;
-        TcpListener serverListener;
-        private const int port = 5500; // The port number for the server
 
         public MainWindow() {
             if (!Directory.Exists("logs")) {
                 Directory.CreateDirectory("logs");
             }
             InitializeComponent();
-            StartServer();
+            server.StartServer();
             saveJobs = tool.GetSavedSaveJob();
             this.SaveJobList.ItemsSource = saveJobs;
             Refresh();
@@ -150,54 +149,6 @@ namespace EasySaveGUI {
 
         internal void ShowErrorMessageBox(string message) {
             MessageBox.Show(message, language.GetString("popup_error"), MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        private void StartServer() {
-            serverListener = new TcpListener(IPAddress.Any, port);
-            serverListener.Start();
-            ListenForClients();
-            Console.WriteLine("Server started and listening on port " + port);
-        }
-
-        private async void ListenForClients() {
-            try {
-                while (true) {
-                    TcpClient client = await serverListener.AcceptTcpClientAsync();
-                    Task.Run(() => HandleClient(client));
-                }
-            }
-            catch (SocketException ex) {
-                Console.WriteLine("SocketException: " + ex.Message);
-            }
-            catch (Exception ex) {
-                Console.WriteLine("Exception: " + ex.Message);
-            }
-        }
-        private void HandleClient(TcpClient client) {
-            try {
-                using (var networkStream = client.GetStream()) {
-                    var buffer = new byte[client.ReceiveBufferSize];
-                    while (true) {
-                        int bytesRead = networkStream.Read(buffer, 0, buffer.Length);
-                        if (bytesRead == 0) {
-                            break; // The client closed the connection
-                        }
-                        var message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine("Received: " + message);
-
-                        // Processing the received message
-                        // PThen, response to the customer
-                        string response = "Message received: " + message;
-                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
-                        networkStream.Write(responseBytes, 0, responseBytes.Length);
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Console.WriteLine("Exception in HandleClient: " + ex.Message);
-            }
-            finally {
-                client.Close();
-            }
         }
     }
 }

@@ -198,6 +198,9 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Speicherauftrag aktualisieren</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Nachricht erhalten</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Löschung des Speicherauftrags</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Speichern</value>
+  </data>
+  <data name="server_start" xml:space="preserve">
+    <value>Server auf Port gestartet</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server gestoppt</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Einstellungen</value>

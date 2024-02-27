@@ -198,6 +198,9 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Actualizar guardado</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Messaggio ricevuto</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Eliminación del trabajo de guardado</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Guardar</value>
+  </data>
+  <data name="server_start" xml:space="preserve">
+    <value>Server avviato sulla porta</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server fermato</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Configuración</value>

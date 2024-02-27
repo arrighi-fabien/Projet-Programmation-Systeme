@@ -198,6 +198,9 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Обновить сохранения</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Получено сообщение</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Удаление сохранения</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Сохранить</value>
+  </data>
+  <data name="server_start" xml:space="preserve">
+    <value>Сервер запущен на порту</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Сервер остановлен</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Настройки</value>
