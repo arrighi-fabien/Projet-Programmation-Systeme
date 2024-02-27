@@ -9,7 +9,8 @@ namespace EasySaveGUI.model {
         private string? name;
         private string? sourceFolder;
         private string? destinationFolder;
-        public static CountdownEvent countdownEvent = new(0);
+        public static CountdownEvent countdownPriorityFile = new(0);
+        private static CountdownEvent countdownFileSize = new(0);
 
         // Properties for the name, sourceFolder and destinationFolder
         public string Name {
@@ -109,10 +110,10 @@ namespace EasySaveGUI.model {
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine([DestinationFolder, fileName]);
 
-                    if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownEvent.CurrentCount > 0) {
-                        countdownEvent.Signal();
+                    if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownPriorityFile.CurrentCount > 0) {
+                        countdownPriorityFile.Signal();
                         jobState.State = "WAITING";
-                        countdownEvent.Wait();
+                        countdownPriorityFile.Wait();
                         jobState.State = "ACTIVE";
                     }
 
@@ -125,6 +126,18 @@ namespace EasySaveGUI.model {
                         double cipherTime = 0;
                         // Get the file size
                         fileSize = tool.GetFileSize(file);
+
+                        // If fileSize is superior to the value in the config file, and lock the next thread until the transfer is done
+                        if (fileSize >= ulong.Parse(tool.GetConfigValue("fileSize")) * 1024) {
+                            if (countdownFileSize.CurrentCount > 0) {
+                                countdownFileSize = new(1);
+                            }
+                            else {
+                                countdownFileSize.Wait();
+                                countdownFileSize = new(1);
+                            }
+                        }
+
                         // Copy the file to the destination folder
                         Stopwatch stopwatch = new();
                         stopwatch.Start();
@@ -146,6 +159,11 @@ namespace EasySaveGUI.model {
                             File.Copy(file, destinationFile, true);
                         }
                         stopwatch.Stop();
+
+                        if (countdownFileSize.CurrentCount > 0) {
+                            countdownFileSize.Signal();
+                        }
+
                         // Create a new job log
                         JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
                         // Write the job log to a JSON file

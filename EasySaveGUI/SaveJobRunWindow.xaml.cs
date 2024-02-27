@@ -28,7 +28,7 @@ namespace EasySaveGUI {
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
             CountdownEvent countdownEvent = new(saveJobs.Count);
-            SaveJob.countdownEvent = new(saveJobs.Count);
+            SaveJob.countdownPriorityFile = new(saveJobs.Count);
 
             foreach (SaveJob saveJob in saveJobs) {
                 // Create thread for each save job
