@@ -148,10 +148,7 @@
     <value>تنفيذ</value>
   </data>
   <data name="following_professional" xml:space="preserve">
-    <value>The following professional application is blocking loading files :</value>
-  </data>
-  <data name="following_professional1" xml:space="preserve">
-    <value>The following professional application is blocking loading files </value>
+    <value>تطبيق احترافي يحظر تحميل الملفات</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>مكتمل</value>
@@ -220,6 +217,6 @@
     <value>الإعدادات</value>
   </data>
   <data name="transfer_starts" xml:space="preserve">
-    <value>The transfer starts again...</value>
+    <value>استئناف النقل... </value>
   </data>
 </root>

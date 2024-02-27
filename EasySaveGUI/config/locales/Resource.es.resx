@@ -148,10 +148,7 @@
     <value>Ejecutando</value>
   </data>
   <data name="following_professional" xml:space="preserve">
-    <value>The following professional application is blocking loading files :</value>
-  </data>
-  <data name="following_professional1" xml:space="preserve">
-    <value>The following professional application is blocking loading files </value>
+    <value>La aplicación profesional bloquea la carga de archivos</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
@@ -220,6 +217,6 @@
     <value>Configuración</value>
   </data>
   <data name="transfer_starts" xml:space="preserve">
-    <value>The transfer starts again...</value>
+    <value>Se reanuda la transferencia...</value>
   </data>
 </root>
