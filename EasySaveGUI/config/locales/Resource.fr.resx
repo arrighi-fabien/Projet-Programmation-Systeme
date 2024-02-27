@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>L'opération n'est pas possible pendant l'exécution du serveur</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
@@ -165,6 +168,9 @@
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Numéro de port non valide</value>
+  </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Dossier de destination</value>
   </data>
@@ -210,19 +216,37 @@
   <data name="popup_error" xml:space="preserve">
     <value>Erreur</value>
   </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Port mis à jour avec succès</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Priorité Extension</value>
+  </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Sauvegarde terminée</value>
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Sauvegarder</value>
   </data>
-  <data name="server_start" xml:space="preserve">
-    <value>Serveur démarré sur le port</value>
+  <data name="server_port" xml:space="preserve">
+    <value>Port du serveur</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Serveur démarré sur le port </value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Statut du serveur</value>
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>Serveur arrêté</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Arrêter</value>
   </data>
 </root>

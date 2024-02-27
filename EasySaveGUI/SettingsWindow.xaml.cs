@@ -9,6 +9,7 @@ namespace EasySaveGUI {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
+        private Server _server = new EasySaveGUI.model.Server();
         private Dictionary<string, string> languageMappings = new() {
             { "English", "en" },
             { "Français", "fr" },
@@ -20,8 +21,11 @@ namespace EasySaveGUI {
             { "العربية", "ar" }
         };
 
+
         public SettingsWindow() {
             InitializeComponent();
+            _server = new Server();
+
             // Set the language combobox to the saved language
             string savedLanguage = tool.GetConfigValue("language");
 
@@ -58,7 +62,21 @@ namespace EasySaveGUI {
             LogFormatLabel.Text = language.GetString("label_log_format");
             EncryptExtensionLabel.Text = language.GetString("label_encrypt_extensions");
             ProfessionalAppLabel.Text = language.GetString("label_professional_app");
+            PriorityExtensionLabel.Text = language.GetString("priority_extension");
+            ServerStatusLabel.Text = language.GetString("server_status");
+            ServerPortLabel.Text = language.GetString("server_port");
+
+
             // Set the buttons to the language
+            EncryptExtensionSaveButton.Content = language.GetString("save_button");
+            ProfessionalAppSaveBtton.Content = language.GetString("save_button");
+            PriorityExtensionSaveButton.Content = language.GetString("save_button");
+
+            // Set the server labels to the language
+            ServerToggleButton.Content = language.GetString("start_server"); 
+            ServerToggleButton.Content = language.GetString("stop_server");
+
+
             SaveButton.Content = language.GetString("save_button");
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -96,6 +114,46 @@ namespace EasySaveGUI {
             // Save the apps in the config file
             tool.WriteConfigValue(key, result);
         }
+
+        private void ServerPortTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+
+        }
+
+        private void ServerStatusCheckBox_Checked(object sender, RoutedEventArgs e) {
+
+        }
+        private void ServerPortSaveButton_Click(object sender, RoutedEventArgs e) {
+            if (_server.IsServerRunning) {
+                MessageBox.Show(language.GetString("cannot_change_port_while_running"));
+                return;
+            }
+            if (int.TryParse(ServerPortTextBox.Text, out int newPort)) {
+                _server.Port = newPort;
+                MessageBox.Show(language.GetString("port_updated_successfully"));
+            }
+            else {
+                MessageBox.Show(language.GetString("invalid_port_number"));
+            }
+        }
+
+        // Start or stop the server
+        private void ServerToggleButton_Click(object sender, RoutedEventArgs e) {
+            if (_server != null) {
+                if (!_server.IsServerRunning) {
+                    _server.StartServer();
+                    ServerToggleButton.Content = language.GetString("start_server"); 
+                    MessageBox.Show(language.GetString("server_started_on_port") + _server.Port);
+
+                }
+                else {
+                    _server.StopServer();
+                    ServerToggleButton.Content = language.GetString("stop_server");
+                    MessageBox.Show(language.GetString("server_stopped"));
+
+                }
+            }
+        }
+
 
     }
 }

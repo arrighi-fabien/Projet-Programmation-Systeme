@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>Операция невозможна во время работы сервера</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Задача сохранения не выбрана</value>
+  </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Запускается другой экземпляр приложения</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Запущено профессиональное приложение</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Тип</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Неверный номер порта</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Папка назначения</value>
@@ -207,19 +216,37 @@
   <data name="popup_error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Порт успешно обновлен</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Приоритет Расширение</value>
+  </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Задача сохранения завершена</value>
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Сохранить</value>
   </data>
-  <data name="server_start" xml:space="preserve">
-    <value>Сервер запущен на порту</value>
+  <data name="server_port" xml:space="preserve">
+    <value>Порт сервера</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Сервер запущен на порту </value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Состояние сервера</value>
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>Сервер остановлен</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Запустить</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Остановить</value>
   </data>
 </root>

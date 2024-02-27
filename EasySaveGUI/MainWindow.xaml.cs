@@ -24,7 +24,6 @@ namespace EasySaveGUI {
                 Directory.CreateDirectory("logs");
             }
             InitializeComponent();
-            server.StartServer();
             saveJobs = tool.GetSavedSaveJob();
             this.SaveJobList.ItemsSource = saveJobs;
             Refresh();

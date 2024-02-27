@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>no se puede cambiar el puerto mientras se ejecuta el servidor</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Eliminar</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>No se ha seleccionado ningún trabajo de guardado</value>
+  </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Se lanza otra instancia de la aplicación</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Se ha lanzado una aplicación profesional</value>
@@ -162,6 +168,9 @@
   <data name="header_type" xml:space="preserve">
     <value>Tipo</value>
   </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Número de puerto no válido</value>
+  </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Carpeta de destino</value>
   </data>
@@ -172,7 +181,7 @@
     <value>Idioma</value>
   </data>
   <data name="label_log_format" xml:space="preserve">
-    <value>Formato de registro</value>
+    <value>Formato log</value>
   </data>
   <data name="label_professional_app" xml:space="preserve">
     <value>Aplicaciones profesionales</value>
@@ -207,19 +216,39 @@
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Puerto actualizado correctamente
+Puerto actualizado correctamente</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Prioridad Extensión</value>
+  </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Guardado finalizado</value>
   </data>
   <data name="save_button" xml:space="preserve">
     <value>Guardar</value>
   </data>
-  <data name="server_start" xml:space="preserve">
-    <value>Server avviato sulla porta</value>
+  <data name="server_port" xml:space="preserve">
+    <value>Puerto del servidor</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>
+Servidor iniciado en puerto </value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Estado del servidor</value>
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>Server fermato</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Configuración</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Iniciar</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Detener</value>
   </data>
 </root>

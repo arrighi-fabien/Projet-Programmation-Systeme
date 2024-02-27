@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>العملية غير ممكنة أثناء تشغيل الخادم</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>حذف</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>لم يتم تحديد عمل حفظ</value>
+  </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>يتم تشغيل مثيل آخر للتطبيق</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>تم تشغيل تطبيق احترافي</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>النوع</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>رقم المنفذ غير صالح</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>مجلد الوجهة</value>
@@ -207,19 +216,43 @@
   <data name="popup_error" xml:space="preserve">
     <value>خطأ</value>
   </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>تم تحديث المنفذ بنجاح :</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>ملحق الأولوية</value>
+  </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>اكتمل عمل الحفظ</value>
   </data>
   <data name="save_button" xml:space="preserve">
     <value>حفظ</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>منفذ الخادم</value>
+  </data>
   <data name="server_start" xml:space="preserve">
     <value>بدء تشغيل الخادم على المنفذ</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>بدء تشغيل الخادم على المنفذ </value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>حالة الخادم</value>
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>توقف الخادم</value>
   </data>
+  <data name="server_stopped=" xml:space="preserve">
+    <value>تم إيقاف الخادم</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>الإعدادات</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>بدء التشغيل</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>إيقاف</value>
   </data>
 </root>
