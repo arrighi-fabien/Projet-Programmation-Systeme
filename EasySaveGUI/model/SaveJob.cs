@@ -9,6 +9,7 @@ namespace EasySaveGUI.model {
         private string? name;
         private string? sourceFolder;
         private string? destinationFolder;
+        public static CountdownEvent countdownEvent = new(0);
 
         // Properties for the name, sourceFolder and destinationFolder
         public string Name {
@@ -90,6 +91,7 @@ namespace EasySaveGUI.model {
                 // Get the list of files to save
                 List<string> files = [];
                 GetFileList(SourceFolder, files);
+                files = OrderByPriority(files, tool.GetConfigValue("priorityExtensions"));
 
                 // Create a new job state
                 JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
@@ -103,6 +105,11 @@ namespace EasySaveGUI.model {
                 foreach (string file in files) {
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine([DestinationFolder, fileName]);
+
+                    if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownEvent.CurrentCount > 0) {
+                        countdownEvent.Signal();
+                        countdownEvent.Wait();
+                    }
 
                     if (!IsToSave(fileName)) {
                         continue;
@@ -177,6 +184,28 @@ namespace EasySaveGUI.model {
                 files.Add(folder);
                 GetFileList(folder, files);
             }
+        }
+
+        private List<string> OrderByPriority(List<string> files, string priorityExtension) {
+            // Put priorityExtension in a list
+            List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
+            // Sorted folders first and then priorityExtension files
+            var sortedFiles = files.OrderBy(path => {
+                if (Directory.Exists(path))
+                    return 0;
+                else {
+                    string extension = Path.GetExtension(path).ToLower();
+                    int index = priorityExtensionList.IndexOf(extension);
+                    return index != -1 ? index + 1 : priorityExtensionList.Count + 1;
+                }
+            });
+            return sortedFiles.ToList();
+        }
+
+        private bool IsPrioritary(string fileName, string priorityExtension) {
+            List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
+            string extension = Path.GetExtension(fileName).ToLower();
+            return priorityExtensionList.Contains(extension) || Directory.Exists(fileName);
         }
     }
 }

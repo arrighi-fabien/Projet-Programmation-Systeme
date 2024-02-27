@@ -118,6 +118,10 @@ namespace EasySaveGUI {
             SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
         }
 
+        private void PriorityExtensionSaveButton_Click(object sender, RoutedEventArgs e) {
+            SaveTextAreas(PriorityExtensionTextBox.Text, "priorityExtensions");
+        }
+
         private void SaveTextAreas(string content, string key) {
             // Remove the empty lines
             string result = string.Join(";", content.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));

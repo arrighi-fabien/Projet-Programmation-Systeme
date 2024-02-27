@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -18,6 +19,7 @@ namespace EasySaveGUI {
         private List<SaveJob> saveJobs;
 
         public MainWindow() {
+            UniqueInstance();
             if (!Directory.Exists("logs")) {
                 Directory.CreateDirectory("logs");
             }
@@ -149,6 +151,14 @@ namespace EasySaveGUI {
 
         internal void ShowErrorMessageBox(string message) {
             MessageBox.Show(message, language.GetString("popup_error"), MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        private void UniqueInstance() {
+            Process proc = Process.GetCurrentProcess();
+            Process[] processes = Process.GetProcessesByName(proc.ProcessName);
+            if (processes.Length > 1) {
+                ShowErrorMessageBox(language.GetString("error_other_instance"));
+                this.Close();
+            }
         }
     }
 }

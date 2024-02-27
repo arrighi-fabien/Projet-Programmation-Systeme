@@ -7,7 +7,7 @@ namespace EasySaveGUI {
     /// </summary>
     public partial class SaveJobRunWindow : Window {
 
-        private List<JobState> jobStates = new List<JobState>(); 
+        private List<JobState> jobStates = []; 
         private Language language = EasySaveGUI.model.Language.GetInstance();
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
@@ -28,21 +28,34 @@ namespace EasySaveGUI {
         }
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
+            CountdownEvent countdownEvent = new(saveJobs.Count);
+            SaveJob.countdownEvent = new(saveJobs.Count);
+
             foreach (SaveJob saveJob in saveJobs) {
-                int result = saveJob.SaveData(jobStates);
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                switch (result) {
-                    case 0:
-                        // Success, no action needed here
-                        break;
-                    case 1:
-                        mainWindow.ShowErrorMessageBox(language.GetString("error_professionalapp"));
-                        break;
-                    case 2:
-                        mainWindow.ShowErrorMessageBox(language.GetString("error_savejob"));
-                        break;
-                }
+                // Create thread for each save job
+                Thread thread = new(() => {
+                    // Run the save job
+                    int result = saveJob.SaveData(jobStates);
+                    countdownEvent.Signal();
+                    Dispatcher.Invoke(() => {
+                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                        switch (result) {
+                            case 0:
+                                // Success, no action needed here
+                                break;
+                            case 1:
+                                mainWindow.ShowErrorMessageBox(language.GetString("error_professionalapp"));
+                                break;
+                            case 2:
+                                mainWindow.ShowErrorMessageBox(language.GetString("error_savejob"));
+                                break;
+                        }
+                    });
+                });
+                thread.Start();
             }
+
+            countdownEvent.Wait();
 
             MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 

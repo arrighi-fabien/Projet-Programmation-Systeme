@@ -138,6 +138,9 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Pas de travail de sauvegarde sélectionné</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Une autre instance de l'application est lancée</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Une application métier est lancée</value>
   </data>
