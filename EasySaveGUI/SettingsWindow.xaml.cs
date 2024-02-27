@@ -16,7 +16,6 @@ namespace EasySaveGUI {
             { "Español", "es" },
             { "Deutsch", "de" },
             { "Italiano", "it" },
-            { "普通话", "ma" },
             { "Русский", "ru" },
             { "العربية", "ar" }
         };
@@ -67,17 +66,14 @@ namespace EasySaveGUI {
             ServerPortLabel.Text = language.GetString("server_port");
 
 
-            // Set the buttons to the language
-            EncryptExtensionSaveButton.Content = language.GetString("save_button");
-            ProfessionalAppSaveBtton.Content = language.GetString("save_button");
-            PriorityExtensionSaveButton.Content = language.GetString("save_button");
-
             // Set the server labels to the language
             ServerToggleButton.Content = language.GetString("start_server"); 
             ServerToggleButton.Content = language.GetString("stop_server");
 
-
+            // Set the save button to the language
+            ServerPortSaveButton.Content = language.GetString("save_button");
             SaveButton.Content = language.GetString("save_button");
+
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.Refresh();
