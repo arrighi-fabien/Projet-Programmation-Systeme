@@ -105,7 +105,6 @@ namespace EasySaveGUI.model {
                                 isPaused = true;
                                 string runningAppNames = string.Join(", ", runningApps);
                                 // Popup to show error
-                                // MessageBox.Show($"The following professional application is blocking loading files : {runningAppNames}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                                 MessageBox.Show(language.GetString("following_professional"));
                                 // Wait 2 second before checking again
                                 Thread.Sleep(2000);
@@ -115,7 +114,6 @@ namespace EasySaveGUI.model {
 
                         if (isPaused) {
                             // Popup to show information
-                            // MessageBox.Show("The transfer starts again...", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                             MessageBox.Show(language.GetString("transfer_starts"));
                             isPaused = false;
                         }
@@ -157,7 +155,7 @@ namespace EasySaveGUI.model {
                         }
                         stopwatch.Stop();
                         // Create a new job log
-                        JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalMilliseconds, cipherTime);
+                        JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
                         // Write the job log to a JSON file
                         string date = DateTime.Now.ToString("yyyy-MM-dd");
                         tool.WriteJobLogJsonFile(date, jobLog);
