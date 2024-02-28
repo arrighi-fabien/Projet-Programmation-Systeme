@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="apply_button" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>L'opération n'est pas possible pendant l'exécution du serveur</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
@@ -138,6 +144,9 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Pas de travail de sauvegarde sélectionné</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Une autre instance de l'application est lancée</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Une application métier est lancée</value>
   </data>
@@ -146,6 +155,12 @@
   </data>
   <data name="executing" xml:space="preserve">
     <value>Exécution</value>
+  </data>
+  <data name="file_size" xml:space="preserve">
+    <value>Poids limité (Ko)</value>
+  </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>L'application professionnelle bloque le chargement des fichiers </value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Complete</value>
@@ -161,6 +176,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Numéro de port non valide</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Dossier de destination</value>
@@ -198,11 +216,20 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Modifier sauvegarde</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Message reçu</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Suppression de travaux de sauvegarde</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Erreur</value>
+  </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Port mis à jour avec succès</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Priorité Extension</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Sauvegarde terminée</value>
@@ -210,7 +237,31 @@
   <data name="save_button" xml:space="preserve">
     <value>Sauvegarder</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Port du serveur</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Serveur démarré sur le port :</value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Statut du serveur</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Serveur arrêté</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Paramètres enregistrés avec succès</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Désactiver</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>Le transfert reprend... </value>
   </data>
 </root>

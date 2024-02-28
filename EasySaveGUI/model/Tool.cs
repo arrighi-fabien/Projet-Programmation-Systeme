@@ -12,6 +12,8 @@ namespace EasySaveGUI.model {
         private readonly JsonSerializerOptions serializerOptions = new() {
             WriteIndented = true
         };
+        private readonly Semaphore semaphoreJobState = new(1, 1);
+        private readonly Semaphore semaphoreLog = new(1, 1);
 
         /// <summary>
         /// Method to get the instance of Tool
@@ -136,6 +138,7 @@ namespace EasySaveGUI.model {
             // Check if the log file exists
             List<JobLog> jobLogs;
             try {
+                semaphoreLog.WaitOne();
                 switch (format) {
                     case "json":
                         path += ".json";
@@ -166,12 +169,14 @@ namespace EasySaveGUI.model {
                         }
                         break;
                 }
+                File.WriteAllText(path, logContent);
             }
             catch (Exception e) {
                 Console.Write(e.ToString());
             }
-
-            File.WriteAllText(path, logContent);
+            finally {
+                semaphoreLog.Release();
+            }
         }
 
         /// <summary>
@@ -180,6 +185,7 @@ namespace EasySaveGUI.model {
         /// <param name="jobStates">The list of job states to write.</param>
         public void WriteJobStateFile(List<JobState> jobStates) {
             try {
+                semaphoreJobState.WaitOne();
                 string logContent = "";
                 string path = "logs/state";
                 string format = GetConfigValue("logFormat");
@@ -200,6 +206,9 @@ namespace EasySaveGUI.model {
             }
             catch (Exception e) {
                 Console.Write(e.ToString());
+            }
+            finally {
+                semaphoreJobState.Release();
             }
         }
 

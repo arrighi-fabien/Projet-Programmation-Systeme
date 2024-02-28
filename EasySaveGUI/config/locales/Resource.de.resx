@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="apply_button" xml:space="preserve">
+    <value>Bewerbung</value>
+  </data>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>Der Vorgang ist während der Ausführung des Servers nicht möglich</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Löschen</value>
   </data>
@@ -138,6 +144,9 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Kein Speicherauftrag ausgewählt</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Eine weitere Instanz der Anwendung wird gestartet</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Eine professionelle Anwendung wird ausgeführt</value>
   </data>
@@ -146,6 +155,12 @@
   </data>
   <data name="executing" xml:space="preserve">
     <value>Ausführen</value>
+  </data>
+  <data name="file_size" xml:space="preserve">
+    <value>Begrenztes Dateigewicht (Ko)</value>
+  </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>Professionelle App blockiert das Laden von Dateien</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Complete</value>
@@ -161,6 +176,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Typ</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Ungültige Portnummer</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Zielordner</value>
@@ -198,11 +216,20 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Speicherauftrag aktualisieren</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Nachricht erhalten</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Löschung des Speicherauftrags</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Port wurde erfolgreich aktualisiert</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Priorität Erweiterung</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Speicherauftrag abgeschlossen</value>
@@ -210,7 +237,34 @@
   <data name="save_button" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Server-Anschluss</value>
+  </data>
+  <data name="server_start" xml:space="preserve">
+    <value>Server auf Port gestartet</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Server, der auf dem Port gestartet wurde :</value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Server-Status</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server gestoppt</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Einstellungen</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Einstellungen erfolgreich gespeichert</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Aktivieren</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Deaktivieren</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>Die Übertragung wird fortgesetzt...</value>
   </data>
 </root>
