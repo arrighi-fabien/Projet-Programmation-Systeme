@@ -27,8 +27,21 @@ namespace EasySaveGUI {
         }
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             CountdownEvent countdownEvent = new(saveJobs.Count);
             SaveJob.countdownPriorityFile = new(saveJobs.Count);
+
+            List<string> folders = [];
+            foreach (SaveJob saveJob in saveJobs) {
+                if (!folders.Contains(saveJob.SourceFolder)) {
+                    folders.Add(saveJob.SourceFolder);
+                }
+                else {
+                    mainWindow.ShowErrorMessageBox(language.GetString("error_samefolder"));
+                    this.Close();
+                    return;
+                }
+            }
 
             foreach (SaveJob saveJob in saveJobs) {
                 // Create thread for each save job
@@ -38,7 +51,6 @@ namespace EasySaveGUI {
                     // Run the save job
                     int result = saveJob.SaveData(jobStates, manualResetEvent, cancellationToken.Token);
                     Dispatcher.Invoke(() => {
-                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                         switch (result) {
                             case 0:
                                 // Success, no action needed here

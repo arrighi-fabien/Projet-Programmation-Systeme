@@ -144,6 +144,9 @@
   <data name="error_professionalapp" xml:space="preserve">
     <value>A professional application is launched</value>
   </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Save jobs use the same source folder</value>
+  </data>
   <data name="error_savejob" xml:space="preserve">
     <value>An error occured</value>
   </data>

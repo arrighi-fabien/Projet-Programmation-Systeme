@@ -144,6 +144,9 @@
   <data name="error_professionalapp" xml:space="preserve">
     <value>Une application métier est lancée</value>
   </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Des travaux de sauvegarde utilisent le même dossier source</value>
+  </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Une erreur est survenue</value>
   </data>

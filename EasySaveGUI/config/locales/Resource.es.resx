@@ -141,6 +141,9 @@
   <data name="error_professionalapp" xml:space="preserve">
     <value>Se ha lanzado una aplicación profesional</value>
   </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Los trabajos de copia de seguridad utilizan la misma carpeta de origen</value>
+  </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Se produjo un error</value>
   </data>

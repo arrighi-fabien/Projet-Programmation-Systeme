@@ -141,6 +141,9 @@
   <data name="error_professionalapp" xml:space="preserve">
     <value>تم تشغيل تطبيق احترافي</value>
   </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>تستخدم مهام النسخ الاحتياطي نفس المجلد المصدر</value>
+  </data>
   <data name="error_savejob" xml:space="preserve">
     <value>حدث خطأ</value>
   </data>
