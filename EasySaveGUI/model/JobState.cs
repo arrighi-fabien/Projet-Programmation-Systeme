@@ -98,7 +98,7 @@ namespace EasySaveGUI.model {
             TotalFilesSize = 0;
             FilesLeft = 0;
             FilesSizeLeft = 0;
-            Progression = 0;
+            Progression = 100;
             SourceFile = "";
             DestinationFile = "";
         }

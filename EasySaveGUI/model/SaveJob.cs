@@ -99,6 +99,13 @@ namespace EasySaveGUI.model {
                 foreach (string file in files) {
 
                     if (cancellationToken.IsCancellationRequested) {
+                        jobState.State = "CANCELLED";
+                        if (countdownFileSize.CurrentCount > 0) {
+                            countdownFileSize.Signal();
+                        }
+                        if (countdownPriorityFile.CurrentCount > 0) {
+                            countdownPriorityFile.Signal();
+                        }
                         return 0;
                     }
 

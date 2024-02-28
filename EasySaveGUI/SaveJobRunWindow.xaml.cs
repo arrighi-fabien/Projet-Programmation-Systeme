@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -15,6 +16,7 @@ namespace EasySaveGUI {
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
             InitializeComponent();
+            Refresh();
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
                 // Wait 1 second before running the save jobs
@@ -104,6 +106,20 @@ namespace EasySaveGUI {
             manualResetEvent.Set();
             foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
                 cancellationToken.Cancel();
+            }
+        }
+
+        public void Refresh() {
+            // Refresh btn
+            Play_Button.Content = language.GetString("btn_play");
+            Pause_Button.Content = language.GetString("btn_pause");
+            Stop_Button.Content = language.GetString("btn_stop");
+            // Refresh headers
+            if (SaveJobRun.View is GridView gridView) {
+                gridView.Columns[0].Header = language.GetString("header_name");
+                gridView.Columns[1].Header = language.GetString("header_progression");
+                gridView.Columns[2].Header = language.GetString("header_progression");
+                gridView.Columns[3].Header = language.GetString("header_status");
             }
         }
 
