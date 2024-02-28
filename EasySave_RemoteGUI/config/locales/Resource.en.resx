@@ -117,17 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="apply_button" xml:space="preserve">
-    <value>Apply</value>
+  <data name="connected_successfully" xml:space="preserve">
+    <value>Connected to server successfully</value>
   </data>
-  <data name="cannot_change_port_while_running" xml:space="preserve">
-    <value>The operation is not possible while the server is running</value>
+  <data name="connection_error" xml:space="preserve">
+    <value>Connection Error</value>
+  </data>
+  <data name="connection_status" xml:space="preserve">
+    <value>Failed to connect</value>
+  </data>
+  <data name="connect_button" xml:space="preserve">
+    <value>Connection</value>
   </data>
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="differential_save" xml:space="preserve">
     <value>Differential</value>
+  </data>
+  <data name="disconnected_successfully" xml:space="preserve">
+    <value>Connection Status</value>
+  </data>
+  <data name="disconnect_button" xml:space="preserve">
+    <value>Disconnect</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
     <value>Please close all windows before exiting the application</value>
@@ -144,9 +156,6 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>No savejob selected</value>
   </data>
-  <data name="error_other_instance" xml:space="preserve">
-    <value>An other instance of the app is launched</value>
-  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>A professional application is launched</value>
   </data>
@@ -156,11 +165,8 @@
   <data name="executing" xml:space="preserve">
     <value>Executing</value>
   </data>
-  <data name="file_size" xml:space="preserve">
-    <value>Limited weight (Ko)</value>
-  </data>
-  <data name="following_professional" xml:space="preserve">
-    <value>The following professional application is blocking loading files </value>
+  <data name="failed_connect" xml:space="preserve">
+    <value>Disconnected from server successfully</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Full</value>
@@ -176,9 +182,6 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="invalid_port_number" xml:space="preserve">
-    <value>Invalid port number</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Destination folder</value>
@@ -204,6 +207,9 @@
   <data name="label_source_folder" xml:space="preserve">
     <value>Source folder</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="menu_create_save" xml:space="preserve">
     <value>Create save job</value>
   </data>
@@ -216,20 +222,11 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
-  <data name="message_received" xml:space="preserve">
-    <value>Message received</value>
-  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Savejob deletion</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="port_updated_successfully" xml:space="preserve">
-    <value>Port updated successfully</value>
-  </data>
-  <data name="priority_extension" xml:space="preserve">
-    <value>Priority Extension</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>SaveJob finished</value>
@@ -237,19 +234,16 @@
   <data name="save_button" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="server_ip" xml:space="preserve">
+    <value>Server IP</value>
+  </data>
   <data name="server_port" xml:space="preserve">
     <value>Server Port</value>
   </data>
-  <data name="server_started_on_port" xml:space="preserve">
-    <value>Server started on port :</value>
-  </data>
-  <data name="server_status" xml:space="preserve">
-    <value>Server Status</value>
-  </data>
-  <data name="server_stopped" xml:space="preserve">
-    <value>Server stopped</value>
-  </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Settings saved successfully</value>
   </data>
 </root>

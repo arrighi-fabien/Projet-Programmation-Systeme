@@ -1,5 +1,8 @@
 ﻿using EasySaveGUI.model;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
@@ -11,6 +14,7 @@ namespace EasySaveGUI {
     public partial class MainWindow : Window {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
+        private readonly Server server = new EasySaveGUI.model.Server();
         private readonly Tool tool = Tool.GetInstance();
         private List<SaveJob> saveJobs;
 
@@ -147,7 +151,6 @@ namespace EasySaveGUI {
         internal void ShowErrorMessageBox(string message) {
             MessageBox.Show(message, language.GetString("popup_error"), MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
         private void UniqueInstance() {
             Process proc = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(proc.ProcessName);
@@ -156,6 +159,5 @@ namespace EasySaveGUI {
                 this.Close();
             }
         }
-
     }
 }

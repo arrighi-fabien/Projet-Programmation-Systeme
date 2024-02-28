@@ -5,36 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Setting" Icon="/assets/icon.png" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="687" Height="321">
-    <Grid Background="{StaticResource MainBackground}">
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-            <TextBlock x:Name="LanguageLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
-            <ComboBox x:Name="LanguageComboBox" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LanguageComboBox_SelectionChanged">
-            </ComboBox>
+        Title="EasySave Setting" Icon="/assets/icon.png" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Height="450" Width="740">
+    <Grid Background="{StaticResource MainBackground}" Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="185*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,15,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <TextBlock x:Name="LanguageLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" Margin="14,0,0,0" Width="143"/>
+            <ComboBox x:Name="LanguageComboBox" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LanguageComboBox_SelectionChanged"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top">
-            <TextBlock x:Name="LogFormatLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
+        <Grid HorizontalAlignment="Left" Margin="61,14,0,0" VerticalAlignment="Top" Width="230" Grid.ColumnSpan="3" Grid.Column="2" Grid.RowSpan="2">
+            <TextBlock x:Name="LogFormatLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log format" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.81,0.653" Width="156"/>
             <ComboBox x:Name="LogFormatComboBox" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="LogFormatComboBox_SelectionChanged">
                 <ComboBoxItem Content="JSON"/>
                 <ComboBoxItem Content="XML"/>
             </ComboBox>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="200" Margin="230,85,0,0">
-            <TextBlock x:Name="EncryptExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Extensions to encrypt" VerticalAlignment="Top" FontSize="20" Width="194" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBox x:Name="EncryptExtensionTextBox" TextWrapping="Wrap" Width="200" Margin="0,32,0,0" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
+
+        <Grid HorizontalAlignment="Left" Margin="0,16,0,0" VerticalAlignment="Top" Width="171" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <TextBlock x:Name="ServerStatusLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Server Status" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" Width="161" Height="28" Margin="0,-4,0,0"/>
+            <Button x:Name="ServerToggleButton" Content="Disable" Click="ServerToggleButton_Click" Margin="0,29,39,0" Foreground="White" Style="{StaticResource DisabledButtonStyle}" Height="23" VerticalAlignment="Top"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="200" Margin="10,85,0,0">
-            <TextBlock x:Name="ProfessionalAppLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Professional app" VerticalAlignment="Top" FontSize="20" Width="194" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBox x:Name="ProfessionalAppTextBox" TextWrapping="Wrap" Width="200" Margin="0,32,0,0" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Height="102" Width="190" Margin="0,18,0,0" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock x:Name="ServerPortLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Server Port" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" Width="171" Margin="0,10,0,0"/>
+            <TextBox x:Name="ServerPortTextBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="131" Height="22"/>
+            <Button x:Name="ServerPortSaveButton" Content="Apply" Margin="0,67,0,0" VerticalAlignment="Top" Click="ServerPortSaveButton_Click" Style="{StaticResource CustomButtonStyle}" Height="20" HorizontalAlignment="Center" Width="72"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="200" Margin="447,85,0,0">
-            <TextBlock x:Name="PriorityExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Priority extension" VerticalAlignment="Top" FontSize="20" Width="194" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBox x:Name="PriorityExtensionTextBox" TextWrapping="Wrap" Width="200" Margin="0,32,0,0" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
+        <Grid HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="225" Margin="23,170,0,0" Grid.ColumnSpan="3" Grid.Row="2">
+            <TextBlock x:Name="EncryptExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Extensions to encrypt" VerticalAlignment="Top" FontSize="20" Width="219" Style="{StaticResource CustomTextBoxStyle}" Margin="10,10,0,0"/>
+            <TextBox x:Name="EncryptExtensionTextBox" TextWrapping="Wrap" Margin="10,42,24,15" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Margin="323,10,0,0" VerticalAlignment="Top">
-            <TextBlock x:Name="FileSizeLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="File size (Ko)" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBox x:Name="FileSizeTextBox" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="120"/>
+        <Grid HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="200" Margin="23,18,0,0" Grid.ColumnSpan="2" Grid.Row="2">
+            <TextBlock x:Name="ProfessionalAppLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Professional app" VerticalAlignment="Top" FontSize="20" Width="194" Style="{StaticResource CustomTextBoxStyle}" Margin="10,10,0,0"/>
+            <TextBox x:Name="ProfessionalAppTextBox" TextWrapping="Wrap" Margin="10,42,0,-10" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
         </Grid>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}"/>
+        <Grid HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="200" Margin="0,28,0,0" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="164*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="PriorityExtensionLabel" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Priority extension" VerticalAlignment="Top" FontSize="20" Width="200" Style="{StaticResource CustomTextBoxStyle}" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="PriorityExtensionTextBox" TextWrapping="Wrap" Margin="0,32,10,0" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100" Grid.ColumnSpan="2"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" Margin="0,185,0,0" VerticalAlignment="Top" Width="198" Height="75" Grid.Column="3" Grid.Row="2">
+            <TextBlock x:Name="FileSizeLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Limited weight (Ko)" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" Foreground="White" Width="258"/>
+            <TextBox x:Name="FileSizeTextBox" HorizontalAlignment="Left" Margin="0,38,0,0" VerticalAlignment="Top" Width="193" Height="20"/>
+        </Grid>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="32,307,0,0" VerticalAlignment="Top" Width="96" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}" RenderTransformOrigin="0.911,0.687" Grid.Column="3" Grid.Row="2"/>
     </Grid>
 </Window>
