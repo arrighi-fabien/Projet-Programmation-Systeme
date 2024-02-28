@@ -71,7 +71,7 @@ namespace EasySaveGUI.model {
         public abstract bool IsToSave(string path);
 
         // Network load threshold( in %)
-        private const double NetworkLoadThreshold = 50.0; // Exemple de seuil à 50%
+        private const double NetworkLoadThreshold = 50.0;
 
         /// <summary>
         /// Save the data from the source folder to the destination folder

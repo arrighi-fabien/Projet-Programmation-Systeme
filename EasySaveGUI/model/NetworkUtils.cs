@@ -1,14 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 
 public class NetworkUtil {
     public static double GetNetworkLoad() {
         try {
             const string categoryName = "Network Interface";
-            const string counterName = "Bytes Total/sec"; // You might need to adjust these names depending on your system language
+            const string counterName = "Bytes Total/sec";
 
-            // Get the first instance of a network interface
             var category = new PerformanceCounterCategory(categoryName);
             var instanceNames = category.GetInstanceNames();
             if (instanceNames.Length == 0) {
@@ -26,8 +23,6 @@ public class NetworkUtil {
             float sendRate = bytesSentCounter.NextValue();
             float receiveRate = bytesReceivedCounter.NextValue();
 
-            // Assuming a hypothetical maximum bandwidth (in bytes per second) for demonstration purposes
-            // This should be replaced with the actual bandwidth of your network interface
             const float maxBandwidth = 100000000; // 100 Mbps
 
             // Calculate the total bytes per second
@@ -40,7 +35,7 @@ public class NetworkUtil {
         }
         catch (Exception ex) {
             Console.WriteLine($"An error occurred while calculating network load: {ex.Message}");
-            return -1; // Return an error indicator
+            return -1;
         }
     }
 }
