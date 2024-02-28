@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI {
@@ -11,6 +10,7 @@ namespace EasySaveGUI {
         private List<JobState> jobStates = [];
         private Language language = EasySaveGUI.model.Language.GetInstance();
         private List<Thread> saveJobThreadList = [];
+        private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
 
         public SaveJobRunWindow(List<SaveJob> saveJobs) {
@@ -33,8 +33,10 @@ namespace EasySaveGUI {
             foreach (SaveJob saveJob in saveJobs) {
                 // Create thread for each save job
                 Thread thread = new(() => {
+                    CancellationTokenSource cancellationToken = new();
+                    cancellationTokenList.Add(cancellationToken);
                     // Run the save job
-                    int result = saveJob.SaveData(jobStates, manualResetEvent);
+                    int result = saveJob.SaveData(jobStates, manualResetEvent, cancellationToken.Token);
                     Dispatcher.Invoke(() => {
                         MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                         switch (result) {
@@ -84,6 +86,13 @@ namespace EasySaveGUI {
 
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Set();
+        }
+
+        private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
+            manualResetEvent.Set();
+            foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
+                cancellationToken.Cancel();
+            }
         }
 
     }

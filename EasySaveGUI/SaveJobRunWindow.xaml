@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
-        Title="EasySave Run SaveJob" Height="334" Width="512" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="EasySave Run SaveJob" Height="298" Width="572" Icon="/assets/icon.png" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="{StaticResource MainBackground}">
-        <ListView x:Name="SaveJobRun" HorizontalAlignment="Center" VerticalAlignment="Top" Height="144" Margin="0,29,0,0" VerticalContentAlignment="Center" Width="407" Style="{StaticResource CustomListViewStyle}">
+        <ListView x:Name="SaveJobRun" HorizontalAlignment="Center" VerticalAlignment="Top" Height="144" Margin="0,19,0,0" VerticalContentAlignment="Center" Width="407" Style="{StaticResource CustomListViewStyle}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
@@ -23,7 +23,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Pause" Height="20" Width="50" Click="PauseSaveJob_Click" HorizontalAlignment="Left" Margin="175,206,0,45"/>
-        <Button Content="Resume" Height="20" Width="50" Click="ResumeSaveJob_Click" Margin="292,206,0,45" HorizontalAlignment="Left"/>
+        <Grid HorizontalAlignment="Center" Height="100" Margin="0,168,0,14" Width="215">
+            <Button Content="Pause" Height="20" Width="50" Click="PauseSaveJob_Click" HorizontalAlignment="Center" Margin="0,40,0,40"/>
+            <Button Content="Resume" Height="20" Width="50" Click="ResumeSaveJob_Click" Margin="10,40,0,40" HorizontalAlignment="Left"/>
+            <Button Content="Stop" Height="20" Width="50" Click="StopSaveJob_Click" HorizontalAlignment="Left" RenderTransformOrigin="0.1,0.684" Margin="155,40,0,40"/>
+        </Grid>
     </Grid>
 </Window>

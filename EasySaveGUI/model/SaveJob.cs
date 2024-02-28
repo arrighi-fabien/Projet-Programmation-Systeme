@@ -73,7 +73,7 @@ namespace EasySaveGUI.model {
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
-        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent) {
+        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent, CancellationToken cancellationToken) {
             Tool tool = Tool.GetInstance();
 
             try {
@@ -97,6 +97,11 @@ namespace EasySaveGUI.model {
 
                 // Back up each file
                 foreach (string file in files) {
+
+                    if (cancellationToken.IsCancellationRequested) {
+                        return 0;
+                    }
+
                     bool isPaused = false;
 
                     // Continuous verification loop for business applications
