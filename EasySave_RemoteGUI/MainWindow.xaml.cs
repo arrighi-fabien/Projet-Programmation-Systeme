@@ -34,6 +34,10 @@ namespace EasySave_RemoteGUI {
         // Initiates connection to the server
         private void ConnectToServer() {
             try {
+                // Reload global settings in case they were changed
+                GlobalSettings.server_ip = Tool.GetInstance().GetConfigValue("server_ip");
+                GlobalSettings.server_port = int.Parse(Tool.GetInstance().GetConfigValue("server_port"));
+
                 client = new TcpClient(GlobalSettings.server_ip, GlobalSettings.server_port);
                 isConnected = true;
                 UpdateButtonForDisconnect();
@@ -76,7 +80,8 @@ namespace EasySave_RemoteGUI {
         }
         private void SettingsButton_Click(object sender, RoutedEventArgs e) {
             SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.ShowDialog(); // Open settings window as a dialog
+            // Open settings window as a dialog
+            settingsWindow.ShowDialog(); 
             Refresh();
         }
     }

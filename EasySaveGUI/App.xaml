@@ -28,5 +28,13 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="White"/>
         </Style>
+        <Style x:Key="EnabledButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="DisabledButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </Application.Resources>
 </Application>

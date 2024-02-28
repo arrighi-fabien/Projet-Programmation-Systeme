@@ -238,7 +238,7 @@
     <value>Porta del server</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>Server avviato sulla porta </value>
+    <value>Server avviato sulla porta :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>Stato del server</value>
@@ -249,10 +249,13 @@
   <data name="settings" xml:space="preserve">
     <value>Impostazioni</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Impostazioni salvate con successo</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>Avviare</value>
+    <value>Abilitare</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>Stop</value>
+    <value>Disattivare</value>
   </data>
 </root>

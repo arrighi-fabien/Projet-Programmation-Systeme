@@ -238,7 +238,7 @@
     <value>Server Port</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>Server started on port </value>
+    <value>Server started on port :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>Server Status</value>
@@ -249,10 +249,13 @@
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Settings saved successfully</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>Start</value>
+    <value>Enable</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>Stop</value>
+    <value>Disable</value>
   </data>
 </root>

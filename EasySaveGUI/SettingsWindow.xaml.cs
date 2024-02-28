@@ -28,20 +28,34 @@ namespace EasySaveGUI {
             // Set the language combobox to the saved language
             string savedLanguage = tool.GetConfigValue("language");
 
-            List<string> languageNames = new(languageMappings.Keys);
+            List<string> languageNames = new List<string>(languageMappings.Keys);
             LanguageComboBox.ItemsSource = languageNames;
             LanguageComboBox.SelectedIndex = languageNames.IndexOf(languageMappings.FirstOrDefault(x => x.Value == savedLanguage).Key);
 
-            // Set the log format combobox to the saved log format
+            // Set the log format combobox to the saved log format or default to JSON
             string savedLogFormat = tool.GetConfigValue("logFormat");
-            switch (savedLogFormat) {
-                case "json":
-                    LogFormatComboBox.SelectedIndex = 0;
-                    break;
-                case "xml":
-                    LogFormatComboBox.SelectedIndex = 1;
-                    break;
+            if (string.IsNullOrEmpty(savedLogFormat)) {
+                // Default to JSON if no format is saved
+                LogFormatComboBox.SelectedIndex = 0;
+                // Save default format if not set
+                tool.WriteConfigValue("logFormat", "json"); 
             }
+            else {
+                // Use ToLower to ensure case-insensitive comparison
+                switch (savedLogFormat.ToLower()) { 
+                    case "json":
+                        LogFormatComboBox.SelectedIndex = 0;
+                        break;
+                    case "xml":
+                        LogFormatComboBox.SelectedIndex = 1;
+                        break;
+                    default:
+                        // Default to JSON if unrecognized format
+                        LogFormatComboBox.SelectedIndex = 0; 
+                        break;
+                }
+            }
+
             // Get the saved extensions and apps
             string savedEncryptExtensions = tool.GetConfigValue("encryptExtensions");
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
@@ -51,7 +65,6 @@ namespace EasySaveGUI {
             PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
             string savedFileSize = tool.GetConfigValue("fileSize");
             FileSizeTextBox.Text = savedFileSize;
-            PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
 
             Refresh();
         }
@@ -108,6 +121,8 @@ namespace EasySaveGUI {
             // Convert value to int or set to 10 if not a number
             int fileSize = int.TryParse(FileSizeTextBox.Text, out int result) ? result : 10;
             tool.WriteConfigValue("fileSize", fileSize.ToString());
+            MessageBox.Show(language.GetString("settings_saved"));
+            this.Close();
         }
 
         private void SaveTextAreas(string content, string key) {
@@ -117,13 +132,6 @@ namespace EasySaveGUI {
             tool.WriteConfigValue(key, result);
         }
 
-        private void ServerPortTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
-
-        }
-
-        private void ServerStatusCheckBox_Checked(object sender, RoutedEventArgs e) {
-
-        }
         private void ServerPortSaveButton_Click(object sender, RoutedEventArgs e) {
             if (_server.IsServerRunning) {
                 MessageBox.Show(language.GetString("cannot_change_port_while_running"));
@@ -143,19 +151,18 @@ namespace EasySaveGUI {
             if (_server != null) {
                 if (!_server.IsServerRunning) {
                     _server.StartServer();
-                    ServerToggleButton.Content = language.GetString("start_server"); 
-                    MessageBox.Show(language.GetString("server_started_on_port") + _server.Port);
-
+                    ServerToggleButton.Content = language.GetString("start_server");
+                    // Set the button to the enabled style
+                    ServerToggleButton.Style = (Style)Application.Current.Resources["EnabledButtonStyle"]; 
+                    MessageBox.Show(language.GetString("server_started_on_port") + " " + _server.Port);
                 }
                 else {
                     _server.StopServer();
-                    ServerToggleButton.Content = language.GetString("stop_server");
+                    ServerToggleButton.Content = language.GetString("stop_server"); 
+                    ServerToggleButton.Style = (Style)Application.Current.Resources["DisabledButtonStyle"]; 
                     MessageBox.Show(language.GetString("server_stopped"));
-
                 }
             }
         }
-
-
     }
 }

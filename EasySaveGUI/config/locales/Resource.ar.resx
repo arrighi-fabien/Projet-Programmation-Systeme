@@ -223,7 +223,7 @@
     <value>خطأ</value>
   </data>
   <data name="port_updated_successfully" xml:space="preserve">
-    <value>تم تحديث المنفذ بنجاح :</value>
+    <value>تم تحديث المنفذ بنجاح </value>
   </data>
   <data name="priority_extension" xml:space="preserve">
     <value>ملحق الأولوية</value>
@@ -238,7 +238,7 @@
     <value>منفذ الخادم</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>بدء تشغيل الخادم على المنفذ </value>
+    <value>بدء تشغيل الخادم على المنفذ :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>حالة الخادم</value>
@@ -249,10 +249,13 @@
   <data name="settings" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>تم حفظ الإعدادات بنجاح</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>بدء التشغيل</value>
+    <value>تمكين</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>إيقاف</value>
+    <value>تعطيل</value>
   </data>
 </root>

@@ -238,7 +238,7 @@
     <value>Порт сервера</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>Сервер запущен на порту </value>
+    <value>Сервер запущен на порту :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>Состояние сервера</value>
@@ -249,10 +249,13 @@
   <data name="settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Настройки успешно сохранены</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>Запустить</value>
+    <value>Включить</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>Остановить</value>
+    <value>Отключить</value>
   </data>
 </root>

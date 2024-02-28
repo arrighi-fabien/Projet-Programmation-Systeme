@@ -238,7 +238,7 @@
     <value>Port du serveur</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>Serveur démarré sur le port </value>
+    <value>Serveur démarré sur le port :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>Statut du serveur</value>
@@ -249,10 +249,13 @@
   <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Paramètres enregistrés avec succès</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>Démarrer</value>
+    <value>Activer</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>Arrêter</value>
+    <value>Désactiver</value>
   </data>
 </root>

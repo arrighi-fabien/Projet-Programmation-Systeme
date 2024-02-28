@@ -223,7 +223,7 @@
     <value>Fehler</value>
   </data>
   <data name="port_updated_successfully" xml:space="preserve">
-    <value>Port wurde erfolgreich aktualisiert :</value>
+    <value>Port wurde erfolgreich aktualisiert</value>
   </data>
   <data name="priority_extension" xml:space="preserve">
     <value>Priorität Erweiterung</value>
@@ -241,7 +241,7 @@
     <value>Server auf Port gestartet</value>
   </data>
   <data name="server_started_on_port" xml:space="preserve">
-    <value>Server, der auf dem Port gestartet wurde </value>
+    <value>Server, der auf dem Port gestartet wurde :</value>
   </data>
   <data name="server_status" xml:space="preserve">
     <value>Server-Status</value>
@@ -249,16 +249,16 @@
   <data name="server_stopped" xml:space="preserve">
     <value>Server gestoppt</value>
   </data>
-  <data name="server_stopped=" xml:space="preserve">
-    <value>Server gestoppt</value>
-  </data>
   <data name="settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Einstellungen erfolgreich gespeichert</value>
+  </data>
   <data name="start_server" xml:space="preserve">
-    <value>Starte</value>
+    <value>Aktivieren</value>
   </data>
   <data name="stop_server" xml:space="preserve">
-    <value>Stoppen</value>
+    <value>Deaktivieren</value>
   </data>
 </root>

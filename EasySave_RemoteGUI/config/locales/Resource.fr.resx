@@ -246,7 +246,4 @@
   <data name="settings_saved" xml:space="preserve">
     <value>Paramètres enregistrés avec succès</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Paramètres enregistrés avec succès</value>
-  </data>
 </root>

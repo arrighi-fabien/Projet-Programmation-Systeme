@@ -27,8 +27,8 @@ namespace EasySave_RemoteGUI {
             string currentServerIp = tool.GetConfigValue("server_ip");
             string currentServerPort = tool.GetConfigValue("server_port");
             // Set the server IP and port in the textboxes
-            ServerIpTextBox.Text = !string.IsNullOrEmpty(currentServerIp) ? currentServerIp : "127.0.0.1"; // Utilisez votre propre adresse IP par défaut si nécessaire
-            ServerPortTextBox.Text = !string.IsNullOrEmpty(currentServerPort) ? currentServerPort : "5500"; // Utilisez votre propre port par défaut si nécessaire
+            ServerIpTextBox.Text = !string.IsNullOrEmpty(currentServerIp) ? currentServerIp : "127.0.0.1"; 
+            ServerPortTextBox.Text = !string.IsNullOrEmpty(currentServerPort) ? currentServerPort : "5500"; 
         }
 
         // Method to initialize the language combobox
@@ -39,7 +39,8 @@ namespace EasySave_RemoteGUI {
                 { "en", 0 }, { "fr", 1 }, { "es", 2 }, { "de", 3 }, { "it", 4 }, { "ru", 5 }, { "ar", 6 }
             };
 
-            LanguageComboBox.SelectedIndex = languageIndex.TryGetValue(savedLanguage, out int index) ? index : 0; // Default to English if not found
+            // Set the language combobox to the saved language
+            LanguageComboBox.SelectedIndex = languageIndex.TryGetValue(savedLanguage, out int index) ? index : 0; 
         }
 
         // Method to refresh the language
@@ -91,6 +92,10 @@ namespace EasySave_RemoteGUI {
 
         // Method to refresh the language
         private void Refresh() {
+            // Set the Title of the window to the language
+            Title = $"EasySave {language.GetString("settings")}";
+
+            // Set the labels to the language
             ServerIpLabel.Text = language.GetString("server_ip");
             ServerPortLabel.Text = language.GetString("server_port");
             LanguageLabel.Text = language.GetString("language");
