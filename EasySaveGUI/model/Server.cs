@@ -4,12 +4,18 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.Concurrent;
 
 namespace EasySaveGUI.model {
 
     public class Server {
+        private ConcurrentBag<TcpClient> clients = new ConcurrentBag<TcpClient>();
         private TcpListener serverListener;
         private CancellationTokenSource cts;
+        private static Server instance;
+
+        private Server() {
+        }
 
         public bool IsServerRunning {
             get {
@@ -33,6 +39,7 @@ namespace EasySaveGUI.model {
             }
         }
 
+        // Start the server
         public void StartServer() {
             try {
                 // Initialize the CancellationTokenSource for this server session
@@ -51,6 +58,7 @@ namespace EasySaveGUI.model {
             }
         }
 
+        // Stop the server
         public void StopServer() {
             try {
                 // Check if the server is already stopped to avoid redundancy
@@ -91,7 +99,7 @@ namespace EasySaveGUI.model {
             }
         }
 
-
+        // Listen for incoming client connections
         private async void ListenForClients(CancellationToken cancellationToken) {
             while (isServerRunning && !cancellationToken.IsCancellationRequested) {
                 try {
@@ -114,8 +122,9 @@ namespace EasySaveGUI.model {
             }
         }
 
-
+        // Handle the client connection
         private async Task HandleClient(TcpClient client, CancellationToken cancellationToken) {
+            clients.Add(client);
             try {
                 using (var networkStream = client.GetStream()) {
                     var buffer = new byte[client.ReceiveBufferSize];
@@ -151,6 +160,24 @@ namespace EasySaveGUI.model {
             finally {
                 // Always ensure the client is closed properly
                 client?.Close();
+            }
+        }
+        // Broadcast progress to all connected clients
+        public void BroadcastProgress(string data) {
+            foreach (var client in clients) {
+                if (client.Connected) {
+                    var buffer = Encoding.UTF8.GetBytes(data);
+                    client.GetStream().WriteAsync(buffer, 0, buffer.Length);
+                }
+            }
+        }
+
+        public static Server Instance {
+            get {
+                if (instance == null) {
+                    instance = new Server();
+                }
+                return instance;
             }
         }
     }

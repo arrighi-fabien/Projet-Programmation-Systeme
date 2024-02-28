@@ -9,7 +9,8 @@ namespace EasySaveGUI {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
-        private Server _server = new EasySaveGUI.model.Server();
+        private Server _server = Server.Instance; 
+        private Server server;
         private Dictionary<string, string> languageMappings = new() {
             { "English", "en" },
             { "Français", "fr" },
@@ -23,7 +24,7 @@ namespace EasySaveGUI {
 
         public SettingsWindow() {
             InitializeComponent();
-            _server = new Server();
+            _server = Server.Instance;
 
             // Set the language combobox to the saved language
             string savedLanguage = tool.GetConfigValue("language");

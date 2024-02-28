@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using EasySaveGUI.model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -12,9 +13,15 @@ namespace EasySaveGUI {
         private Language language = EasySaveGUI.model.Language.GetInstance();
         private List<Thread> saveJobThreadList = [];
         private ManualResetEvent manualResetEvent = new(true);
+        private Server server;
+        private List<SaveJob> saveJobs;
 
-        public SaveJobRunWindow(List<SaveJob> saveJobs) {
+        public SaveJobRunWindow(List<SaveJob> saveJobs, Server server) {
             InitializeComponent();
+
+            this.saveJobs = saveJobs;
+            this.server = server;
+
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
                 // Wait 1 second before running the save jobs
@@ -60,11 +67,21 @@ namespace EasySaveGUI {
                 while (countdownEvent.CurrentCount > 0) {
                     Dispatcher.Invoke(() => {
                         SaveJobRun.Items.Refresh();
+                        string json = System.Text.Json.JsonSerializer.Serialize(jobStates);
+                        if (server != null) {
+                            server.BroadcastProgress(json);
+                        }
+                        else {
+                            // Gérez le cas où server est null, par exemple, en affichant un message d'erreur
+                            MessageBox.Show("Server instance is not initialized.");
+                        }
                     });
+
                     Thread.Sleep(10);
                 }
                 Dispatcher.Invoke(() => {
                     SaveJobRun.Items.Refresh();
+                    string json = System.Text.Json.JsonSerializer.Serialize(jobStates);
                 });
             });
             threadRefreshListView.Start();
@@ -89,6 +106,10 @@ namespace EasySaveGUI {
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Set();
         }
-
+        private void UpdateAndSendProgress() {
+            var jobStates = new List<JobState>(); 
+            string json = System.Text.Json.JsonSerializer.Serialize(jobStates);
+            server.BroadcastProgress(json); 
+        }
     }
 }

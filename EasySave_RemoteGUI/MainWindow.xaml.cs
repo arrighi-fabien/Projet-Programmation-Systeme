@@ -42,6 +42,8 @@ namespace EasySave_RemoteGUI {
                 isConnected = true;
                 UpdateButtonForDisconnect();
                 MessageBox.Show(language.GetString("connected_successfully"), language.GetString("connection_status"), MessageBoxButton.OK, MessageBoxImage.Information);
+                TrackJobRunWindow trackJobRunWindow = new TrackJobRunWindow(client);
+                trackJobRunWindow.Show();
             }
             catch (Exception ex) {
                 MessageBox.Show($"{language.GetString("failed_connect")}: {ex.Message}", language.GetString("connection_error"), MessageBoxButton.OK, MessageBoxImage.Error);
