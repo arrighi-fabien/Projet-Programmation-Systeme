@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EasySave_RemoteGUI.model;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
-using System.Text.Json; 
-using System.IO;
 
 namespace EasySave_RemoteGUI {
     /// <summary>
@@ -12,11 +12,16 @@ namespace EasySave_RemoteGUI {
     public partial class TrackJobRunWindow : Window {
         private TcpClient client;
 
+        private bool FirstTime = true;
+        private List<JobState> jobStates = new();
+
         // Constructor that accepts a TcpClient
         public TrackJobRunWindow(TcpClient client) {
             InitializeComponent();
             this.client = client;
-            ListenForMessages(); // Start listening for messages as soon as the window is opened
+
+            // Start listening for messages as soon as the window is opened
+            ListenForMessages();
         }
 
         // Method to listen for messages from the server
@@ -29,6 +34,8 @@ namespace EasySave_RemoteGUI {
                     if (bytesRead > 0) {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         Dispatcher.Invoke(() => {
+                            jobStates = JsonSerializer.Deserialize<List<JobState>>(message);
+                            UpdateUI();
                         });
                     }
                 }
@@ -51,14 +58,18 @@ namespace EasySave_RemoteGUI {
         }
 
         // Method to update the UI with job state data
-        private void UpdateUI(List<dynamic> jobStates) {
-            // Clear existing items
-            JobStateListBox.Items.Clear();
+        private void UpdateUI() {
 
-            // Add new items
-            foreach (var jobState in jobStates) {
-                JobStateListBox.Items.Add($"Name: {jobState.Name}, Progress: {jobState.Progress}%");
-            }
+/*            if (FirstTime) {
+                JobStateListBox.ItemsSource = jobStates;
+                FirstTime = false;
+            }*/
+            JobStateListBox.Items.Clear();
+            JobStateListBox.ItemsSource = jobStates;
+
+            //foreach (var jobState in jobStates) {
+            //JobStateListBox.Items.Add($"Name: {jobState.Name}, Progress: {jobState.Progression}%");
+            //}
         }
     }
 }
