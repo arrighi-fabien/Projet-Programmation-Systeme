@@ -51,7 +51,6 @@ namespace EasySaveGUI {
             PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
             string savedFileSize = tool.GetConfigValue("fileSize");
             FileSizeTextBox.Text = savedFileSize;
-            string savedPriorityExtensions = tool.GetConfigValue("priorityExtensions");
             PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
 
             Refresh();
@@ -68,14 +67,14 @@ namespace EasySaveGUI {
             PriorityExtensionLabel.Text = language.GetString("priority_extension");
             ServerStatusLabel.Text = language.GetString("server_status");
             ServerPortLabel.Text = language.GetString("server_port");
-
+            FileSizeLabel.Text = language.GetString("file_size");
 
             // Set the server labels to the language
             ServerToggleButton.Content = language.GetString("start_server"); 
             ServerToggleButton.Content = language.GetString("stop_server");
 
             // Set the save button to the language
-            ServerPortSaveButton.Content = language.GetString("save_button");
+            ServerPortSaveButton.Content = language.GetString("apply_button");
             SaveButton.Content = language.GetString("save_button");
 
             // Refresh main window

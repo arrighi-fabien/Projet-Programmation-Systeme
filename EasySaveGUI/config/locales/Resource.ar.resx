@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="apply_button" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
   <data name="cannot_change_port_while_running" xml:space="preserve">
     <value>العملية غير ممكنة أثناء تشغيل الخادم</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="executing" xml:space="preserve">
     <value>تنفيذ</value>
+  </data>
+  <data name="file_size" xml:space="preserve">
+    <value>وزن المحدود (Ko)</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>مكتمل</value>
@@ -231,9 +237,6 @@
   <data name="server_port" xml:space="preserve">
     <value>منفذ الخادم</value>
   </data>
-  <data name="server_start" xml:space="preserve">
-    <value>بدء تشغيل الخادم على المنفذ</value>
-  </data>
   <data name="server_started_on_port" xml:space="preserve">
     <value>بدء تشغيل الخادم على المنفذ </value>
   </data>
@@ -242,9 +245,6 @@
   </data>
   <data name="server_stopped" xml:space="preserve">
     <value>توقف الخادم</value>
-  </data>
-  <data name="server_stopped=" xml:space="preserve">
-    <value>تم إيقاف الخادم</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>الإعدادات</value>
