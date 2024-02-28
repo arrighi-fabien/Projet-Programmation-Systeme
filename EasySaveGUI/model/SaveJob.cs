@@ -12,6 +12,8 @@ namespace EasySaveGUI.model {
         private string? name;
         private string? sourceFolder;
         private string? destinationFolder;
+        public static CountdownEvent countdownPriorityFile = new(0);
+        private static CountdownEvent countdownFileSize = new(0);
 
         // Properties for the name, sourceFolder and destinationFolder
         public string Name {
@@ -70,7 +72,7 @@ namespace EasySaveGUI.model {
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
-        public int SaveData(List<JobState> jobStates) {
+        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent) {
             Tool tool = Tool.GetInstance();
 
             try {
@@ -82,6 +84,7 @@ namespace EasySaveGUI.model {
                 // Get the list of files to backup
                 List<string> files = [];
                 GetFileList(SourceFolder, files);
+                files = OrderByPriority(files, tool.GetConfigValue("priorityExtensions"));
 
                 // Create a new job state
                 JobState jobState = new(Name, "", "", "ACTIVE", (uint)files.Count);
@@ -121,8 +124,17 @@ namespace EasySaveGUI.model {
                         break;
                     }
 
+                    manualResetEvent.WaitOne();
+
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine(DestinationFolder, fileName);
+
+                    if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownPriorityFile.CurrentCount > 0) {
+                        countdownPriorityFile.Signal();
+                        jobState.State = "WAITING";
+                        countdownPriorityFile.Wait();
+                        jobState.State = "ACTIVE";
+                    }
 
                     if (!IsToSave(fileName)) {
                         continue;
@@ -133,6 +145,18 @@ namespace EasySaveGUI.model {
                         double cipherTime = 0;
                         // Get file size
                         fileSize = tool.GetFileSize(file);
+
+                        // If fileSize is superior to the value in the config file, and lock the next thread until the transfer is done
+                        if (fileSize >= ulong.Parse(tool.GetConfigValue("fileSize")) * 1024) {
+                            if (countdownFileSize.CurrentCount > 0) {
+                                countdownFileSize = new(1);
+                            }
+                            else {
+                                countdownFileSize.Wait();
+                                countdownFileSize = new(1);
+                            }
+                        }
+
                         // Copy the file to the destination folder
                         Stopwatch stopwatch = new();
                         stopwatch.Start();
@@ -154,6 +178,11 @@ namespace EasySaveGUI.model {
                             File.Copy(file, destinationFile, true);
                         }
                         stopwatch.Stop();
+
+                        if (countdownFileSize.CurrentCount > 0) {
+                            countdownFileSize.Signal();
+                        }
+
                         // Create a new job log
                         JobLog jobLog = new(Name, file, destinationFile, fileSize, stopwatch.Elapsed.TotalNanoseconds / 1_000_000, cipherTime);
                         // Write the job log to a JSON file
@@ -196,6 +225,28 @@ namespace EasySaveGUI.model {
                 files.Add(folder);
                 GetFileList(folder, files);
             }
+        }
+
+        private List<string> OrderByPriority(List<string> files, string priorityExtension) {
+            // Put priorityExtension in a list
+            List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
+            // Sorted folders first and then priorityExtension files
+            var sortedFiles = files.OrderBy(path => {
+                if (Directory.Exists(path))
+                    return 0;
+                else {
+                    string extension = Path.GetExtension(path).ToLower();
+                    int index = priorityExtensionList.IndexOf(extension);
+                    return index != -1 ? index + 1 : priorityExtensionList.Count + 1;
+                }
+            });
+            return sortedFiles.ToList();
+        }
+
+        private bool IsPrioritary(string fileName, string priorityExtension) {
+            List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
+            string extension = Path.GetExtension(fileName).ToLower();
+            return priorityExtensionList.Contains(extension) || Directory.Exists(fileName);
         }
     }
 }

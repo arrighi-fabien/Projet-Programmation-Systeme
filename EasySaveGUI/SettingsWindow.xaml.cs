@@ -9,34 +9,25 @@ namespace EasySaveGUI {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
+        private Dictionary<string, string> languageMappings = new() {
+            { "English", "en" },
+            { "Français", "fr" },
+            { "Español", "es" },
+            { "Deutsch", "de" },
+            { "Italiano", "it" },
+            { "Русский", "ru" },
+            { "العربية", "ar" }
+        };
 
         public SettingsWindow() {
             InitializeComponent();
             // Set the language combobox to the saved language
             string savedLanguage = tool.GetConfigValue("language");
-            switch (savedLanguage) {
-                case "en":
-                    LanguageComboBox.SelectedIndex = 0;
-                    break;
-                case "fr":
-                    LanguageComboBox.SelectedIndex = 1;
-                    break;
-                case "es":
-                    LanguageComboBox.SelectedIndex = 2;
-                    break;
-                case "de":
-                    LanguageComboBox.SelectedIndex = 3;
-                    break;
-                case "it":
-                    LanguageComboBox.SelectedIndex = 4;
-                    break;
-                case "ru":
-                    LanguageComboBox.SelectedIndex = 5;
-                    break;
-                case "ar":
-                    LanguageComboBox.SelectedIndex = 6;
-                    break;
-            }
+
+            List<string> languageNames = new(languageMappings.Keys);
+            LanguageComboBox.ItemsSource = languageNames;
+            LanguageComboBox.SelectedIndex = languageNames.IndexOf(languageMappings.FirstOrDefault(x => x.Value == savedLanguage).Key);
+
             // Set the log format combobox to the saved log format
             string savedLogFormat = tool.GetConfigValue("logFormat");
             switch (savedLogFormat) {
@@ -52,6 +43,10 @@ namespace EasySaveGUI {
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
             string savedProfessionalApp = tool.GetConfigValue("professsionalApp");
             ProfessionalAppTextBox.Text = savedProfessionalApp.Replace(";", "\r\n");
+            string savedPriorityExtensions = tool.GetConfigValue("priorityExtensions");
+            PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
+            string savedFileSize = tool.GetConfigValue("fileSize");
+            FileSizeTextBox.Text = savedFileSize;
 
             Refresh();
         }
@@ -65,8 +60,7 @@ namespace EasySaveGUI {
             EncryptExtensionLabel.Text = language.GetString("label_encrypt_extensions");
             ProfessionalAppLabel.Text = language.GetString("label_professional_app");
             // Set the buttons to the language
-            EncryptExtensionSaveButton.Content = language.GetString("save_button");
-            ProfessionalAppSaveBtton.Content = language.GetString("save_button");
+            SaveButton.Content = language.GetString("save_button");
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.Refresh();
@@ -74,33 +68,14 @@ namespace EasySaveGUI {
 
         private void LanguageComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
             // Get the new value of the combobox
-            string newLanguage = (string)((System.Windows.Controls.ComboBoxItem)LanguageComboBox.SelectedItem).Content;
+            string newLanguage = LanguageComboBox.SelectedItem.ToString();
             // Change the language
-            switch (newLanguage) {
-                case "English":
-                    language.SetLanguage("en");
-                    break;
-                case "Français":
-                    language.SetLanguage("fr");
-                    break;
-                case "Español":
-                    language.SetLanguage("es");
-                    break;
-                case "Deutsch":
-                    language.SetLanguage("de");
-                    break;
-                case "Italiano":
-                    language.SetLanguage("it");
-                    break;
-                case "普通话":
-                    language.SetLanguage("ma");
-                    break;
-                case "Русский":
-                    language.SetLanguage("ru");
-                    break;
-                case "العربية":
-                    language.SetLanguage("ar");
-                    break;
+            try {
+                language.SetLanguage(languageMappings[newLanguage]);
+            }
+            catch (Exception) {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ShowErrorMessageBox(language.GetString("error_savejob"));
             }
             Refresh();
         }
@@ -110,12 +85,13 @@ namespace EasySaveGUI {
             tool.WriteConfigValue("logFormat", newLogFormat.ToLower());
         }
 
-        private void EncryptExtensionSaveButton_Click(object sender, RoutedEventArgs e) {
+        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            SaveTextAreas(PriorityExtensionTextBox.Text, "priorityExtensions");
             SaveTextAreas(EncryptExtensionTextBox.Text, "encryptExtensions");
-        }
-
-        private void ProfessionalAppSaveBtton_Click(object sender, RoutedEventArgs e) {
             SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
+            // Convert value to int or set to 10 if not a number
+            int fileSize = int.TryParse(FileSizeTextBox.Text, out int result) ? result : 10;
+            tool.WriteConfigValue("fileSize", fileSize.ToString());
         }
 
         private void SaveTextAreas(string content, string key) {
@@ -124,5 +100,6 @@ namespace EasySaveGUI {
             // Save the apps in the config file
             tool.WriteConfigValue(key, result);
         }
+
     }
 }
