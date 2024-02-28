@@ -147,6 +147,9 @@
   <data name="executing" xml:space="preserve">
     <value>تنفيذ</value>
   </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>تطبيق احترافي يحظر تحميل الملفات</value>
+  </data>
   <data name="full_save" xml:space="preserve">
     <value>مكتمل</value>
   </data>
@@ -212,5 +215,8 @@
   </data>
   <data name="settings" xml:space="preserve">
     <value>الإعدادات</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>استئناف النقل... </value>
   </data>
 </root>

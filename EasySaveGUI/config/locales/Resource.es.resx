@@ -147,6 +147,9 @@
   <data name="executing" xml:space="preserve">
     <value>Ejecutando</value>
   </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>La aplicación profesional bloquea la carga de archivos</value>
+  </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
   </data>
@@ -212,5 +215,8 @@
   </data>
   <data name="settings" xml:space="preserve">
     <value>Configuración</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>Se reanuda la transferencia...</value>
   </data>
 </root>
