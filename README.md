@@ -34,11 +34,11 @@ EasySave now offers an enhanced interface for managing your backup jobs. Below i
 
 Upon launching the application, the main menu presents you with the following options: <br>
 
-- **Execute Save Job**: Run configured backup jobs. <br>
-- **Create Save Job**: Set up a new backup job. <br>
-- **Update Save Job**: Modify existing backup jobs. <br>
-- **Delete Save Job**: Remove backup jobs that are no longer needed. <br>
-- **Settings**: Adjust application settings such as language, log format, encryption extensions and professional app. <br>
+- **Execute Save Job :** Run configured backup jobs. <br>
+- **Create Save Job :** Set up a new backup job. <br>
+- **Update Save Job :** Modify existing backup jobs. <br>
+- **Delete Save Job :** Remove backup jobs that are no longer needed. <br>
+- **Settings :** Adjust application settings such as language, log format, encryption extensions and professional app. <br>
 
 ## Execute or Delete Save Job
 
@@ -49,22 +49,26 @@ To execute or delete a save job: <br>
 ## Create or Update Save Job
 
 Both creating a new save job and updating an existing one share a similar process: <br>
-- **For creation**: Choose `Create Save Job` from the main menu. A new page opens. <br>
-- **For update**: Select a save job to modify, then choose `Update Save Job`. You'll be directed to a similar page as for creation. <br>
+- **For creation :** Choose `Create Save Job` from the main menu. A new page opens. <br>
+- **For update :** Select a save job to modify, then choose `Update Save Job`. You'll be directed to a similar page as for creation. <br>
 
 On the configuration page: <br>
-- **Save Job Name**: Enter a unique name for the job. <br>
-- **Source Folder**: Specify the folder you wish to back up. <br>
-- **Destination Folder**: Define where the backup should be stored. <br>
-- **Save Type**: Select between a full or differential backup. <br>
+- **Save Job Name :** Enter a unique name for the job. <br>
+- **Source Folder :** Specify the folder you wish to back up. <br>
+- **Destination Folder :** Define where the backup should be stored. <br>
+- **Save Type :** Select between a full or differential backup. <br>
 
 ## Settings
 
 Accessing `Settings` from the main menu opens a new page where you can configure: <br>
-- **Language**: Choose between English and French. <br>
-- **Log Format**: Select your preferred format for logs, either JSON or XML. <br>
-- **Extensions to Encrypt**: Manually input file extensions you want to encrypt during the backup process. <br>
-- **Professional App**: Block the transfer if the application(s) in Professional App are open
+- **Language :** Choose between English and French. <br>
+- **Log Format :** Select your preferred format for logs, either JSON or XML. <br>
+- **Extensions to Encrypt :** Manually input file extensions you want to encrypt during the backup process. <br>
+- **Professional App :** Block the transfer if the application(s) in Professional App are open
+- **Priority Extension :** No backup of a non-priority file can be made as long as there are priority extensions pending on at least one job.
+- **Limited weight(Ko) :** To avoid overloading the bandwidth, no two files larger than n KB may be transferred at the same time.
+- **Server Status :** Start or shut down the server, so you can monitor the progress of backups in real time on a remote workstation
+- **Server Port :** Port to set up the TCP connection (client-server)
 
 ## Closing the Application
 
@@ -114,16 +118,16 @@ The CI/CD pipeline for EasySave is now powered by GitHub Actions, enabling autom
 ## Workflow Stages
 
 ### 1. Build and Test
-- **Trigger:** Any push or pull request to the `main` branch. <br>
-- **Actions:** The .NET application is built and tested using the latest version of the .NET framework. This ensures that all changes are verified and meet the project's quality standards. <br>
+- **Trigger :** Any push or pull request to the `main` branch. <br>
+- **Actions :** The .NET application is built and tested using the latest version of the .NET framework. This ensures that all changes are verified and meet the project's quality standards. <br>
 
 ### 2. Publish
-- **Trigger:** Successful completion of the build and test stage on the `main` branch. <br>
-- **Actions:** The application is published, and the artifacts (executable files) are prepared for deployment. These artifacts are then archived and uploaded as workflow artifacts, ensuring they are available for deployment. <br>
+- **Trigger :** Successful completion of the build and test stage on the `main` branch. <br>
+- **Actions :** The application is published, and the artifacts (executable files) are prepared for deployment. These artifacts are then archived and uploaded as workflow artifacts, ensuring they are available for deployment. <br>
 
 ### 3. Release
-- **Trigger:** Manual trigger by the repository maintainers or automated trigger upon successful completion of the publish stage. <br>
-- **Actions:** A new release is created on GitHub, and the archived artifacts from the publish stage are attached to the release. This makes the latest version of the application readily available for users to download directly from the GitHub releases page. <br>
+- **Trigger :** Manual trigger by the repository maintainers or automated trigger upon successful completion of the publish stage. <br>
+- **Actions :** A new release is created on GitHub, and the archived artifacts from the publish stage are attached to the release. This makes the latest version of the application readily available for users to download directly from the GitHub releases page. <br>
 
 ## Getting Started with GitHub Actions
 
