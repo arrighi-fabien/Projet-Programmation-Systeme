@@ -66,6 +66,9 @@ namespace EasySaveGUI {
             string savedFileSize = tool.GetConfigValue("fileSize");
             FileSizeTextBox.Text = savedFileSize;
 
+            // Load the server port from the config file
+            ServerPortTextBox.Text = _server.Port.ToString();
+
             Refresh();
         }
 
