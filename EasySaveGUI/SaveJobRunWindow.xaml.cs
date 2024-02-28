@@ -54,6 +54,7 @@ namespace EasySaveGUI {
                 thread.Start();
                 saveJobThreadList.Add(thread);
             }
+            Thread.Sleep(50);
             SaveJobRun.ItemsSource = jobStates;
             Thread threadRefreshListView = new(() => {
                 // Refresh SaveJobRun every 100ms
@@ -73,11 +74,6 @@ namespace EasySaveGUI {
                 // Wait for all save jobs to finish
                 countdownEvent.Wait();
                 MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // Close the window
-                Dispatcher.Invoke(() => {
-                    this.Close();
-                });
             });
             threadEnd.Start();
         }

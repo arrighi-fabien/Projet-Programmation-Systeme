@@ -7,6 +7,7 @@ namespace EasySaveGUI.model {
     public abstract class SaveJob {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
+        private static object lockObject = new();
 
         // Attributes for the name, sourceFolder and destinationFolder
         private string? name;
@@ -148,12 +149,14 @@ namespace EasySaveGUI.model {
 
                         // If fileSize is superior to the value in the config file, and lock the next thread until the transfer is done
                         if (fileSize >= ulong.Parse(tool.GetConfigValue("fileSize")) * 1024) {
-                            if (countdownFileSize.CurrentCount > 0) {
-                                countdownFileSize = new(1);
-                            }
-                            else {
-                                countdownFileSize.Wait();
-                                countdownFileSize = new(1);
+                            lock (lockObject) {
+                                if (countdownFileSize.CurrentCount > 0) {
+                                    countdownFileSize.Wait();
+                                    countdownFileSize = new(1);
+                                }
+                                else {
+                                    countdownFileSize = new(1);
+                                }
                             }
                         }
 
