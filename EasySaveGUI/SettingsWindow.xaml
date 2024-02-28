@@ -44,6 +44,11 @@
             <TextBlock x:Name="PriorityExtensionLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Priority extension" VerticalAlignment="Top" FontSize="20" Width="200" Style="{StaticResource CustomTextBoxStyle}" Margin="21,10,0,0"/>
             <TextBox x:Name="PriorityExtensionTextBox" TextWrapping="Wrap" Width="200" Margin="21,42,-21,-10" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="100"/>
         </Grid>
+        <Grid HorizontalAlignment="Left" Margin="323,10,0,0" VerticalAlignment="Top">
+            <TextBlock x:Name="FileSizeLabel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="File size (Ko)" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBox x:Name="FileSizeTextBox" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}"/>
         <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="103,250,0,0" VerticalAlignment="Top" Width="65" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}" RenderTransformOrigin="0.911,0.687" Grid.Column="1"/>
     </Grid>
 </Window>
