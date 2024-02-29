@@ -164,6 +164,8 @@ namespace EasySaveGUI.model {
         }
         // Broadcast progress to all connected clients
         public void BroadcastProgress(string data) {
+            // Add begining markup and final markup to the data
+            data = "<data>" + data + "</data>";
             foreach (var client in clients) {
                 if (client.Connected) {
                     var buffer = Encoding.UTF8.GetBytes(data);
