@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-public class NetworkUtil {
+public class NetworkUtils {
     public static double GetNetworkLoad() {
         try {
             const string categoryName = "Network Interface";
