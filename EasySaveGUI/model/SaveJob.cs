@@ -97,9 +97,10 @@ namespace EasySaveGUI.model {
 
                 // Back up each file
                 foreach (string file in files) {
-
+                    // Check if the job has been cancelled
                     if (cancellationToken.IsCancellationRequested) {
                         jobState.State = "CANCELLED";
+                        // Change the countdown event to 0 to unlock the threads
                         if (countdownFileSize.CurrentCount > 0) {
                             countdownFileSize.Signal();
                         }
@@ -137,11 +138,13 @@ namespace EasySaveGUI.model {
                         break;
                     }
 
+                    // Check if the job is paused
                     manualResetEvent.WaitOne();
 
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine(DestinationFolder, fileName);
 
+                    // If the files isn't a priority file wait for the other threads to finish their priority files
                     if (!IsPrioritary(file, tool.GetConfigValue("priorityExtensions")) && countdownPriorityFile.CurrentCount > 0) {
                         countdownPriorityFile.Signal();
                         jobState.State = "WAITING";
@@ -149,6 +152,7 @@ namespace EasySaveGUI.model {
                         jobState.State = "ACTIVE";
                     }
 
+                    // Check if the file should be saved
                     if (!IsToSave(fileName)) {
                         continue;
                     }
@@ -194,6 +198,7 @@ namespace EasySaveGUI.model {
                         }
                         stopwatch.Stop();
 
+                        // Tell the next thread that the transfer of big file is done
                         if (countdownFileSize.CurrentCount > 0) {
                             countdownFileSize.Signal();
                         }
@@ -242,11 +247,18 @@ namespace EasySaveGUI.model {
             }
         }
 
+        /// <summary>
+        /// Order the files by priority
+        /// </summary>
+        /// <param name="files">The list of files</param>
+        /// <param name="priorityExtension">The priority extensions</param>
+        /// <returns>The list of files ordered by priority</returns>
         private List<string> OrderByPriority(List<string> files, string priorityExtension) {
             // Put priorityExtension in a list
             List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
             // Sorted folders first and then priorityExtension files
             var sortedFiles = files.OrderBy(path => {
+                // Folders are always first
                 if (Directory.Exists(path))
                     return 0;
                 else {
@@ -258,9 +270,16 @@ namespace EasySaveGUI.model {
             return sortedFiles.ToList();
         }
 
+        /// <summary>
+        /// Check if the file is a priority file
+        /// </summary>
+        /// <param name="fileName">The name of the file</param>
+        /// <param name="priorityExtension">The priority extensions</param>
+        /// <returns>True if the file is a priority file, false otherwise</returns>
         private bool IsPrioritary(string fileName, string priorityExtension) {
             List<string> priorityExtensionList = priorityExtension.Split(";").Select(ext => "." + ext).ToList();
             string extension = Path.GetExtension(fileName).ToLower();
+            // Check if the file is a directory or if the extension is in the priorityExtension list
             return priorityExtensionList.Contains(extension) || Directory.Exists(fileName);
         }
     }
