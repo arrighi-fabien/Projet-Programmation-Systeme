@@ -252,4 +252,10 @@
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Disable</value>
+  </data>
 </root>
