@@ -82,11 +82,18 @@ By adhering to this guide, you'll be able to efficiently manage your backup jobs
 
 Depending on your operating system, download the appropriate zip file from the releases on our GitHub page.
 
-### Windows 64-bit
+## For the EasySave Main Application (Windows 64-bit)
 
 - Download [EasySaveGUI.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases). <br>
 - Extract the zip file. <br>
 - Launch `EasySaveGUI.exe`. <br>
+
+## For the EasySave Remote GUI Application (Windows 64-bit)
+- Download [EasySave_RemoteGUI.zip](https://github.com/arrighi-fabien/Projet-Programmation-Systeme/releases). <br>
+- Extract the zip file. <br>
+- Launch `EasySave_RemoteGUI.exe`. <br>
+
+Note: `EasySave_RemoteGUI` is designed to work in conjunction with `EasySaveGUI`. Make sure that `EasySaveGUI` is running on your network or accessible over the internet before connecting with `EasySave_RemoteGUI`.
 
 ### Linux 64-bit
 
@@ -111,30 +118,32 @@ Launch the application with: <br>
 `./EasySaveConsole` <br>
 
 
-# CI/CD pipeline for EasySave with GitHub Actions
+# CI/CD Pipeline for EasySave with GitHub Actions
 
-The CI/CD pipeline for EasySave is now powered by GitHub Actions, enabling automated workflows for building, testing, and deploying the EasySave application directly from GitHub. This pipeline ensures that every change pushed to the main branch goes through a rigorous process of validation before being made available for release. <br>
+The CI/CD pipeline for EasySave is now powered by GitHub Actions, enabling automated workflows for building, testing, and deploying both the EasySave main application (`EasySaveGUI`) and the remote GUI application (`EasySave_RemoteGUI`) directly from GitHub. This pipeline ensures that every change pushed to the main branch goes through a rigorous process of validation before being made available for release.
 
 ## Workflow Stages
 
 ### 1. Build and Test
-- **Trigger :** Any push or pull request to the `main` branch. <br>
-- **Actions :** The .NET application is built and tested using the latest version of the .NET framework. This ensures that all changes are verified and meet the project's quality standards. <br>
+- **Trigger:** Any push or pull request to the `main` branch.
+- **Actions:** The .NET applications (`EasySaveGUI` and `EasySave_RemoteGUI`) are built and tested using the latest version of the .NET framework. This ensures that all changes are verified and meet the project's quality standards.
 
 ### 2. Publish
-- **Trigger :** Successful completion of the build and test stage on the `main` branch. <br>
-- **Actions :** The application is published, and the artifacts (executable files) are prepared for deployment. These artifacts are then archived and uploaded as workflow artifacts, ensuring they are available for deployment. <br>
+- **Trigger:** Successful completion of the build and test stage on the `main` branch.
+- **Actions:** Each application is published, and the artifacts (executable files) are prepared for deployment. These artifacts are then archived and uploaded as workflow artifacts, ensuring they are available for deployment.
 
 ### 3. Release
-- **Trigger :** Manual trigger by the repository maintainers or automated trigger upon successful completion of the publish stage. <br>
-- **Actions :** A new release is created on GitHub, and the archived artifacts from the publish stage are attached to the release. This makes the latest version of the application readily available for users to download directly from the GitHub releases page. <br>
+- **Trigger:** Manual trigger by the repository maintainers or automated trigger upon successful completion of the publish stage.
+- **Actions:** A new release is created on GitHub, and the archived artifacts from the publish stage for both `EasySaveGUI` and `EasySave_RemoteGUI` are attached to the release. This makes the latest version of each application readily available for users to download directly from the GitHub releases page.
 
 ## Getting Started with GitHub Actions
 
-To view and manage the CI/CD pipeline: <br>
-1. Navigate to the GitHub repository. <br>
-2. Click on the "Actions" tab to see the list of workflows. <br>
-3. You can see the status of recent workflows, view logs, and manage workflow runs. <br>
+To view and manage the CI/CD pipeline:
+
+1. Navigate to the GitHub repository.
+2. Click on the "Actions" tab to see the list of workflows.
+3. You can see the status of recent workflows, view logs, and manage workflow runs.
+
 
 ## Download and Use
 

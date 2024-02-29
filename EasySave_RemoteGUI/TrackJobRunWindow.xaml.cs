@@ -79,6 +79,7 @@ namespace EasySave_RemoteGUI {
                 FirstTime = false;
             }
             else {
+                // Update the existing job states with the new job states
                 for (int i = 0; i < jobStates.Count; i++) {
                     jobStates[i].Name = newJobStates[i].Name;
                     jobStates[i].State = newJobStates[i].State;
@@ -93,6 +94,7 @@ namespace EasySave_RemoteGUI {
             Pause_Button.Content = language.GetString("btn_pause");
             Stop_Button.Content = language.GetString("btn_stop");
 
+            // Header
             if (JobStateListBox.View is GridView gridView) {
                 gridView.Columns[0].Header = language.GetString("header_name");
                 gridView.Columns[1].Header = language.GetString("progress_bar");
@@ -100,6 +102,8 @@ namespace EasySave_RemoteGUI {
                 gridView.Columns[3].Header = language.GetString("header_status");
             }
         }
+
+        // Method to send a command to the server
         private void SendCommand(string command) {
             if (client == null || !client.Connected) {
                 MessageBox.Show("Not connected to server.");
@@ -116,14 +120,17 @@ namespace EasySave_RemoteGUI {
         }
 
 
+        // Event handler for the Play button
         private void PauseSaveJob_Click(object sender, RoutedEventArgs e) {
             SendCommand("<DATA>PAUSE</DATA>");
         }
 
+        // Event handler for the Pause button
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
             SendCommand("<DATA>RESUME</DATA>");
         }
 
+        // Event handler for the Stop button
         private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
             SendCommand("<DATA>STOP</DATA>");
 

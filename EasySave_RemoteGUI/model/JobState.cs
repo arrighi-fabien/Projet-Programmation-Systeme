@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EasySave_RemoteGUI.model {
+
+    // Class to manage the job state
     public class JobState {
         public string State {
             get; set;

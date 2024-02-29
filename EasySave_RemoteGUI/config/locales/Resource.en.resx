@@ -175,7 +175,7 @@
     <value>Executing</value>
   </data>
   <data name="failed_connect" xml:space="preserve">
-    <value>Disconnected from server successfully</value>
+    <value>Failed to connect </value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Full</value>

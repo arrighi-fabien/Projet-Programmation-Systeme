@@ -10,6 +10,7 @@ using System.Windows.Threading;
 
 namespace EasySaveGUI.model {
 
+    // Class to manage the server
     public class Server {
         private ConcurrentBag<TcpClient> clients = new ConcurrentBag<TcpClient>();
         private TcpListener serverListener;
@@ -18,6 +19,7 @@ namespace EasySaveGUI.model {
         private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
 
+        // Private constructor to prevent instantiation
         private Server() {
         }
 
@@ -28,13 +30,15 @@ namespace EasySaveGUI.model {
         }
 
         private bool isServerRunning;
-        private int _port = 5500; // Default port number for the server
+        // The port the server listens on
+        private int _port = 5500; 
         public int Port {
             get {
                 return _port;
             }
             set {
-                if (!isServerRunning) { // Allow port change only if the server is not running
+                // Check if the server is running before changing the port
+                if (!isServerRunning) { 
                     _port = value;
                 }
                 else {
@@ -77,13 +81,12 @@ namespace EasySaveGUI.model {
                 catch (Exception ex) {
                     // Handle exceptions specifically related to task cancellation
                     Console.WriteLine($"Error cancelling tasks: {ex.Message}");
-                    // Optionally, rethrow if you want the outer catch to also process this
-                    // throw; // Uncomment if rethrow is needed
                 }
 
                 // Ensure the server no longer accepts new connections
                 serverListener?.Stop();
-                serverListener = null; // Free up the server for GC and ensure it can't be reused
+                // Clear the list of clients
+                serverListener = null; 
 
                 // Update the server status
                 isServerRunning = false;
@@ -116,12 +119,12 @@ namespace EasySaveGUI.model {
                 catch (SocketException ex) when (ex.SocketErrorCode == SocketError.OperationAborted || ex.SocketErrorCode == SocketError.Interrupted) {
                     // Log or handle the expected exception when the serverListener is stopped
                     Console.WriteLine("Server stopping, accept operation cancelled.");
-                    break; // Exit the loop since the server is stopping
+                    break; 
                 }
                 catch (Exception ex) {
                     // Log unexpected exceptions
                     Console.WriteLine($"Unexpected exception in ListenForClients: {ex.Message}");
-                    break; // Optionally break or continue based on your error handling policy
+                    break; 
                 }
             }
         }
@@ -210,14 +213,17 @@ namespace EasySaveGUI.model {
                 return instance;
             }
         }
+        // Pause all jobs
         private void PauseJobs() {
             manualResetEvent.Reset();
         }
 
+        // Resume all jobs
         private void ResumeJobs() {
             manualResetEvent.Set();
         }
-
+        
+        // Stop all jobs
         private void StopJobs() {
             manualResetEvent.Set();
             foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
