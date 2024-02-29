@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using EasySave_RemoteGUI.model;
 
 namespace EasySave_RemoteGUI {
@@ -11,6 +12,9 @@ namespace EasySave_RemoteGUI {
     /// </summary>
     public partial class TrackJobRunWindow : Window {
         private TcpClient client;
+
+        private Language language = EasySave_RemoteGUI.model.Language.GetInstance();
+
 
         private bool FirstTime = true;
         private List<JobState> jobStates = new();
@@ -82,6 +86,47 @@ namespace EasySave_RemoteGUI {
                     JobStateListBox.Items.Refresh();
                 }
             }
+        }
+        public void Refresh() {
+            // Refresh btn
+            Play_Button.Content = language.GetString("btn_play");
+            Pause_Button.Content = language.GetString("btn_pause");
+            Stop_Button.Content = language.GetString("btn_stop");
+
+            if (JobStateListBox.View is GridView gridView) {
+                gridView.Columns[0].Header = language.GetString("header_name");
+                gridView.Columns[1].Header = language.GetString("progress_bar");
+                gridView.Columns[2].Header = language.GetString("header_progression");
+                gridView.Columns[3].Header = language.GetString("header_status");
+            }
+        }
+        private void SendCommand(string command) {
+            if (client == null || !client.Connected) {
+                MessageBox.Show("Not connected to server.");
+                return;
+            }
+            try {
+                NetworkStream stream = client.GetStream();
+                byte[] data = Encoding.UTF8.GetBytes(command);
+                stream.Write(data, 0, data.Length);
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Failed to send command: {ex.Message}");
+            }
+        }
+
+
+        private void PauseSaveJob_Click(object sender, RoutedEventArgs e) {
+            SendCommand("<DATA>PAUSE</DATA>");
+        }
+
+        private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
+            SendCommand("<DATA>RESUME</DATA>");
+        }
+
+        private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
+            SendCommand("<DATA>STOP</DATA>");
+
         }
     }
 }

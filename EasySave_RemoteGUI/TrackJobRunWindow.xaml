@@ -23,5 +23,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Grid HorizontalAlignment="Center" Height="100" Margin="0,168,0,14" Width="302">
+            <Button x:Name="Pause_Button" Content="Pause" Height="20" Width="50" Click="PauseSaveJob_Click" HorizontalAlignment="Center" Margin="0,40,0,40" MinWidth="60"/>
+            <Button x:Name="Play_Button" Content="Resume" Click="ResumeSaveJob_Click" Margin="0,40,0,40" HorizontalAlignment="Left" MinWidth="60"/>
+            <Button x:Name="Stop_Button" Content="Stop" Height="20" Width="50" Click="StopSaveJob_Click" HorizontalAlignment="Right" RenderTransformOrigin="0.1,0.684" Margin="155,40,0,40" MinWidth="60"/>
+        </Grid>
     </Grid>
 </Window>

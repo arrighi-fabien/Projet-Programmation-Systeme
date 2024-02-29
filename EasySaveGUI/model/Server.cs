@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.Concurrent;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace EasySaveGUI.model {
 
@@ -13,6 +15,8 @@ namespace EasySaveGUI.model {
         private TcpListener serverListener;
         private CancellationTokenSource cts;
         private static Server instance;
+        private List<CancellationTokenSource> cancellationTokenList = [];
+        private ManualResetEvent manualResetEvent = new(true);
 
         private Server() {
         }
@@ -142,6 +146,30 @@ namespace EasySaveGUI.model {
                         byte[] responseBytes = Encoding.UTF8.GetBytes(response);
 
                         await networkStream.WriteAsync(responseBytes, 0, responseBytes.Length, cancellationToken).ConfigureAwait(false);
+                        // Convert the received data to a string
+                        string command = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+
+                        // Determine the command type and respond appropriately
+                        switch (command.ToUpper()) {
+                            case "<DATA>PAUSE</DATA>":
+                                // Call method to pause jobs
+                                Dispatcher.CurrentDispatcher.Invoke(() => {
+                                    PauseJobs();
+                                });
+                                break;
+                            case "<DATA>RESUME</DATA>":
+                                // Call method to resume jobs
+                                Dispatcher.CurrentDispatcher.Invoke(() => {
+                                    ResumeJobs(); 
+                                });
+                                break;
+                            case "<DATA>STOP</DATA>":
+                                // Call method to stop jobs
+                                Dispatcher.CurrentDispatcher.Invoke(() => {
+                                    StopJobs(); 
+                                });
+                                break;
+                        }
                     }
                 }
             }
@@ -180,6 +208,20 @@ namespace EasySaveGUI.model {
                     instance = new Server();
                 }
                 return instance;
+            }
+        }
+        private void PauseJobs() {
+            manualResetEvent.Reset();
+        }
+
+        private void ResumeJobs() {
+            manualResetEvent.Set();
+        }
+
+        private void StopJobs() {
+            manualResetEvent.Set();
+            foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
+                cancellationToken.Cancel();
             }
         }
     }

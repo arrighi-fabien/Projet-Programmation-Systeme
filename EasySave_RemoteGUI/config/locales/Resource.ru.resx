@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>Остановите</value>
+  </data>
   <data name="connected_successfully" xml:space="preserve">
     <value>Успешное подключение к серверу</value>
   </data>
