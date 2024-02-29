@@ -12,12 +12,14 @@ namespace EasySaveGUI {
         private List<JobState> jobStates = [];
         private Language language = EasySaveGUI.model.Language.GetInstance();
         private List<Thread> saveJobThreadList = [];
+        private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
         private Server server;
         private List<SaveJob> saveJobs;
 
         public SaveJobRunWindow(List<SaveJob> saveJobs, Server server) {
             InitializeComponent();
+            Refresh();
 
             this.saveJobs = saveJobs;
             this.server = server;
@@ -34,17 +36,32 @@ namespace EasySaveGUI {
         }
 
         private void RunSaveJobs(List<SaveJob> saveJobs) {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             CountdownEvent countdownEvent = new(saveJobs.Count);
             SaveJob.countdownPriorityFile = new(saveJobs.Count);
             var lastSentJson = ""; // Keep track of the last sent JSON to avoid redundant sends
 
+            List<string> folders = [];
             foreach (SaveJob saveJob in saveJobs) {
+                if (!folders.Contains(saveJob.SourceFolder)) {
+                    folders.Add(saveJob.SourceFolder);
+                }
+                else {
+                    mainWindow.ShowErrorMessageBox(language.GetString("error_samefolder"));
+                    this.Close();
+                    return;
+                }
+            }
+
+            foreach (SaveJob saveJob in saveJobs) {
+                // Create thread for each save job
                 // Create a thread for each save job
                 Thread thread = new(() => {
+                    CancellationTokenSource cancellationToken = new();
+                    cancellationTokenList.Add(cancellationToken);
                     // Run the save job
-                    int result = saveJob.SaveData(jobStates, manualResetEvent);
+                    int result = saveJob.SaveData(jobStates, manualResetEvent, cancellationToken.Token);
                     Dispatcher.Invoke(() => {
-                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                         switch (result) {
                             case 0:
                                 // Success, no action needed here
@@ -62,6 +79,7 @@ namespace EasySaveGUI {
                 thread.Start();
                 saveJobThreadList.Add(thread);
             }
+            Thread.Sleep(50);
 
             SaveJobRun.ItemsSource = jobStates;
 
@@ -96,6 +114,7 @@ namespace EasySaveGUI {
             Thread threadEnd = new(() => {
                 // Wait for all save jobs to finish
                 countdownEvent.Wait();
+                MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Dispatcher.Invoke(() => {
                     MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close(); // Close the window
@@ -110,6 +129,27 @@ namespace EasySaveGUI {
 
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Set();
+        }
+
+        private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
+            manualResetEvent.Set();
+            foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
+                cancellationToken.Cancel();
+            }
+        }
+
+        public void Refresh() {
+            // Refresh btn
+            Play_Button.Content = language.GetString("btn_play");
+            Pause_Button.Content = language.GetString("btn_pause");
+            Stop_Button.Content = language.GetString("btn_stop");
+            // Refresh headers
+            if (SaveJobRun.View is GridView gridView) {
+                gridView.Columns[0].Header = language.GetString("header_name");
+                gridView.Columns[1].Header = language.GetString("header_progression");
+                gridView.Columns[2].Header = language.GetString("header_progression");
+                gridView.Columns[3].Header = language.GetString("header_status");
+            }
         }
         private void UpdateAndSendProgress() {
             var jobStates = new List<JobState>(); 

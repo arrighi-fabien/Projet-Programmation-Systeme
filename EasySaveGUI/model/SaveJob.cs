@@ -7,6 +7,7 @@ namespace EasySaveGUI.model {
     public abstract class SaveJob {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
+        private static object lockObject = new();
 
         // Attributes for the name, sourceFolder and destinationFolder
         private string? name;
@@ -72,7 +73,7 @@ namespace EasySaveGUI.model {
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
-        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent) {
+        public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent, CancellationToken cancellationToken) {
             Tool tool = Tool.GetInstance();
 
             try {
@@ -96,6 +97,18 @@ namespace EasySaveGUI.model {
 
                 // Back up each file
                 foreach (string file in files) {
+
+                    if (cancellationToken.IsCancellationRequested) {
+                        jobState.State = "CANCELLED";
+                        if (countdownFileSize.CurrentCount > 0) {
+                            countdownFileSize.Signal();
+                        }
+                        if (countdownPriorityFile.CurrentCount > 0) {
+                            countdownPriorityFile.Signal();
+                        }
+                        return 0;
+                    }
+
                     bool isPaused = false;
 
                     // Continuous verification loop for business applications
@@ -148,12 +161,14 @@ namespace EasySaveGUI.model {
 
                         // If fileSize is superior to the value in the config file, and lock the next thread until the transfer is done
                         if (fileSize >= ulong.Parse(tool.GetConfigValue("fileSize")) * 1024) {
-                            if (countdownFileSize.CurrentCount > 0) {
-                                countdownFileSize = new(1);
-                            }
-                            else {
-                                countdownFileSize.Wait();
-                                countdownFileSize = new(1);
+                            lock (lockObject) {
+                                if (countdownFileSize.CurrentCount > 0) {
+                                    countdownFileSize.Wait();
+                                    countdownFileSize = new(1);
+                                }
+                                else {
+                                    countdownFileSize = new(1);
+                                }
                             }
                         }
 
