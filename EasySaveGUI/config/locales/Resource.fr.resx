@@ -184,7 +184,7 @@
     <value>Nom</value>
   </data>
   <data name="header_progression" xml:space="preserve">
-    <value>Progression</value>
+    <value>Pourcentage</value>
   </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
@@ -281,5 +281,8 @@
   </data>
   <data name="transfer_starts" xml:space="preserve">
     <value>Le transfert reprend... </value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Avancement</value>
   </data>
 </root>

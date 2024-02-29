@@ -276,4 +276,10 @@
   <data name="transfer_starts" xml:space="preserve">
     <value>Il trasferimento ricomincia...</value>
   </data>
+  <data name="header_progression1" xml:space="preserve">
+    <value>Percentuale</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Avanzamento</value>
+  </data>
 </root>

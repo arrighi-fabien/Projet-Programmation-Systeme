@@ -146,7 +146,7 @@ namespace EasySaveGUI {
             // Refresh headers
             if (SaveJobRun.View is GridView gridView) {
                 gridView.Columns[0].Header = language.GetString("header_name");
-                gridView.Columns[1].Header = language.GetString("header_progression");
+                gridView.Columns[1].Header = language.GetString("progress_bar");
                 gridView.Columns[2].Header = language.GetString("header_progression");
                 gridView.Columns[3].Header = language.GetString("header_status");
             }

@@ -1,4 +1,4 @@
-name: EasySave_CI-CD_Pipeline_v2.0
+name: EasySave_CI-CD_Pipeline_v3.0
 
 on:
   push:
@@ -11,43 +11,68 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    # Setup .NET for both projects
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '8.x' 
 
-    - name: Restore dependencies
+    # Restore dependencies for both projects
+    - name: Restore dependencies for EasySaveGUI
       run: dotnet restore EasySaveGUI/EasySaveGUI.csproj
 
-    - name: Build
-      run: dotnet build EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release
+    - name: Restore dependencies for EasySave_RemoteGUI
+      run: dotnet restore EasySave_RemoteGUI/EasySave_RemoteGUI.csproj
 
-    - name: Test
+    # Build both projects
+    - name: Build EasySaveGUI
+      run: dotnet build EasySaveGUI/EasySaveGUI.csproj --configuration Release
+
+    - name: Build EasySave_RemoteGUI
+      run: dotnet build EasySave_RemoteGUI/EasySave_RemoteGUI.csproj --configuration Release
+
+    # Test EasySaveGUI (add similar for EasySave_RemoteGUI if applicable)
+    - name: Test EasySaveGUI
       run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --no-build --verbosity normal
 
-    - name: Publish
+    # Publish both projects
+    - name: Publish EasySaveGUI
       run: |
-        dotnet publish EasySaveGUI/EasySaveGUI.csproj -c Release -o publish
-        Compress-Archive -Path publish/* -DestinationPath EasySaveGUI.zip -Force
+        dotnet publish EasySaveGUI/EasySaveGUI.csproj -c Release -o publish/EasySaveGUI
+        Compress-Archive -Path publish/EasySaveGUI/* -DestinationPath EasySaveGUI.zip -Force
 
-    - name: Upload Artifact
+    - name: Publish EasySave_RemoteGUI
+      run: |
+        dotnet publish EasySave_RemoteGUI/EasySave_RemoteGUI.csproj -c Release -o publish/EasySave_RemoteGUI
+        Compress-Archive -Path publish/EasySave_RemoteGUI/* -DestinationPath EasySave_RemoteGUI.zip -Force
+
+    # Upload Artifact for both projects
+    - name: Upload Artifact for EasySaveGUI
       uses: actions/upload-artifact@v2
       with:
         name: EasySaveGUI
         path: ./EasySaveGUI.zip
 
+    - name: Upload Artifact for EasySave_RemoteGUI
+      uses: actions/upload-artifact@v2
+      with:
+        name: EasySave_RemoteGUI
+        path: ./EasySave_RemoteGUI.zip
+
+    # Create Release
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v2.0
-        release_name: Release EasySave-v2.0
+        tag_name: v3.0
+        release_name: Release EasySave-v3.0
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
+    # Upload Release Asset for both projects
+    - name: Upload Release Asset for EasySaveGUI
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,4 +80,14 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./EasySaveGUI.zip
         asset_name: EasySaveGUI.zip
+        asset_content_type: application/zip
+
+    - name: Upload Release Asset for EasySave_RemoteGUI
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./EasySave_RemoteGUI.zip
+        asset_name: EasySave_RemoteGUI.zip
         asset_content_type: application/zip

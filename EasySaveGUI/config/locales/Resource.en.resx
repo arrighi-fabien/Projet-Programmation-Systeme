@@ -184,7 +184,7 @@
     <value>Name</value>
   </data>
   <data name="header_progression" xml:space="preserve">
-    <value>Progression</value>
+    <value>Percentage</value>
   </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
@@ -275,5 +275,8 @@
   </data>
   <data name="stop_server" xml:space="preserve">
     <value>Disable</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Advancement</value>
   </data>
 </root>

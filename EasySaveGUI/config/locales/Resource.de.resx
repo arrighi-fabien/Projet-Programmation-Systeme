@@ -279,4 +279,10 @@
   <data name="transfer_starts" xml:space="preserve">
     <value>Die Übertragung wird fortgesetzt...</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Prozent</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Fortschritt</value>
+  </data>
 </root>

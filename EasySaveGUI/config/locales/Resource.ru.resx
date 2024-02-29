@@ -276,4 +276,10 @@
   <data name="transfer_starts" xml:space="preserve">
     <value>Передача начинается снова...</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Процент</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Продвижение по службе</value>
+  </data>
 </root>

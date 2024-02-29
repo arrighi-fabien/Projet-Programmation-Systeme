@@ -186,6 +186,9 @@
   <data name="header_name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
   </data>
@@ -236,6 +239,9 @@
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Advancement</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>SaveJob finished</value>

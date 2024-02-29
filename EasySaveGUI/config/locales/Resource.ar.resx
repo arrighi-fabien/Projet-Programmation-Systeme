@@ -276,4 +276,10 @@
   <data name="transfer_starts" xml:space="preserve">
     <value>استئناف النقل... </value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>التقدم</value>
+  </data>
 </root>
