@@ -80,9 +80,13 @@ namespace EasySaveGUI.model {
         public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent) {
             Tool tool = Tool.GetInstance();
 
-            double networkLoad = NetworkUtil.GetNetworkLoad();
-            bool reduceParallelTasks = networkLoad > NetworkLoadThreshold;
+            // Get the network load threshold
+            string networkLoadThresholdStr = tool.GetConfigValue("networkLoadThreshold");
+            double networkLoadThreshold = !string.IsNullOrEmpty(networkLoadThresholdStr) ? double.Parse(networkLoadThresholdStr) : 50.0;
 
+            // Check if the network load is superior to the threshold
+            double networkLoad = NetworkUtils.GetNetworkLoad();
+            bool reduceParallelTasks = networkLoad > networkLoadThreshold;
 
             // Check if professionnal apps are running
             string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
@@ -151,9 +155,9 @@ namespace EasySaveGUI.model {
                         Thread.Sleep(100);
                     }
                     // Update and check network load regularly
-                    networkLoad = NetworkUtil.GetNetworkLoad();
-                    reduceParallelTasks = networkLoad > NetworkLoadThreshold;
-                   
+                    networkLoad = NetworkUtils.GetNetworkLoad();
+                    reduceParallelTasks = networkLoad > networkLoadThreshold;
+
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine(DestinationFolder, fileName);
 

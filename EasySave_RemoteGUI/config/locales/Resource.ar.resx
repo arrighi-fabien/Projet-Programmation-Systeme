@@ -246,4 +246,7 @@
   <data name="settings_saved" xml:space="preserve">
     <value>تم حفظ الإعدادات بنجاح</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>شبكة العتبة (%)</value>
+  </data>
 </root>
