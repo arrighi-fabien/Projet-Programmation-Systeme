@@ -279,4 +279,7 @@
   <data name="progress_bar" xml:space="preserve">
     <value>Advancement</value>
   </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Settings successfully saved</value>
+  </data>
 </root>
