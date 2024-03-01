@@ -54,7 +54,6 @@ namespace EasySaveGUI {
             }
 
             foreach (SaveJob saveJob in saveJobs) {
-                // Create thread for each save job
                 // Create a thread for each save job
                 Thread thread = new(() => {
                     CancellationTokenSource cancellationToken = new();
@@ -88,6 +87,7 @@ namespace EasySaveGUI {
                 while (countdownEvent.CurrentCount > 0) {
                     Dispatcher.Invoke(() => {
                         SaveJobRun.Items.Refresh();
+                        MessageBox.Show($"Current jobs in UI: {string.Join(", ", jobStates.Select(js => js.Name))}"); // Ajoutez cette ligne.
                         string currentJson = System.Text.Json.JsonSerializer.Serialize(jobStates);
                         // Check if there has been a change in the progression
                         if (server != null && currentJson != lastSentJson) {
@@ -114,8 +114,8 @@ namespace EasySaveGUI {
             Thread threadEnd = new(() => {
                 // Wait for all save jobs to finish
                 countdownEvent.Wait();
-                MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Dispatcher.Invoke(() => {
+                    MessageBox.Show($"Jobs finished: {string.Join(", ", jobStates.Select(js => js.Name))}"); // Ajoutez cette ligne.
                     MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close(); // Close the window
                 });

@@ -104,36 +104,59 @@ namespace EasySave_RemoteGUI {
         }
 
         // Method to send a command to the server
-        private void SendCommand(string command) {
+        private void SendCommand(string command, string jobName) {
             if (client == null || !client.Connected) {
                 MessageBox.Show("Not connected to server.");
                 return;
             }
             try {
+                var commandObject = new {
+                    Command = command,
+                    JobName = jobName
+                };
+                string commandJson = JsonSerializer.Serialize(commandObject);
                 NetworkStream stream = client.GetStream();
-                byte[] data = Encoding.UTF8.GetBytes(command);
+                byte[] data = Encoding.UTF8.GetBytes(commandJson); // Removed <DATA> tags for simplicity
                 stream.Write(data, 0, data.Length);
+                MessageBox.Show($"Sent command: {command} for job: {jobName}");
             }
             catch (Exception ex) {
                 MessageBox.Show($"Failed to send command: {ex.Message}");
             }
         }
 
-
-        // Event handler for the Play button
+        // Event handler for the Pause button
         private void PauseSaveJob_Click(object sender, RoutedEventArgs e) {
-            SendCommand("<DATA>PAUSE</DATA>");
+            if (JobStateListBox.SelectedItem is JobState selectedJobState) {
+                string selectedJobName = selectedJobState.Name; // Assuming 'Name' is the property holding the job's name
+                SendCommand("PAUSE", selectedJobName);
+            }
+            else {
+                MessageBox.Show("Please select a job from the list.");
+            }
         }
 
-        // Event handler for the Pause button
+        // Event handler for the Resume button
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
-            SendCommand("<DATA>RESUME</DATA>");
+            if (JobStateListBox.SelectedItem is JobState selectedJobState) {
+                string selectedJobName = selectedJobState.Name; // Assuming 'Name' is the property holding the job's name
+                SendCommand("RESUME", selectedJobName);
+            }
+            else {
+                MessageBox.Show("Please select a job from the list.");
+            }
         }
 
         // Event handler for the Stop button
         private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
-            SendCommand("<DATA>STOP</DATA>");
-
+            if (JobStateListBox.SelectedItem is JobState selectedJobState) {
+                string selectedJobName = selectedJobState.Name; // Assuming 'Name' is the property holding the job's name
+                SendCommand("STOP", selectedJobName);
+            }
+            else {
+                MessageBox.Show("Please select a job from the list.");
+            }
         }
+
     }
 }

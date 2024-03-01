@@ -7,6 +7,7 @@ using System.Windows;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Windows.Threading;
+using System.Text.Json;
 
 namespace EasySaveGUI.model {
 
@@ -18,6 +19,7 @@ namespace EasySaveGUI.model {
         private static Server instance;
         private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
+        private List<JobState> jobs = new List<JobState>();
 
         // Private constructor to prevent instantiation
         private Server() {
@@ -28,7 +30,14 @@ namespace EasySaveGUI.model {
                 return isServerRunning;
             }
         }
-
+        public class CommandObject {
+            public string Command {
+                get; set;
+            }
+            public string JobName {
+                get; set;
+            }
+        }
         private bool isServerRunning;
         // The port the server listens on
         private int _port = 5500; 
@@ -135,44 +144,41 @@ namespace EasySaveGUI.model {
             try {
                 using (var networkStream = client.GetStream()) {
                     var buffer = new byte[client.ReceiveBufferSize];
-                    while (true) {
-                        cancellationToken.ThrowIfCancellationRequested();
+                    while (!cancellationToken.IsCancellationRequested) {
+                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+                        if (bytesRead == 0)
+                            break; 
 
-                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false);
-                        if (bytesRead == 0) {
-                            // The client closed the connection
-                            break;
+                        string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+                        MessageBox.Show($"Received command: {receivedData}");
+
+                        // Deserialize the received data into a CommandObject
+                        CommandObject commandObject = JsonSerializer.Deserialize<CommandObject>(receivedData);
+                        MessageBox.Show($"CommandObject deserialized: Command = {commandObject.Command}, JobName = {commandObject.JobName}");
+                        if (commandObject == null) {
+                            MessageBox.Show("Invalid command format.");
+                            continue; 
                         }
 
-                        // Process the received data and prepare a response
-                        string response = "message_received";
-                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                        MessageBox.Show($"Command received: {commandObject.Command}, JobName: {commandObject.JobName}");
 
-                        await networkStream.WriteAsync(responseBytes, 0, responseBytes.Length, cancellationToken).ConfigureAwait(false);
-                        // Convert the received data to a string
-                        string command = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
-
-                        // Determine the command type and respond appropriately
-                        switch (command.ToUpper()) {
-                            case "<DATA>PAUSE</DATA>":
-                                // Call method to pause jobs
-                                Dispatcher.CurrentDispatcher.Invoke(() => {
-                                    PauseJobs();
-                                });
-                                break;
-                            case "<DATA>RESUME</DATA>":
-                                // Call method to resume jobs
-                                Dispatcher.CurrentDispatcher.Invoke(() => {
-                                    ResumeJobs(); 
-                                });
-                                break;
-                            case "<DATA>STOP</DATA>":
-                                // Call method to stop jobs
-                                Dispatcher.CurrentDispatcher.Invoke(() => {
-                                    StopJobs(); 
-                                });
-                                break;
-                        }
+                        // Execute command based on deserialized CommandObject
+                        Dispatcher.CurrentDispatcher.Invoke(() => {
+                            switch (commandObject.Command.ToUpper()) {
+                                case "PAUSE":
+                                    PauseJobByName(commandObject.JobName);
+                                    break;
+                                case "RESUME":
+                                    ResumeJobByName(commandObject.JobName);
+                                    break;
+                                case "STOP":
+                                    StopJobByName(commandObject.JobName);
+                                    break;
+                                default:
+                                    MessageBox.Show($"Unknown command: {commandObject.Command}");
+                                    break;
+                            }
+                        });
                     }
                 }
             }
@@ -193,6 +199,7 @@ namespace EasySaveGUI.model {
                 client?.Close();
             }
         }
+
         // Broadcast progress to all connected clients
         public void BroadcastProgress(string data) {
             // Add begining markup and final markup to the data
@@ -213,22 +220,55 @@ namespace EasySaveGUI.model {
                 return instance;
             }
         }
-        // Pause all jobs
-        private void PauseJobs() {
-            manualResetEvent.Reset();
+        // Pause the job with the given name
+        private void PauseJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                job.State = "PAUSED"; 
+                job.ManualResetEvent.Reset(); 
+                MessageBox.Show($"Paused job: {jobName}");
+            }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
         }
 
-        // Resume all jobs
-        private void ResumeJobs() {
-            manualResetEvent.Set();
-        }
-        
-        // Stop all jobs
-        private void StopJobs() {
-            manualResetEvent.Set();
-            foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
-                cancellationToken.Cancel();
+        private void ResumeJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                Dispatcher.CurrentDispatcher.Invoke(() => {
+                    job.ManualResetEvent?.Set();
+                    MessageBox.Show($"Resumed job: {jobName}");
+
+                });
             }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
+        }
+
+        // Stop the job with the given name
+        private void StopJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                Dispatcher.CurrentDispatcher.Invoke(() => {
+                    job.ManualResetEvent?.Set();
+                    //job.CancellationTokenSource?.Cancel(); 
+                    MessageBox.Show($"Stopped job: {jobName}");
+                });
+            }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
+        }
+
+        private JobState FindJobByName(string jobName) {
+            object job = null;
+            MessageBox.Show($"Job search result for '{jobName}': found = {(job != null ? "Yes" : "No")}");
+            return jobs.FirstOrDefault(job => job.Name.Equals(jobName, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
