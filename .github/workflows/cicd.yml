@@ -31,9 +31,9 @@ jobs:
     - name: Build EasySave_RemoteGUI
       run: dotnet build EasySave_RemoteGUI/EasySave_RemoteGUI.csproj --configuration Release
 
-    # Test EasySaveGUI (add similar for EasySave_RemoteGUI if applicable)
+      # Test EasySaveGUI 
     - name: Test EasySaveGUI
-      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --verbosity normal
+      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --verbosity normal
 
     # Publish both projects
     - name: Publish EasySaveGUI
