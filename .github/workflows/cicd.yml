@@ -33,7 +33,7 @@ jobs:
 
     # Test EasySaveGUI (add similar for EasySave_RemoteGUI if applicable)
     - name: Test EasySaveGUI
-      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --no-build --verbosity normal
+      run: dotnet test EasySaveGUI_UnitTests/EasySaveGUI_UnitTests.csproj --configuration Release --verbosity normal
 
     # Publish both projects
     - name: Publish EasySaveGUI
