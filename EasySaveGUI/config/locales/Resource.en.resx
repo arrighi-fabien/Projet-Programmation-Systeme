@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="apply_button" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>The operation is not possible while the server is running</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -138,14 +153,26 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>No savejob selected</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>An other instance of the app is launched</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>A professional application is launched</value>
+  </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Save jobs use the same source folder</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
     <value>An error occured</value>
   </data>
   <data name="executing" xml:space="preserve">
     <value>Executing</value>
+  </data>
+  <data name="file_size" xml:space="preserve">
+    <value>Limited weight (Ko)</value>
+  </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>The following professional application is blocking loading files </value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Full</value>
@@ -156,11 +183,20 @@
   <data name="header_name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
   </data>
+  <data name="header_status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Invalid port number</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Destination folder</value>
@@ -198,11 +234,20 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Message received</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Savejob deletion</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Port updated successfully</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Priority Extension</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>SaveJob finished</value>
@@ -210,7 +255,34 @@
   <data name="save_button" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Server Port</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Server started on port :</value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Server Status</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server stopped</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Advancement</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Settings successfully saved</value>
+  </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Network min (%)</value>
   </data>
 </root>

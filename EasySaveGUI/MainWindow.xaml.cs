@@ -1,7 +1,11 @@
 ﻿using EasySaveGUI.model;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -14,6 +18,7 @@ namespace EasySaveGUI {
         private List<SaveJob> saveJobs;
 
         public MainWindow() {
+            UniqueInstance();
             if (!Directory.Exists("logs")) {
                 Directory.CreateDirectory("logs");
             }
@@ -23,14 +28,17 @@ namespace EasySaveGUI {
             Refresh();
         }
 
+        // Open the create save job window
         private void SettingsButton_Click(object sender, RoutedEventArgs e) {
             OpenNewWindow(new SettingsWindow());
         }
 
+        // Open the save job window
         private void SaveJobButton_Click(object sender, RoutedEventArgs e) {
             OpenNewWindow(new SaveJobWindow());
         }
 
+        // Open a new window
         private void OpenNewWindow(Window window) {
             this.IsEnabled = false;
             window.Owner = this;
@@ -38,6 +46,7 @@ namespace EasySaveGUI {
             window.Show();
         }
 
+        // Delete the selected save job
         private void DeleteSaveJobButton_Click(object sender, RoutedEventArgs e) {
             // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
@@ -66,6 +75,7 @@ namespace EasySaveGUI {
             }
         }
 
+        // Update the selected save job
         private void UpdateSaveJobButton_Click(object sender, RoutedEventArgs e) {
             // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
@@ -86,6 +96,7 @@ namespace EasySaveGUI {
             }
         }
 
+        // Close the application
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
             foreach (Window window in Application.Current.Windows) {
                 if (window != this && window.IsVisible) {
@@ -96,6 +107,7 @@ namespace EasySaveGUI {
             }
         }
 
+        // Refresh the list of save jobs
         public void Refresh() {
             this.SaveJobList.Items.Refresh();
             // Button text
@@ -113,28 +125,31 @@ namespace EasySaveGUI {
             }
         }
 
+        // Launch the selected save job
         private void LaunchSaveJobButton_Click(object sender, RoutedEventArgs e) {
-            // If no save job is selected, show an error message
             if (this.SaveJobList.SelectedItems.Count == 0) {
                 ShowErrorMessageBox(language.GetString("error_no_savejob_selected"));
                 return;
             }
             else {
-                List<SaveJob> saveJobToRun = [];
-                // Launch all selected save jobs
+                List<SaveJob> saveJobToRun = new List<SaveJob>();
                 foreach (SaveJob saveJob in this.SaveJobList.SelectedItems) {
                     saveJobToRun.Add(saveJob);
                 }
-                OpenNewWindow(new SaveJobRunWindow(saveJobToRun));
+                // Open the save job run window with the selected save job
+                Server serverInstance = Server.Instance; 
+                OpenNewWindow(new SaveJobRunWindow(saveJobToRun, serverInstance));
             }
         }
 
+        // Add a new save job to the list
         public void AddSaveJob(SaveJob saveJob) {
             saveJobs.Add(saveJob);
             tool.WriteSavedSaveJob(saveJobs);
             this.SaveJobList.Items.Refresh();
         }
 
+        // Update a save job in the list
         public void UpdateSaveJob(SaveJob oldSaveJob, SaveJob newSaveJob) {
             int index = saveJobs.IndexOf(oldSaveJob);
             saveJobs[index] = newSaveJob;
@@ -142,9 +157,19 @@ namespace EasySaveGUI {
             this.SaveJobList.Items.Refresh();
         }
 
+        // Show an error message box
         internal void ShowErrorMessageBox(string message) {
             MessageBox.Show(message, language.GetString("popup_error"), MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        // Ensure that only one instance of the application is running
+        private void UniqueInstance() {
+            Process proc = Process.GetCurrentProcess();
+            Process[] processes = Process.GetProcessesByName(proc.ProcessName);
+            if (processes.Length > 1) {
+                ShowErrorMessageBox(language.GetString("error_other_instance"));
+                this.Close();
+            }
+        }
     }
 }

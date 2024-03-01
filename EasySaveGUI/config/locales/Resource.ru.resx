@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>Остановите</value>
+  </data>
+  <data name="apply_button" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>Операция невозможна во время работы сервера</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
@@ -138,14 +153,26 @@
   <data name="error_no_savejob_selected" xml:space="preserve">
     <value>Задача сохранения не выбрана</value>
   </data>
+  <data name="error_other_instance" xml:space="preserve">
+    <value>Запускается другой экземпляр приложения</value>
+  </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>Запущено профессиональное приложение</value>
+  </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Задания резервного копирования используют одну и ту же исходную папку</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Произошла ошибка</value>
   </data>
   <data name="executing" xml:space="preserve">
     <value>выполнение</value>
+  </data>
+  <data name="file_size" xml:space="preserve">
+    <value>Ограниченный файла (Ko)</value>
+  </data>
+  <data name="following_professional" xml:space="preserve">
+    <value>профессиональное приложение блокирует загрузку файлов</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Полный</value>
@@ -161,6 +188,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Тип</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Неверный номер порта</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Папка назначения</value>
@@ -198,11 +228,20 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Обновить сохранения</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Получено сообщение</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Удаление сохранения</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Ошибка</value>
+  </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Порт успешно обновлен</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Приоритет Расширение</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Задача сохранения завершена</value>
@@ -210,7 +249,43 @@
   <data name="save_button" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Порт сервера</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Сервер запущен на порту :</value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Состояние сервера</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Сервер остановлен</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Настройки успешно сохранены</value>
+  </data>
+  <data name="start_server" xml:space="preserve">
+    <value>Включить</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Отключить</value>
+  </data>
+  <data name="transfer_starts" xml:space="preserve">
+    <value>Передача начинается снова...</value>
+  </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Процент</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Продвижение по службе</value>
+  </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Сеть мин (%)</value>
+  </data>
+  <data name="header_status" xml:space="preserve">
+    <value>Статус</value>
   </data>
 </root>

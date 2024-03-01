@@ -12,6 +12,10 @@ namespace EasySaveGUI.model {
         private readonly JsonSerializerOptions serializerOptions = new() {
             WriteIndented = true
         };
+        private readonly Semaphore semaphoreJobState = new(1, 1);
+        private readonly Semaphore semaphoreLog = new(1, 1);
+        private readonly Semaphore semaphoreRead = new(1, 1);
+        private readonly Semaphore semaphoreWrite = new(1, 1);
 
         /// <summary>
         /// Method to get the instance of Tool
@@ -136,6 +140,7 @@ namespace EasySaveGUI.model {
             // Check if the log file exists
             List<JobLog> jobLogs;
             try {
+                semaphoreLog.WaitOne();
                 switch (format) {
                     case "json":
                         path += ".json";
@@ -166,12 +171,14 @@ namespace EasySaveGUI.model {
                         }
                         break;
                 }
+                File.WriteAllText(path, logContent);
             }
             catch (Exception e) {
                 Console.Write(e.ToString());
             }
-
-            File.WriteAllText(path, logContent);
+            finally {
+                semaphoreLog.Release();
+            }
         }
 
         /// <summary>
@@ -180,6 +187,7 @@ namespace EasySaveGUI.model {
         /// <param name="jobStates">The list of job states to write.</param>
         public void WriteJobStateFile(List<JobState> jobStates) {
             try {
+                semaphoreJobState.WaitOne();
                 string logContent = "";
                 string path = "logs/state";
                 string format = GetConfigValue("logFormat");
@@ -201,6 +209,9 @@ namespace EasySaveGUI.model {
             catch (Exception e) {
                 Console.Write(e.ToString());
             }
+            finally {
+                semaphoreJobState.Release();
+            }
         }
 
         /// <summary>
@@ -210,6 +221,7 @@ namespace EasySaveGUI.model {
         public string GetConfigValue(string key) {
             // Try to read the saved language from the config file
             try {
+                semaphoreRead.WaitOne();
                 string json = File.ReadAllText("config/config.json");
                 string language = JsonSerializer.Deserialize<Dictionary<string, string>>(json)[key];
                 return language;
@@ -217,6 +229,9 @@ namespace EasySaveGUI.model {
             // If the file is missing, return an empty string
             catch {
                 return "";
+            }
+            finally {
+                semaphoreRead.Release();
             }
         }
 
@@ -228,6 +243,7 @@ namespace EasySaveGUI.model {
         public void WriteConfigValue(string key, string value) {
             // Change the key value in the config file without changing the other values
             try {
+                semaphoreWrite.WaitOne();
                 string json = File.ReadAllText("config/config.json");
                 Dictionary<string, string> config = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
                 config[key] = value;
@@ -239,6 +255,9 @@ namespace EasySaveGUI.model {
                 Dictionary<string, string> config = new() { { key, value } };
                 string json = JsonSerializer.Serialize(config, serializerOptions);
                 File.WriteAllText("config/config.json", json);
+            }
+            finally {
+                semaphoreWrite.Release();
             }
         }
 
