@@ -42,7 +42,7 @@ namespace EasySaveGUI.Tests {
             Assert.AreEqual<ulong>(0ul, jobState.TotalFilesSize);
             Assert.AreEqual<uint>(0, jobState.FilesLeft);
             Assert.AreEqual<ulong>(0ul, jobState.FilesSizeLeft);
-            Assert.AreEqual<int>(0, jobState.Progression);
+            Assert.AreEqual<int>(100, jobState.Progression);
             Assert.AreEqual<string>("", jobState.SourceFile);
             Assert.AreEqual<string>("", jobState.DestinationFile);
         }
