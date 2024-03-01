@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>Inizio</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="connected_successfully" xml:space="preserve">
     <value>Connessione al server riuscita</value>
   </data>
@@ -177,6 +186,9 @@
   <data name="header_name" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Percentuale</value>
+  </data>
   <data name="header_source" xml:space="preserve">
     <value>Origine</value>
   </data>
@@ -227,6 +239,9 @@
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Errore</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Avanzamento</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>Lavoro di salvataggio completato</value>

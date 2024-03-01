@@ -5,15 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.Concurrent;
+using System.Threading;
+using System.Windows.Threading;
+using System.Text.Json;
 
 namespace EasySaveGUI.model {
 
+    // Class to manage the server
     public class Server {
         private ConcurrentBag<TcpClient> clients = new ConcurrentBag<TcpClient>();
         private TcpListener serverListener;
         private CancellationTokenSource cts;
         private static Server instance;
+        private List<CancellationTokenSource> cancellationTokenList = [];
+        private ManualResetEvent manualResetEvent = new(true);
+        private List<JobState> jobs = new List<JobState>();
 
+        // Private constructor to prevent instantiation
         private Server() {
         }
 
@@ -22,15 +30,24 @@ namespace EasySaveGUI.model {
                 return isServerRunning;
             }
         }
-
+        public class CommandObject {
+            public string Command {
+                get; set;
+            }
+            public string JobName {
+                get; set;
+            }
+        }
         private bool isServerRunning;
-        private int _port = 5500; // Default port number for the server
+        // The port the server listens on
+        private int _port = 5500; 
         public int Port {
             get {
                 return _port;
             }
             set {
-                if (!isServerRunning) { // Allow port change only if the server is not running
+                // Check if the server is running before changing the port
+                if (!isServerRunning) { 
                     _port = value;
                 }
                 else {
@@ -73,13 +90,12 @@ namespace EasySaveGUI.model {
                 catch (Exception ex) {
                     // Handle exceptions specifically related to task cancellation
                     Console.WriteLine($"Error cancelling tasks: {ex.Message}");
-                    // Optionally, rethrow if you want the outer catch to also process this
-                    // throw; // Uncomment if rethrow is needed
                 }
 
                 // Ensure the server no longer accepts new connections
                 serverListener?.Stop();
-                serverListener = null; // Free up the server for GC and ensure it can't be reused
+                // Clear the list of clients
+                serverListener = null; 
 
                 // Update the server status
                 isServerRunning = false;
@@ -112,12 +128,12 @@ namespace EasySaveGUI.model {
                 catch (SocketException ex) when (ex.SocketErrorCode == SocketError.OperationAborted || ex.SocketErrorCode == SocketError.Interrupted) {
                     // Log or handle the expected exception when the serverListener is stopped
                     Console.WriteLine("Server stopping, accept operation cancelled.");
-                    break; // Exit the loop since the server is stopping
+                    break; 
                 }
                 catch (Exception ex) {
                     // Log unexpected exceptions
                     Console.WriteLine($"Unexpected exception in ListenForClients: {ex.Message}");
-                    break; // Optionally break or continue based on your error handling policy
+                    break; 
                 }
             }
         }
@@ -128,20 +144,41 @@ namespace EasySaveGUI.model {
             try {
                 using (var networkStream = client.GetStream()) {
                     var buffer = new byte[client.ReceiveBufferSize];
-                    while (true) {
-                        cancellationToken.ThrowIfCancellationRequested();
+                    while (!cancellationToken.IsCancellationRequested) {
+                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+                        if (bytesRead == 0)
+                            break; 
 
-                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false);
-                        if (bytesRead == 0) {
-                            // The client closed the connection
-                            break;
+                        string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+                        MessageBox.Show($"Received command: {receivedData}");
+
+                        // Deserialize the received data into a CommandObject
+                        CommandObject commandObject = JsonSerializer.Deserialize<CommandObject>(receivedData);
+                        MessageBox.Show($"CommandObject deserialized: Command = {commandObject.Command}, JobName = {commandObject.JobName}");
+                        if (commandObject == null) {
+                            MessageBox.Show("Invalid command format.");
+                            continue; 
                         }
 
-                        // Process the received data and prepare a response
-                        string response = "message_received";
-                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                        MessageBox.Show($"Command received: {commandObject.Command}, JobName: {commandObject.JobName}");
 
-                        await networkStream.WriteAsync(responseBytes, 0, responseBytes.Length, cancellationToken).ConfigureAwait(false);
+                        // Execute command based on deserialized CommandObject
+                        Dispatcher.CurrentDispatcher.Invoke(() => {
+                            switch (commandObject.Command.ToUpper()) {
+                                case "PAUSE":
+                                    PauseJobByName(commandObject.JobName);
+                                    break;
+                                case "RESUME":
+                                    ResumeJobByName(commandObject.JobName);
+                                    break;
+                                case "STOP":
+                                    StopJobByName(commandObject.JobName);
+                                    break;
+                                default:
+                                    MessageBox.Show($"Unknown command: {commandObject.Command}");
+                                    break;
+                            }
+                        });
                     }
                 }
             }
@@ -162,8 +199,11 @@ namespace EasySaveGUI.model {
                 client?.Close();
             }
         }
+
         // Broadcast progress to all connected clients
         public void BroadcastProgress(string data) {
+            // Add begining markup and final markup to the data
+            data = "<data>" + data + "</data>";
             foreach (var client in clients) {
                 if (client.Connected) {
                     var buffer = Encoding.UTF8.GetBytes(data);
@@ -179,6 +219,56 @@ namespace EasySaveGUI.model {
                 }
                 return instance;
             }
+        }
+        // Pause the job with the given name
+        private void PauseJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                job.State = "PAUSED"; 
+                job.ManualResetEvent.Reset(); 
+                MessageBox.Show($"Paused job: {jobName}");
+            }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
+        }
+
+        private void ResumeJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                Dispatcher.CurrentDispatcher.Invoke(() => {
+                    job.ManualResetEvent?.Set();
+                    MessageBox.Show($"Resumed job: {jobName}");
+
+                });
+            }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
+        }
+
+        // Stop the job with the given name
+        private void StopJobByName(string jobName) {
+            MessageBox.Show($"Trying to find job: {jobName}");
+            var job = FindJobByName(jobName);
+            if (job != null) {
+                Dispatcher.CurrentDispatcher.Invoke(() => {
+                    job.ManualResetEvent?.Set();
+                    //job.CancellationTokenSource?.Cancel(); 
+                    MessageBox.Show($"Stopped job: {jobName}");
+                });
+            }
+            else {
+                MessageBox.Show($"Job not found: {jobName}");
+            }
+        }
+
+        private JobState FindJobByName(string jobName) {
+            object job = null;
+            MessageBox.Show($"Job search result for '{jobName}': found = {(job != null ? "Yes" : "No")}");
+            return jobs.FirstOrDefault(job => job.Name.Equals(jobName, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>Reprendre</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="apply_button" xml:space="preserve">
     <value>Appliquer</value>
   </data>
@@ -150,6 +159,9 @@
   <data name="error_professionalapp" xml:space="preserve">
     <value>Une application métier est lancée</value>
   </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>Des travaux de sauvegarde utilisent le même dossier source</value>
+  </data>
   <data name="error_savejob" xml:space="preserve">
     <value>Une erreur est survenue</value>
   </data>
@@ -171,8 +183,14 @@
   <data name="header_name" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Pourcentage</value>
+  </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
+  </data>
+  <data name="header_status" xml:space="preserve">
+    <value>Statut</value>
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
@@ -263,5 +281,8 @@
   </data>
   <data name="transfer_starts" xml:space="preserve">
     <value>Le transfert reprend... </value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Avancement</value>
   </data>
 </root>

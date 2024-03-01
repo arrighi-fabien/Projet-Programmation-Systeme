@@ -123,6 +123,15 @@
   <data name="cannot_change_port_while_running" xml:space="preserve">
     <value>العملية غير ممكنة أثناء تشغيل الخادم</value>
   </data>
+  <data name="btn_pause" xml:space="preserve">
+    <value>وقفة</value>
+  </data>
+  <data name="btn_play" xml:space="preserve">
+    <value>السيرة الذاتية</value>
+  </data>
+  <data name="btn_stop" xml:space="preserve">
+    <value>توقف</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>حذف</value>
   </data>
@@ -149,6 +158,9 @@
   </data>
   <data name="error_professionalapp" xml:space="preserve">
     <value>تم تشغيل تطبيق احترافي</value>
+  </data>
+  <data name="error_samefolder" xml:space="preserve">
+    <value>تستخدم مهام النسخ الاحتياطي نفس المجلد المصدر</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
     <value>حدث خطأ</value>
@@ -263,5 +275,11 @@
   </data>
   <data name="transfer_starts" xml:space="preserve">
     <value>استئناف النقل... </value>
+  </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>التقدم</value>
   </data>
 </root>
