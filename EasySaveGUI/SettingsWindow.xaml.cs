@@ -70,6 +70,11 @@ namespace EasySaveGUI {
             // Load the server port from the config file
             ServerPortTextBox.Text = _server.Port.ToString();
 
+            // Load the network load threshold from the config file
+            string currentNetworkLoadThreshold = tool.GetConfigValue("networkLoadThreshold");
+            // Set the default value to 50 if not set
+            NetworkLoadThresholdTextBox.Text = currentNetworkLoadThreshold ?? "50"; 
+
             Refresh();
         }
 
@@ -85,6 +90,7 @@ namespace EasySaveGUI {
             ServerStatusLabel.Text = language.GetString("server_status");
             ServerPortLabel.Text = language.GetString("server_port");
             FileSizeLabel.Text = language.GetString("file_size");
+            NetworkLoadThresholdLabel.Text = language.GetString("threshold_network");
 
             // Set the server labels to the language
             ServerToggleButton.Content = language.GetString("start_server"); 
@@ -122,6 +128,12 @@ namespace EasySaveGUI {
             SaveTextAreas(PriorityExtensionTextBox.Text, "priorityExtensions");
             SaveTextAreas(EncryptExtensionTextBox.Text, "encryptExtensions");
             SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
+
+            // Convert value to int or set to 50 if not a number for NetworkLoadThreshold
+            int networkLoadResult; 
+            int networkLoadThreshold = int.TryParse(NetworkLoadThresholdTextBox.Text, out networkLoadResult) ? networkLoadResult : 50;
+            Tool.GetInstance().WriteConfigValue("networkLoadThreshold", networkLoadThreshold.ToString());
+
             // Convert value to int or set to 10 if not a number
             int fileSize = int.TryParse(FileSizeTextBox.Text, out int result) ? result : 10;
             tool.WriteConfigValue("fileSize", fileSize.ToString());

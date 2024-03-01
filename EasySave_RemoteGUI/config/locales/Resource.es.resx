@@ -261,4 +261,7 @@
   <data name="settings_saved" xml:space="preserve">
     <value>Ajustes guardados correctamente</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Umbral Red (%)</value>
+  </data>
 </root>

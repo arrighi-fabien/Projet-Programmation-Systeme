@@ -261,4 +261,7 @@
   <data name="settings_saved" xml:space="preserve">
     <value>Settings saved successfully</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Threshold Network (%)</value>
+  </data>
 </root>

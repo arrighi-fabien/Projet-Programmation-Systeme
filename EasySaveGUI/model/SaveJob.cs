@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Net;
+using EasySaveGUI.model;
 
 namespace EasySaveGUI.model {
     // Abstract class to manage the save job
@@ -69,12 +71,34 @@ namespace EasySaveGUI.model {
         /// <returns>True if the file should be saved, false otherwise</returns>
         public abstract bool IsToSave(string path);
 
+        // Network load threshold( in %)
+        private const double NetworkLoadThreshold = 50.0;
+
         /// <summary>
         /// Save the data from the source folder to the destination folder
         /// </summary>
         /// <param name="jobStates">List of job states</param>
         public int SaveData(List<JobState> jobStates, ManualResetEvent manualResetEvent, CancellationToken cancellationToken) {
             Tool tool = Tool.GetInstance();
+
+            // Get the network load threshold
+            string networkLoadThresholdStr = tool.GetConfigValue("networkLoadThreshold");
+            double networkLoadThreshold = !string.IsNullOrEmpty(networkLoadThresholdStr) ? double.Parse(networkLoadThresholdStr) : 50.0;
+
+            // Check if the network load is superior to the threshold
+            double networkLoad = NetworkUtils.GetNetworkLoad();
+            bool reduceParallelTasks = networkLoad > networkLoadThreshold;
+
+            // Check if professionnal apps are running
+            string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
+            if (savedProfessionalApps != "") {
+                string[] apps = savedProfessionalApps.Split(";");
+                foreach (string app in apps) {
+                    if (Process.GetProcessesByName(app).Length > 0) {
+                        return 1;
+                    }
+                }
+            }
 
             try {
                 // Check if the destination folder exists, if not create it
@@ -138,6 +162,14 @@ namespace EasySaveGUI.model {
                     }
 
                     manualResetEvent.WaitOne();
+
+
+                    if (reduceParallelTasks) {
+                        Thread.Sleep(100);
+                    }
+                    // Update and check network load regularly
+                    networkLoad = NetworkUtils.GetNetworkLoad();
+                    reduceParallelTasks = networkLoad > networkLoadThreshold;
 
                     string fileName = file.Substring(SourceFolder.Length + 1);
                     string destinationFile = Path.Combine(DestinationFolder, fileName);

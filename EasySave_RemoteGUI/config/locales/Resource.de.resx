@@ -261,4 +261,7 @@
   <data name="settings_saved" xml:space="preserve">
     <value>Einstellungen erfolgreich gespeichert</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Schwellenwert Netzwerk (%)</value>
+  </data>
 </root>
