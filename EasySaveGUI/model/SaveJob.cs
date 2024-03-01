@@ -89,17 +89,6 @@ namespace EasySaveGUI.model {
             double networkLoad = NetworkUtils.GetNetworkLoad();
             bool reduceParallelTasks = networkLoad > networkLoadThreshold;
 
-            // Check if professionnal apps are running
-            string savedProfessionalApps = tool.GetConfigValue("professsionalApp");
-            if (savedProfessionalApps != "") {
-                string[] apps = savedProfessionalApps.Split(";");
-                foreach (string app in apps) {
-                    if (Process.GetProcessesByName(app).Length > 0) {
-                        return 1;
-                    }
-                }
-            }
-
             try {
                 // Check if the destination folder exists, if not create it
                 if (!Directory.Exists(DestinationFolder)) {

@@ -285,4 +285,7 @@
   <data name="progress_bar" xml:space="preserve">
     <value>Avancement</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Seuil réseau (%)</value>
+  </data>
 </root>

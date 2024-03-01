@@ -282,4 +282,10 @@
   <data name="progress_bar" xml:space="preserve">
     <value>Продвижение по службе</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Сеть мин (%)</value>
+  </data>
+  <data name="header_status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
 </root>

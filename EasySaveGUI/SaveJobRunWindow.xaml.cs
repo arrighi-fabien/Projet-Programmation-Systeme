@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using EasySaveGUI.model;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -17,6 +16,11 @@ namespace EasySaveGUI {
         private Server server;
         private List<SaveJob> saveJobs;
 
+        /// <summary>
+        /// Constructor of the SaveJobRunWindow
+        /// </summary>
+        /// <param name="saveJobs">Save jobs to run</param>
+        /// <param name="server">Server to broadcast the progression</param>
         public SaveJobRunWindow(List<SaveJob> saveJobs, Server server) {
             InitializeComponent();
             Refresh();
@@ -29,13 +33,17 @@ namespace EasySaveGUI {
                 // Wait 1 second before running the save jobs
                 Task.Delay(1000).ContinueWith(t => {
                     Dispatcher.Invoke(() => {
-                        RunSaveJobs(saveJobs);
+                        RunSaveJobs();
                     });
                 });
             };
         }
 
-        private void RunSaveJobs(List<SaveJob> saveJobs) {
+        /// <summary>
+        /// Run the save jobs
+        /// </summary>
+        /// <param name="saveJobs">List of save jobs to run</param>
+        private void RunSaveJobs() {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             CountdownEvent countdownEvent = new(saveJobs.Count);
             SaveJob.countdownPriorityFile = new(saveJobs.Count);
@@ -52,7 +60,6 @@ namespace EasySaveGUI {
                     this.Close();
                     return;
                 }
-            }
 
                 // Create a thread for each save job
                 Thread thread = new(() => {
@@ -98,7 +105,7 @@ namespace EasySaveGUI {
                         }
                     });
                     // Wait 500ms before refreshing the list view
-                    Thread.Sleep(1000); 
+                    Thread.Sleep(1000);
                 }
                 // Final update after all jobs are completed
                 Dispatcher.Invoke(() => {
@@ -116,22 +123,29 @@ namespace EasySaveGUI {
                 // Wait for all save jobs to finish
                 countdownEvent.Wait();
                 Dispatcher.Invoke(() => {
-
                     MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Close(); // Close the window
                 });
             });
             threadEnd.Start();
         }
 
+        /// <summary>
+        /// Pause all save jobs
+        /// </summary>
         private void PauseSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Reset();
         }
 
+        /// <summary>
+        /// Resume all save jobs
+        /// </summary>
         private void ResumeSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Set();
         }
 
+        /// <summary>
+        /// Stop all save jobs
+        /// </summary>
         private void StopSaveJob_Click(object sender, RoutedEventArgs e) {
             manualResetEvent.Set();
             foreach (CancellationTokenSource cancellationToken in cancellationTokenList) {
@@ -139,6 +153,9 @@ namespace EasySaveGUI {
             }
         }
 
+        /// <summary>
+        /// Update the language of the window
+        /// </summary>
         public void Refresh() {
             // Refresh btn
             Play_Button.Content = language.GetString("btn_play");
@@ -151,11 +168,6 @@ namespace EasySaveGUI {
                 gridView.Columns[2].Header = language.GetString("header_progression");
                 gridView.Columns[3].Header = language.GetString("header_status");
             }
-        }
-        private void UpdateAndSendProgress() {
-            var jobStates = new List<JobState>(); 
-            string json = System.Text.Json.JsonSerializer.Serialize(jobStates);
-            server.BroadcastProgress(json);
         }
     }
 }

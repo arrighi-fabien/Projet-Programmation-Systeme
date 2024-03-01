@@ -13,41 +13,31 @@ namespace EasySaveGUI.model {
 
     // Class to manage the server
     public class Server {
-        private ConcurrentBag<TcpClient> clients = new ConcurrentBag<TcpClient>();
+        // Attributes
+        private ConcurrentBag<TcpClient> clients = [];
         private TcpListener serverListener;
         private CancellationTokenSource cts;
         private static Server instance;
         private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
-        private List<JobState> jobs = new List<JobState>();
+        private List<JobState> jobs = [];
+        private bool isServerRunning;
+        private int _port = 5500;
 
-        // Private constructor to prevent instantiation
-        private Server() {
-        }
-
+        // Properties
         public bool IsServerRunning {
             get {
                 return isServerRunning;
             }
         }
-        public class CommandObject {
-            public string Command {
-                get; set;
-            }
-            public string JobName {
-                get; set;
-            }
-        }
-        private bool isServerRunning;
-        // The port the server listens on
-        private int _port = 5500; 
+
         public int Port {
             get {
                 return _port;
             }
             set {
                 // Check if the server is running before changing the port
-                if (!isServerRunning) { 
+                if (!isServerRunning) {
                     _port = value;
                 }
                 else {
@@ -56,7 +46,30 @@ namespace EasySaveGUI.model {
             }
         }
 
-        // Start the server
+        /// <summary>
+        /// Constructor for the Server class
+        /// </summary>
+        private Server() {
+
+        }
+
+        public static Server Instance {
+            get {
+                instance ??= new Server();
+                return instance;
+            }
+        }
+
+        public class CommandObject {
+            public string Command {
+                get; set;
+            }
+
+        }
+
+        /// <summary>
+        /// Start the server
+        /// </summary>
         public void StartServer() {
             try {
                 // Initialize the CancellationTokenSource for this server session
@@ -75,7 +88,9 @@ namespace EasySaveGUI.model {
             }
         }
 
-        // Stop the server
+        /// <summary>
+        /// Stop the server
+        /// </summary>
         public void StopServer() {
             try {
                 // Check if the server is already stopped to avoid redundancy
@@ -115,7 +130,10 @@ namespace EasySaveGUI.model {
             }
         }
 
-        // Listen for incoming client connections
+        /// <summary>
+        /// Listen for incoming client connections
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token to stop the listener</param>
         private async void ListenForClients(CancellationToken cancellationToken) {
             while (isServerRunning && !cancellationToken.IsCancellationRequested) {
                 try {
@@ -138,7 +156,12 @@ namespace EasySaveGUI.model {
             }
         }
 
-        // Handle the client connection
+        /// <summary>
+        /// Handle an individual client connection
+        /// </summary>
+        /// <param name="client">Connected TcpClient</param>
+        /// <param name="cancellationToken">Cancellation token to stop handling the client</param>
+        /// <returns></returns>
         private async Task HandleClient(TcpClient client, CancellationToken cancellationToken) {
             clients.Add(client);
             try {
@@ -150,29 +173,26 @@ namespace EasySaveGUI.model {
                             break; 
 
                         string receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
-                        MessageBox.Show($"Received command: {receivedData}");
-
                         // Deserialize the received data into a CommandObject
                         CommandObject commandObject = JsonSerializer.Deserialize<CommandObject>(receivedData);
-                        MessageBox.Show($"CommandObject deserialized: Command = {commandObject.Command}, JobName = {commandObject.JobName}");
                         if (commandObject == null) {
                             MessageBox.Show("Invalid command format.");
                             continue; 
                         }
 
-                        MessageBox.Show($"Command received: {commandObject.Command}, JobName: {commandObject.JobName}");
+                        MessageBox.Show($"Command received: {commandObject.Command}");
 
                         // Execute command based on deserialized CommandObject
                         Dispatcher.CurrentDispatcher.Invoke(() => {
                             switch (commandObject.Command.ToUpper()) {
                                 case "PAUSE":
-                                    PauseJobByName(commandObject.JobName);
+                                    PauseJob();
                                     break;
                                 case "RESUME":
-                                    ResumeJobByName(commandObject.JobName);
+                                    ResumeJob();
                                     break;
                                 case "STOP":
-                                    StopJobByName(commandObject.JobName);
+                                    StopJob();
                                     break;
                                 default:
                                     MessageBox.Show($"Unknown command: {commandObject.Command}");
@@ -200,7 +220,10 @@ namespace EasySaveGUI.model {
             }
         }
 
-        // Broadcast progress to all connected clients
+        /// <summary>
+        /// Broadcast progress to all connected clients
+        /// </summary>
+        /// <param name="data">Data to send to clients</param>
         public void BroadcastProgress(string data) {
             // Add begining markup and final markup to the data
             data = "<data>" + data + "</data>";
@@ -212,63 +235,26 @@ namespace EasySaveGUI.model {
             }
         }
 
-        public static Server Instance {
-            get {
-                if (instance == null) {
-                    instance = new Server();
-                }
-                return instance;
-            }
-        }
-        // Pause the job with the given name
-        private void PauseJobByName(string jobName) {
-            MessageBox.Show($"Trying to find job: {jobName}");
-            var job = FindJobByName(jobName);
-            if (job != null) {
-                job.State = "PAUSED"; 
-                job.ManualResetEvent.Reset(); 
-                MessageBox.Show($"Paused job: {jobName}");
-            }
-            else {
-                MessageBox.Show($"Job not found: {jobName}");
-            }
+        /// <summary>
+        /// Pause SaveJobs
+        /// </summary>
+        private void PauseJob() {
+            MessageBox.Show($"Trying to pause jobs");
         }
 
-        private void ResumeJobByName(string jobName) {
-            MessageBox.Show($"Trying to find job: {jobName}");
-            var job = FindJobByName(jobName);
-            if (job != null) {
-                Dispatcher.CurrentDispatcher.Invoke(() => {
-                    job.ManualResetEvent?.Set();
-                    MessageBox.Show($"Resumed job: {jobName}");
-
-                });
-            }
-            else {
-                MessageBox.Show($"Job not found: {jobName}");
-            }
+        /// <summary>
+        /// Resume SaveJobs
+        /// </summary>
+        private void ResumeJob() {
+            MessageBox.Show($"Trying to resume jobs");
         }
 
-        // Stop the job with the given name
-        private void StopJobByName(string jobName) {
-            MessageBox.Show($"Trying to find job: {jobName}");
-            var job = FindJobByName(jobName);
-            if (job != null) {
-                Dispatcher.CurrentDispatcher.Invoke(() => {
-                    job.ManualResetEvent?.Set();
-                    //job.CancellationTokenSource?.Cancel(); 
-                    MessageBox.Show($"Stopped job: {jobName}");
-                });
-            }
-            else {
-                MessageBox.Show($"Job not found: {jobName}");
-            }
+        /// <summary>
+        /// Stop SaveJobs
+        /// </summary>
+        private void StopJob() {
+            MessageBox.Show($"Trying to stop jobs");
         }
 
-        private JobState FindJobByName(string jobName) {
-            object job = null;
-            MessageBox.Show($"Job search result for '{jobName}': found = {(job != null ? "Yes" : "No")}");
-            return jobs.FirstOrDefault(job => job.Name.Equals(jobName, StringComparison.OrdinalIgnoreCase));
-        }
     }
 }

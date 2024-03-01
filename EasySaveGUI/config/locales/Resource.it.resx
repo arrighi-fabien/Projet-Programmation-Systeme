@@ -282,4 +282,10 @@
   <data name="progress_bar" xml:space="preserve">
     <value>Avanzamento</value>
   </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Rete min (%)</value>
+  </data>
+  <data name="header_status" xml:space="preserve">
+    <value>Stato</value>
+  </data>
 </root>

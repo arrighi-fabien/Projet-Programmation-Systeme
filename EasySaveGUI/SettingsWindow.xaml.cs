@@ -10,7 +10,6 @@ namespace EasySaveGUI {
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
         private Server _server = Server.Instance; 
-        private Server server;
         private Dictionary<string, string> languageMappings = new() {
             { "English", "en" },
             { "Français", "fr" },
