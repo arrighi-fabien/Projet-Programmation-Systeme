@@ -118,168 +118,150 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btn_pause" xml:space="preserve">
-    <value>Pausa</value>
+    <value>وقفة</value>
   </data>
   <data name="btn_play" xml:space="preserve">
-    <value>Comenzar</value>
+    <value>لسيرة الذاتية</value>
   </data>
   <data name="btn_stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>توقف</value>
   </data>
-  <data name="apply_button" xml:space="preserve">
-    <value>Solicitar</value>
+  <data name="connected_successfully" xml:space="preserve">
+    <value>تم الاتصال بالخادم بنجاح</value>
   </data>
-  <data name="cannot_change_port_while_running" xml:space="preserve">
-    <value>no se puede cambiar el puerto mientras se ejecuta el servidor</value>
+  <data name="connection_error" xml:space="preserve">
+    <value>خطأ في الاتصال</value>
+  </data>
+  <data name="connection_status" xml:space="preserve">
+    <value>حالة الاتصال</value>
+  </data>
+  <data name="connect_button" xml:space="preserve">
+    <value>التوصيل</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>حذف</value>
   </data>
   <data name="differential_save" xml:space="preserve">
-    <value>Diferencial</value>
+    <value>التفاضلية</value>
+  </data>
+  <data name="disconnected_successfully" xml:space="preserve">
+    <value>تم قطع الاتصال بالخادم بنجاح</value>
+  </data>
+  <data name="disconnect_button" xml:space="preserve">
+    <value>قطع الاتصال</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
-    <value>Por favor, cierre todas las ventanas antes de salir de la aplicación</value>
+    <value>الرجاء إغلاق جميع النوافذ قبل الخروج من التطبيق</value>
   </data>
   <data name="error_enter_valid_path" xml:space="preserve">
-    <value>Por favor, introduzca una ruta válida</value>
+    <value>الرجاء إدخال مسار صالح</value>
   </data>
   <data name="error_fill_all_fields" xml:space="preserve">
-    <value>Por favor, rellene todos los campos</value>
+    <value>الرجاء ملء جميع الحقول</value>
   </data>
   <data name="error_multiple_savejob_selected" xml:space="preserve">
-    <value>Por favor, seleccione solo un trabajo de guardado</value>
+    <value>الرجاء تحديد عمل حفظ واحد فقط</value>
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
-    <value>No se ha seleccionado ningún trabajo de guardado</value>
-  </data>
-  <data name="error_other_instance" xml:space="preserve">
-    <value>Se lanza otra instancia de la aplicación</value>
+    <value>لم يتم تحديد عمل حفظ</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
-    <value>Se ha lanzado una aplicación profesional</value>
-  </data>
-  <data name="error_samefolder" xml:space="preserve">
-    <value>Los trabajos de copia de seguridad utilizan la misma carpeta de origen</value>
+    <value>تم تشغيل تطبيق احترافي</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
-    <value>Se produjo un error</value>
+    <value>حدث خطأ</value>
   </data>
   <data name="executing" xml:space="preserve">
-    <value>Ejecutando</value>
+    <value>تنفيذ</value>
   </data>
-  <data name="file_size" xml:space="preserve">
-    <value>Peso limitado (Ko)</value>
-  </data>
-  <data name="following_professional" xml:space="preserve">
-    <value>La aplicación profesional bloquea la carga de archivos</value>
+  <data name="failed_connect" xml:space="preserve">
+    <value>فشل الاتصال</value>
   </data>
   <data name="full_save" xml:space="preserve">
-    <value>Completo</value>
+    <value>مكتمل</value>
   </data>
   <data name="header_destination" xml:space="preserve">
-    <value>Destino</value>
+    <value>الوجهة</value>
   </data>
   <data name="header_name" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="header_source" xml:space="preserve">
-    <value>Fuente</value>
-  </data>
-  <data name="header_type" xml:space="preserve">
-    <value>Tipo</value>
-  </data>
-  <data name="invalid_port_number" xml:space="preserve">
-    <value>Número de puerto no válido</value>
-  </data>
-  <data name="label_destination_folder" xml:space="preserve">
-    <value>Carpeta de destino</value>
-  </data>
-  <data name="label_encrypt_extensions" xml:space="preserve">
-    <value>Extensiones para cifrar</value>
-  </data>
-  <data name="label_language" xml:space="preserve">
-    <value>Idioma</value>
-  </data>
-  <data name="label_log_format" xml:space="preserve">
-    <value>Formato log</value>
-  </data>
-  <data name="label_professional_app" xml:space="preserve">
-    <value>Aplicaciones profesionales</value>
-  </data>
-  <data name="label_savejob_name" xml:space="preserve">
-    <value>Nombre del trabajo de guardado</value>
-  </data>
-  <data name="label_save_type" xml:space="preserve">
-    <value>Tipo de guardado</value>
-  </data>
-  <data name="label_source_folder" xml:space="preserve">
-    <value>Carpeta de origen</value>
-  </data>
-  <data name="menu_create_save" xml:space="preserve">
-    <value>Crear guardado</value>
-  </data>
-  <data name="menu_delete_save" xml:space="preserve">
-    <value>Eliminar guardado</value>
-  </data>
-  <data name="menu_execute_save" xml:space="preserve">
-    <value>Ejecutar guardado</value>
-  </data>
-  <data name="menu_update_save" xml:space="preserve">
-    <value>Actualizar guardado</value>
-  </data>
-  <data name="message_received" xml:space="preserve">
-    <value>Messaggio ricevuto</value>
-  </data>
-  <data name="popup_delete_savejob" xml:space="preserve">
-    <value>Eliminación del trabajo de guardado</value>
-  </data>
-  <data name="popup_error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="port_updated_successfully" xml:space="preserve">
-    <value>Puerto actualizado correctamente</value>
-  </data>
-  <data name="priority_extension" xml:space="preserve">
-    <value>Prioridad Extensión</value>
-  </data>
-  <data name="savejob_finished" xml:space="preserve">
-    <value>Guardado finalizado</value>
-  </data>
-  <data name="save_button" xml:space="preserve">
-    <value>Guardar</value>
-  </data>
-  <data name="server_port" xml:space="preserve">
-    <value>Puerto servidor</value>
-  </data>
-  <data name="server_started_on_port" xml:space="preserve">
-    <value>Servidor iniciado en el puerto :</value>
-  </data>
-  <data name="server_status" xml:space="preserve">
-    <value>Estado servidor</value>
-  </data>
-  <data name="server_stopped" xml:space="preserve">
-    <value>Server fermato</value>
-  </data>
-  <data name="settings" xml:space="preserve">
-    <value>Configuración</value>
-  </data>
-  <data name="settings_saved" xml:space="preserve">
-    <value>Ajustes guardados correctamente</value>
-  </data>
-  <data name="start_server" xml:space="preserve">
-    <value>Activar</value>
-  </data>
-  <data name="stop_server" xml:space="preserve">
-    <value>Desactivar</value>
-  </data>
-  <data name="transfer_starts" xml:space="preserve">
-    <value>Se reanuda la transferencia...</value>
+    <value>الاسم</value>
   </data>
   <data name="header_progression" xml:space="preserve">
-    <value>Porcentaje</value>
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="header_source" xml:space="preserve">
+    <value>المصدر</value>
+  </data>
+  <data name="header_type" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="label_destination_folder" xml:space="preserve">
+    <value>مجلد الوجهة</value>
+  </data>
+  <data name="label_encrypt_extensions" xml:space="preserve">
+    <value>امتدادات للتشفير</value>
+  </data>
+  <data name="label_language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="label_log_format" xml:space="preserve">
+    <value>تنسيق السجل</value>
+  </data>
+  <data name="label_professional_app" xml:space="preserve">
+    <value>التطبيقات الاحترافية</value>
+  </data>
+  <data name="label_savejob_name" xml:space="preserve">
+    <value>اسم عمل الحفظ</value>
+  </data>
+  <data name="label_save_type" xml:space="preserve">
+    <value>نوع الحفظ</value>
+  </data>
+  <data name="label_source_folder" xml:space="preserve">
+    <value>مجلد المصدر</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="menu_create_save" xml:space="preserve">
+    <value>إنشاء عمل حفظ</value>
+  </data>
+  <data name="menu_delete_save" xml:space="preserve">
+    <value>حذف عمل حفظ</value>
+  </data>
+  <data name="menu_execute_save" xml:space="preserve">
+    <value>تنفيذ عمل الحفظ</value>
+  </data>
+  <data name="menu_update_save" xml:space="preserve">
+    <value>تحديث عمل حفظ</value>
+  </data>
+  <data name="popup_delete_savejob" xml:space="preserve">
+    <value>حذف عمل الحفظ</value>
+  </data>
+  <data name="popup_error" xml:space="preserve">
+    <value>خطأ</value>
   </data>
   <data name="progress_bar" xml:space="preserve">
-    <value>Avance</value>
+    <value>التقدم</value>
+  </data>
+  <data name="savejob_finished" xml:space="preserve">
+    <value>اكتمل عمل الحفظ</value>
+  </data>
+  <data name="save_button" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="server_ip" xml:space="preserve">
+    <value>عنوان IP الخادم</value>
+  </data>
+  <data name="server_port" xml:space="preserve">
+    <value>منفذ الخادم</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>تم حفظ الإعدادات بنجاح</value>
+  </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>شبكة العتبة (%)</value>
   </data>
 </root>

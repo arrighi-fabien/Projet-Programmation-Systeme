@@ -121,165 +121,147 @@
     <value>Pausa</value>
   </data>
   <data name="btn_play" xml:space="preserve">
-    <value>Comenzar</value>
+    <value>Inizio</value>
   </data>
   <data name="btn_stop" xml:space="preserve">
     <value>Stop</value>
   </data>
-  <data name="apply_button" xml:space="preserve">
-    <value>Solicitar</value>
+  <data name="connected_successfully" xml:space="preserve">
+    <value>Connessione al server riuscita</value>
   </data>
-  <data name="cannot_change_port_while_running" xml:space="preserve">
-    <value>no se puede cambiar el puerto mientras se ejecuta el servidor</value>
+  <data name="connection_error" xml:space="preserve">
+    <value>Errore di connessione</value>
+  </data>
+  <data name="connection_status" xml:space="preserve">
+    <value>Stato della connessione</value>
+  </data>
+  <data name="connect_button" xml:space="preserve">
+    <value>Connessione</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>Elimina</value>
   </data>
   <data name="differential_save" xml:space="preserve">
-    <value>Diferencial</value>
+    <value>Differenziale</value>
+  </data>
+  <data name="disconnected_successfully" xml:space="preserve">
+    <value>Disconnessione dal server riuscita</value>
+  </data>
+  <data name="disconnect_button" xml:space="preserve">
+    <value>Disconnessione</value>
   </data>
   <data name="error_close_windows" xml:space="preserve">
-    <value>Por favor, cierre todas las ventanas antes de salir de la aplicación</value>
+    <value>Chiudere tutte le finestre prima di uscire dall'applicazione</value>
   </data>
   <data name="error_enter_valid_path" xml:space="preserve">
-    <value>Por favor, introduzca una ruta válida</value>
+    <value>Inserire un percorso valido</value>
   </data>
   <data name="error_fill_all_fields" xml:space="preserve">
-    <value>Por favor, rellene todos los campos</value>
+    <value>Compilare tutti i campi</value>
   </data>
   <data name="error_multiple_savejob_selected" xml:space="preserve">
-    <value>Por favor, seleccione solo un trabajo de guardado</value>
+    <value>Selezionare solo un lavoro di salvataggio</value>
   </data>
   <data name="error_no_savejob_selected" xml:space="preserve">
-    <value>No se ha seleccionado ningún trabajo de guardado</value>
-  </data>
-  <data name="error_other_instance" xml:space="preserve">
-    <value>Se lanza otra instancia de la aplicación</value>
+    <value>Nessun lavoro di salvataggio selezionato</value>
   </data>
   <data name="error_professionalapp" xml:space="preserve">
-    <value>Se ha lanzado una aplicación profesional</value>
-  </data>
-  <data name="error_samefolder" xml:space="preserve">
-    <value>Los trabajos de copia de seguridad utilizan la misma carpeta de origen</value>
+    <value>Un'applicazione professionale è stata lanciata</value>
   </data>
   <data name="error_savejob" xml:space="preserve">
-    <value>Se produjo un error</value>
+    <value>Si è verificato un errore</value>
   </data>
   <data name="executing" xml:space="preserve">
-    <value>Ejecutando</value>
+    <value>Esecuzione</value>
   </data>
-  <data name="file_size" xml:space="preserve">
-    <value>Peso limitado (Ko)</value>
-  </data>
-  <data name="following_professional" xml:space="preserve">
-    <value>La aplicación profesional bloquea la carga de archivos</value>
+  <data name="failed_connect" xml:space="preserve">
+    <value>Connessione fallita</value>
   </data>
   <data name="full_save" xml:space="preserve">
     <value>Completo</value>
   </data>
   <data name="header_destination" xml:space="preserve">
-    <value>Destino</value>
+    <value>Destinazione</value>
   </data>
   <data name="header_name" xml:space="preserve">
-    <value>Nombre</value>
+    <value>Nome</value>
+  </data>
+  <data name="header_progression" xml:space="preserve">
+    <value>Percentuale</value>
   </data>
   <data name="header_source" xml:space="preserve">
-    <value>Fuente</value>
+    <value>Origine</value>
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Tipo</value>
   </data>
-  <data name="invalid_port_number" xml:space="preserve">
-    <value>Número de puerto no válido</value>
-  </data>
   <data name="label_destination_folder" xml:space="preserve">
-    <value>Carpeta de destino</value>
+    <value>Cartella di destinazione</value>
   </data>
   <data name="label_encrypt_extensions" xml:space="preserve">
-    <value>Extensiones para cifrar</value>
+    <value>Estensioni da criptare</value>
   </data>
   <data name="label_language" xml:space="preserve">
-    <value>Idioma</value>
+    <value>Lingua</value>
   </data>
   <data name="label_log_format" xml:space="preserve">
-    <value>Formato log</value>
+    <value>Formato del log</value>
   </data>
   <data name="label_professional_app" xml:space="preserve">
-    <value>Aplicaciones profesionales</value>
+    <value>Applicazioni professionali</value>
   </data>
   <data name="label_savejob_name" xml:space="preserve">
-    <value>Nombre del trabajo de guardado</value>
+    <value>Nome del lavoro di salvataggio</value>
   </data>
   <data name="label_save_type" xml:space="preserve">
-    <value>Tipo de guardado</value>
+    <value>Tipo di salvataggio</value>
   </data>
   <data name="label_source_folder" xml:space="preserve">
-    <value>Carpeta de origen</value>
+    <value>Cartella sorgente</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Lingua</value>
   </data>
   <data name="menu_create_save" xml:space="preserve">
-    <value>Crear guardado</value>
+    <value>Crea salvataggio</value>
   </data>
   <data name="menu_delete_save" xml:space="preserve">
-    <value>Eliminar guardado</value>
+    <value>Elimina salvataggio</value>
   </data>
   <data name="menu_execute_save" xml:space="preserve">
-    <value>Ejecutar guardado</value>
+    <value>Esegui salvataggio</value>
   </data>
   <data name="menu_update_save" xml:space="preserve">
-    <value>Actualizar guardado</value>
-  </data>
-  <data name="message_received" xml:space="preserve">
-    <value>Messaggio ricevuto</value>
+    <value>Aggiorna salvataggio</value>
   </data>
   <data name="popup_delete_savejob" xml:space="preserve">
-    <value>Eliminación del trabajo de guardado</value>
+    <value>Eliminazione del lavoro di salvataggio</value>
   </data>
   <data name="popup_error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="port_updated_successfully" xml:space="preserve">
-    <value>Puerto actualizado correctamente</value>
-  </data>
-  <data name="priority_extension" xml:space="preserve">
-    <value>Prioridad Extensión</value>
-  </data>
-  <data name="savejob_finished" xml:space="preserve">
-    <value>Guardado finalizado</value>
-  </data>
-  <data name="save_button" xml:space="preserve">
-    <value>Guardar</value>
-  </data>
-  <data name="server_port" xml:space="preserve">
-    <value>Puerto servidor</value>
-  </data>
-  <data name="server_started_on_port" xml:space="preserve">
-    <value>Servidor iniciado en el puerto :</value>
-  </data>
-  <data name="server_status" xml:space="preserve">
-    <value>Estado servidor</value>
-  </data>
-  <data name="server_stopped" xml:space="preserve">
-    <value>Server fermato</value>
-  </data>
-  <data name="settings" xml:space="preserve">
-    <value>Configuración</value>
-  </data>
-  <data name="settings_saved" xml:space="preserve">
-    <value>Ajustes guardados correctamente</value>
-  </data>
-  <data name="start_server" xml:space="preserve">
-    <value>Activar</value>
-  </data>
-  <data name="stop_server" xml:space="preserve">
-    <value>Desactivar</value>
-  </data>
-  <data name="transfer_starts" xml:space="preserve">
-    <value>Se reanuda la transferencia...</value>
-  </data>
-  <data name="header_progression" xml:space="preserve">
-    <value>Porcentaje</value>
+    <value>Errore</value>
   </data>
   <data name="progress_bar" xml:space="preserve">
-    <value>Avance</value>
+    <value>Avanzamento</value>
+  </data>
+  <data name="savejob_finished" xml:space="preserve">
+    <value>Lavoro di salvataggio completato</value>
+  </data>
+  <data name="save_button" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="server_ip" xml:space="preserve">
+    <value>IP del server</value>
+  </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Porta del server</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Impostazioni salvate con successo</value>
+  </data>
+  <data name="threshold_network" xml:space="preserve">
+    <value>Rete di soglia (%)</value>
   </data>
 </root>

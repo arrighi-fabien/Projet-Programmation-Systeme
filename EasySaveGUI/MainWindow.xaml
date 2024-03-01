@@ -10,7 +10,7 @@
     <Grid Background="{StaticResource MainBackground}">
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0" Width="204">
             <TextBlock TextWrapping="Wrap" Text="EasySave" VerticalAlignment="Center" FontSize="40" Margin="0,0,27,0" Style="{StaticResource CustomTextBoxStyle}"/>
-            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v2.0" VerticalAlignment="Bottom" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="125,0,0,0" TextWrapping="Wrap" Text="v3.0" VerticalAlignment="Bottom" FontSize="20" Style="{StaticResource CustomTextBoxStyle}"/>
         </Grid>
 
         <Button x:Name="LaunchSaveJobButton" Content="Launch savejob" HorizontalAlignment="Left" Margin="48,147,0,0" VerticalAlignment="Top" Width="150" Click="LaunchSaveJobButton_Click" Style="{StaticResource CustomButtonStyle}"/>

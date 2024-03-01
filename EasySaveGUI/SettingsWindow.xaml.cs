@@ -9,6 +9,8 @@ namespace EasySaveGUI {
 
         private readonly Language language = EasySaveGUI.model.Language.GetInstance();
         private readonly Tool tool = Tool.GetInstance();
+        private Server _server = Server.Instance; 
+        private Server server;
         private Dictionary<string, string> languageMappings = new() {
             { "English", "en" },
             { "Français", "fr" },
@@ -19,25 +21,42 @@ namespace EasySaveGUI {
             { "العربية", "ar" }
         };
 
+
         public SettingsWindow() {
             InitializeComponent();
+            _server = Server.Instance;
+
             // Set the language combobox to the saved language
             string savedLanguage = tool.GetConfigValue("language");
 
-            List<string> languageNames = new(languageMappings.Keys);
+            List<string> languageNames = new List<string>(languageMappings.Keys);
             LanguageComboBox.ItemsSource = languageNames;
             LanguageComboBox.SelectedIndex = languageNames.IndexOf(languageMappings.FirstOrDefault(x => x.Value == savedLanguage).Key);
 
-            // Set the log format combobox to the saved log format
+            // Set the log format combobox to the saved log format or default to JSON
             string savedLogFormat = tool.GetConfigValue("logFormat");
-            switch (savedLogFormat) {
-                case "json":
-                    LogFormatComboBox.SelectedIndex = 0;
-                    break;
-                case "xml":
-                    LogFormatComboBox.SelectedIndex = 1;
-                    break;
+            if (string.IsNullOrEmpty(savedLogFormat)) {
+                // Default to JSON if no format is saved
+                LogFormatComboBox.SelectedIndex = 0;
+                // Save default format if not set
+                tool.WriteConfigValue("logFormat", "json"); 
             }
+            else {
+                // Use ToLower to ensure case-insensitive comparison
+                switch (savedLogFormat.ToLower()) { 
+                    case "json":
+                        LogFormatComboBox.SelectedIndex = 0;
+                        break;
+                    case "xml":
+                        LogFormatComboBox.SelectedIndex = 1;
+                        break;
+                    default:
+                        // Default to JSON if unrecognized format
+                        LogFormatComboBox.SelectedIndex = 0; 
+                        break;
+                }
+            }
+
             // Get the saved extensions and apps
             string savedEncryptExtensions = tool.GetConfigValue("encryptExtensions");
             EncryptExtensionTextBox.Text = savedEncryptExtensions.Replace(";", "\r\n");
@@ -47,6 +66,14 @@ namespace EasySaveGUI {
             PriorityExtensionTextBox.Text = savedPriorityExtensions.Replace(";", "\r\n");
             string savedFileSize = tool.GetConfigValue("fileSize");
             FileSizeTextBox.Text = savedFileSize;
+
+            // Load the server port from the config file
+            ServerPortTextBox.Text = _server.Port.ToString();
+
+            // Load the network load threshold from the config file
+            string currentNetworkLoadThreshold = tool.GetConfigValue("networkLoadThreshold");
+            // Set the default value to 50 if not set
+            NetworkLoadThresholdTextBox.Text = currentNetworkLoadThreshold ?? "50"; 
 
             Refresh();
         }
@@ -59,8 +86,20 @@ namespace EasySaveGUI {
             LogFormatLabel.Text = language.GetString("label_log_format");
             EncryptExtensionLabel.Text = language.GetString("label_encrypt_extensions");
             ProfessionalAppLabel.Text = language.GetString("label_professional_app");
-            // Set the buttons to the language
+            PriorityExtensionLabel.Text = language.GetString("priority_extension");
+            ServerStatusLabel.Text = language.GetString("server_status");
+            ServerPortLabel.Text = language.GetString("server_port");
+            FileSizeLabel.Text = language.GetString("file_size");
+            NetworkLoadThresholdLabel.Text = language.GetString("threshold_network");
+
+            // Set the server labels to the language
+            ServerToggleButton.Content = language.GetString("start_server"); 
+            ServerToggleButton.Content = language.GetString("stop_server");
+
+            // Set the save button to the language
+            ServerPortSaveButton.Content = language.GetString("apply_button");
             SaveButton.Content = language.GetString("save_button");
+
             // Refresh main window
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.Refresh();
@@ -89,9 +128,17 @@ namespace EasySaveGUI {
             SaveTextAreas(PriorityExtensionTextBox.Text, "priorityExtensions");
             SaveTextAreas(EncryptExtensionTextBox.Text, "encryptExtensions");
             SaveTextAreas(ProfessionalAppTextBox.Text, "professsionalApp");
+
+            // Convert value to int or set to 50 if not a number for NetworkLoadThreshold
+            int networkLoadResult; 
+            int networkLoadThreshold = int.TryParse(NetworkLoadThresholdTextBox.Text, out networkLoadResult) ? networkLoadResult : 50;
+            Tool.GetInstance().WriteConfigValue("networkLoadThreshold", networkLoadThreshold.ToString());
+
             // Convert value to int or set to 10 if not a number
             int fileSize = int.TryParse(FileSizeTextBox.Text, out int result) ? result : 10;
             tool.WriteConfigValue("fileSize", fileSize.ToString());
+            MessageBox.Show(language.GetString("settings_saved"));
+            this.Close();
         }
 
         private void SaveTextAreas(string content, string key) {
@@ -101,5 +148,37 @@ namespace EasySaveGUI {
             tool.WriteConfigValue(key, result);
         }
 
+        private void ServerPortSaveButton_Click(object sender, RoutedEventArgs e) {
+            if (_server.IsServerRunning) {
+                MessageBox.Show(language.GetString("cannot_change_port_while_running"));
+                return;
+            }
+            if (int.TryParse(ServerPortTextBox.Text, out int newPort)) {
+                _server.Port = newPort;
+                MessageBox.Show(language.GetString("port_updated_successfully"));
+            }
+            else {
+                MessageBox.Show(language.GetString("invalid_port_number"));
+            }
+        }
+
+        // Start or stop the server
+        private void ServerToggleButton_Click(object sender, RoutedEventArgs e) {
+            if (_server != null) {
+                if (!_server.IsServerRunning) {
+                    _server.StartServer();
+                    ServerToggleButton.Content = language.GetString("start_server");
+                    // Set the button to the enabled style
+                    ServerToggleButton.Style = (Style)Application.Current.Resources["EnabledButtonStyle"]; 
+                    MessageBox.Show(language.GetString("server_started_on_port") + " " + _server.Port);
+                }
+                else {
+                    _server.StopServer();
+                    ServerToggleButton.Content = language.GetString("stop_server"); 
+                    ServerToggleButton.Style = (Style)Application.Current.Resources["DisabledButtonStyle"]; 
+                    MessageBox.Show(language.GetString("server_stopped"));
+                }
+            }
+        }
     }
 }

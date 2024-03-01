@@ -126,6 +126,12 @@
   <data name="btn_stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="apply_button" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="cannot_change_port_while_running" xml:space="preserve">
+    <value>The operation is not possible while the server is running</value>
+  </data>
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -162,6 +168,9 @@
   <data name="executing" xml:space="preserve">
     <value>Executing</value>
   </data>
+  <data name="file_size" xml:space="preserve">
+    <value>Limited weight (Ko)</value>
+  </data>
   <data name="following_professional" xml:space="preserve">
     <value>The following professional application is blocking loading files </value>
   </data>
@@ -175,7 +184,7 @@
     <value>Name</value>
   </data>
   <data name="header_progression" xml:space="preserve">
-    <value>Progression</value>
+    <value>Percentage</value>
   </data>
   <data name="header_source" xml:space="preserve">
     <value>Source</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="header_type" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="invalid_port_number" xml:space="preserve">
+    <value>Invalid port number</value>
   </data>
   <data name="label_destination_folder" xml:space="preserve">
     <value>Destination folder</value>
@@ -222,11 +234,20 @@
   <data name="menu_update_save" xml:space="preserve">
     <value>Update save job</value>
   </data>
+  <data name="message_received" xml:space="preserve">
+    <value>Message received</value>
+  </data>
   <data name="popup_delete_savejob" xml:space="preserve">
     <value>Savejob deletion</value>
   </data>
   <data name="popup_error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="port_updated_successfully" xml:space="preserve">
+    <value>Port updated successfully</value>
+  </data>
+  <data name="priority_extension" xml:space="preserve">
+    <value>Priority Extension</value>
   </data>
   <data name="savejob_finished" xml:space="preserve">
     <value>SaveJob finished</value>
@@ -234,10 +255,31 @@
   <data name="save_button" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="server_port" xml:space="preserve">
+    <value>Server Port</value>
+  </data>
+  <data name="server_started_on_port" xml:space="preserve">
+    <value>Server started on port :</value>
+  </data>
+  <data name="server_status" xml:space="preserve">
+    <value>Server Status</value>
+  </data>
+  <data name="server_stopped" xml:space="preserve">
+    <value>Server stopped</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="transfer_starts" xml:space="preserve">
-    <value>The transfer starts again...</value>
+  <data name="start_server" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="stop_server" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="progress_bar" xml:space="preserve">
+    <value>Advancement</value>
+  </data>
+  <data name="settings_saved" xml:space="preserve">
+    <value>Settings successfully saved</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ namespace EasySaveGUI.model {
         private uint filesLeft;
         private ulong filesSizeLeft;
         private int progression;
+        internal object CancellationTokenSource;
 
         // Properties for state, totalFiles, totalFilesSize, filesLeft, filesSizeLeft, and progression
         public string State {
@@ -30,6 +31,9 @@ namespace EasySaveGUI.model {
             set {
                 totalFiles = value;
             }
+        }
+        public ManualResetEvent ManualResetEvent {
+            get; set;
         }
 
         public ulong TotalFilesSize {

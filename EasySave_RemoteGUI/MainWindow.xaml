@@ -1,0 +1,19 @@
+﻿<Window x:Class="EasySave_RemoteGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySave_RemoteGUI"
+        mc:Ignorable="d"
+        Title="EasySave Remote Control" Height="450" Width="553" ResizeMode="CanMinimize"  Icon="assets/icon.png" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="{StaticResource MainBackground}" HorizontalAlignment="Center" Width="553">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,10,0,0" Width="204">
+            <TextBlock TextWrapping="Wrap" Text="EasySave Remote" VerticalAlignment="Center" FontSize="40" Margin="19,0,-138,0" Style="{StaticResource CustomTextBoxStyle}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,48,-155,0" TextWrapping="Wrap" Text="v3.0" VerticalAlignment="Top" FontSize="20" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="-0.126,0.71"/>
+        </Grid>
+
+        <Button x:Name="ConnectDisconnectButton" Click="ConnectDisconnectButton_Click" Content="connect_button" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource CustomButtonStyle}"/>
+        <Button x:Name="SettingsButton" Click="SettingsButton_Click" Content="settings" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource CustomButtonStyle}"/>
+    </Grid>
+</Window>

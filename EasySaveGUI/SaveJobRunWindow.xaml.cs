@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using EasySaveGUI.model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasySaveGUI {
     /// <summary>
@@ -13,10 +14,16 @@ namespace EasySaveGUI {
         private List<Thread> saveJobThreadList = [];
         private List<CancellationTokenSource> cancellationTokenList = [];
         private ManualResetEvent manualResetEvent = new(true);
+        private Server server;
+        private List<SaveJob> saveJobs;
 
-        public SaveJobRunWindow(List<SaveJob> saveJobs) {
+        public SaveJobRunWindow(List<SaveJob> saveJobs, Server server) {
             InitializeComponent();
             Refresh();
+
+            this.saveJobs = saveJobs;
+            this.server = server;
+
             // Wait the window to be loaded before running the save jobs
             this.Loaded += (s, args) => {
                 // Wait 1 second before running the save jobs
@@ -32,9 +39,11 @@ namespace EasySaveGUI {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             CountdownEvent countdownEvent = new(saveJobs.Count);
             SaveJob.countdownPriorityFile = new(saveJobs.Count);
+            var lastSentJson = ""; // Keep track of the last sent JSON to avoid redundant sends
 
             List<string> folders = [];
             foreach (SaveJob saveJob in saveJobs) {
+
                 if (!folders.Contains(saveJob.SourceFolder)) {
                     folders.Add(saveJob.SourceFolder);
                 }
@@ -45,8 +54,7 @@ namespace EasySaveGUI {
                 }
             }
 
-            foreach (SaveJob saveJob in saveJobs) {
-                // Create thread for each save job
+                // Create a thread for each save job
                 Thread thread = new(() => {
                     CancellationTokenSource cancellationToken = new();
                     cancellationTokenList.Add(cancellationToken);
@@ -70,18 +78,36 @@ namespace EasySaveGUI {
                 thread.Start();
                 saveJobThreadList.Add(thread);
             }
+
             Thread.Sleep(50);
+
             SaveJobRun.ItemsSource = jobStates;
+
             Thread threadRefreshListView = new(() => {
-                // Refresh SaveJobRun every 100ms
+                // Refresh SaveJobRun every 500ms
                 while (countdownEvent.CurrentCount > 0) {
                     Dispatcher.Invoke(() => {
                         SaveJobRun.Items.Refresh();
+
+                        string currentJson = System.Text.Json.JsonSerializer.Serialize(jobStates);
+                        // Check if there has been a change in the progression
+                        if (server != null && currentJson != lastSentJson) {
+                            server.BroadcastProgress(currentJson);
+                            // Update the last sent JSON
+                            lastSentJson = currentJson;
+                        }
                     });
-                    Thread.Sleep(10);
+                    // Wait 500ms before refreshing the list view
+                    Thread.Sleep(1000); 
                 }
+                // Final update after all jobs are completed
                 Dispatcher.Invoke(() => {
                     SaveJobRun.Items.Refresh();
+                    // Only send final state if there are changes
+                    string finalJson = System.Text.Json.JsonSerializer.Serialize(jobStates);
+                    if (server != null && finalJson != lastSentJson) {
+                        server.BroadcastProgress(finalJson);
+                    }
                 });
             });
             threadRefreshListView.Start();
@@ -89,7 +115,11 @@ namespace EasySaveGUI {
             Thread threadEnd = new(() => {
                 // Wait for all save jobs to finish
                 countdownEvent.Wait();
-                MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                Dispatcher.Invoke(() => {
+
+                    MessageBox.Show(language.GetString("savejob_finished"), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close(); // Close the window
+                });
             });
             threadEnd.Start();
         }
@@ -117,11 +147,15 @@ namespace EasySaveGUI {
             // Refresh headers
             if (SaveJobRun.View is GridView gridView) {
                 gridView.Columns[0].Header = language.GetString("header_name");
-                gridView.Columns[1].Header = language.GetString("header_progression");
+                gridView.Columns[1].Header = language.GetString("progress_bar");
                 gridView.Columns[2].Header = language.GetString("header_progression");
                 gridView.Columns[3].Header = language.GetString("header_status");
             }
         }
-
+        private void UpdateAndSendProgress() {
+            var jobStates = new List<JobState>(); 
+            string json = System.Text.Json.JsonSerializer.Serialize(jobStates);
+            server.BroadcastProgress(json);
+        }
     }
 }
